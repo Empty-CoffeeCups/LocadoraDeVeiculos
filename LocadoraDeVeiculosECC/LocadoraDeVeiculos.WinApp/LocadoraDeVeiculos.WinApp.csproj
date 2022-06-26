@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Compartilhado\" />
+    <ProjectReference Include="..\LocadoraDeVeiculos\LocadoraDeVeiculos.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

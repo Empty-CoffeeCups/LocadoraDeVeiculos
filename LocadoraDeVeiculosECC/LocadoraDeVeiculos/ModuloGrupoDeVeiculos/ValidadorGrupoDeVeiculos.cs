@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos
 {
-    internal class ValidadorGrupoDeVeiculos : AbstractValidator<GrupoDeVeiculos>
+    public class ValidadorGrupoDeVeiculos : AbstractValidator<GrupoDeVeiculos>
     {
         public ValidadorGrupoDeVeiculos() {
             RuleFor(x => x.NomeDoGrupo)

@@ -10,9 +10,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
     public class Taxas : EntidadeBase<Taxas>
     {
         public string Descricao { get; set; }
-        public string Valor { get; set; }
+        public decimal Valor { get; set; }
 
-        public Taxas(string descricao, string valor)
+        public Taxas(string descricao, decimal valor)
         {
             Descricao = descricao;
             Valor = valor;

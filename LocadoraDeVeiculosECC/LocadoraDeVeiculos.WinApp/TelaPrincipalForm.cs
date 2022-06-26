@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraDeVeiculos.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,22 @@ namespace LocadoraDeVeiculos.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
+        private ControladorBase controlador;
+        private Dictionary<string, ControladorBase> controladores;
+       
+
         public TelaPrincipalForm()
         {
             InitializeComponent();
+
+            Instancia = this;
+
+        }
+
+        public static TelaPrincipalForm Instancia
+        {
+            get;
+            private set;
         }
 
     }
