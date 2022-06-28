@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 {
-    internal class ControladorFuncionarios
+    public class ControladorFuncionarios
     {
         private readonly IRepositorioFuncionario repositorioFuncionarios;
         private TabelaFuncionarioControl tabelaFuncionarios;

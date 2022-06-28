@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
         }
-        private DataGridViewColumn[] ObterColunas() // arrarararawrar
+        private DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[]
            {

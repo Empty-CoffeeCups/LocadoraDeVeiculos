@@ -14,17 +14,20 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
         public string Cnpj { get; set; }
         public string TipoDeCliente { get; set; }
         public bool Cnh { get; set; }
+        public string Endereco { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
 
         public Cliente() { }
-        public Cliente(string nome, string cpf, string cnpj, string tipoDeCliente, bool cnh, string email, string telefone)
+        public Cliente(string nome, string cpf, string cnpj, string tipoDeCliente, bool cnh,string endereco, string email, string telefone)
         {
             Nome = nome;
             Cpf = cpf;
+            Cnh = cnh;
             Cnpj = cnpj;
             TipoDeCliente = tipoDeCliente;
             Cnh = cnh;
+            Endereco = endereco;
             Email = email;
             Telefone = telefone;
         }
@@ -38,13 +41,14 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 Cnpj == cliente.Cnpj &&
                 TipoDeCliente == cliente.TipoDeCliente &&
                 Cnh == cliente.Cnh &&
+                Endereco == cliente.Endereco &&
                 Email == cliente.Email &&
                 Telefone == cliente.Telefone;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Nome, Cpf, Cnpj, TipoDeCliente, Cnh, Email, Telefone);
+            return HashCode.Combine(Id,Nome,Cpf,Cnpj,TipoDeCliente,Cnh,Endereco,Email,Telefone);
         }
 
         public override string ToString()
@@ -60,6 +64,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             Cnpj = registro.Cnpj;
             TipoDeCliente = registro.TipoDeCliente;
             Cnh = registro.Cnh;
+            Endereco = registro.Endereco;
             Email = registro.Email;
             Telefone = registro.Telefone;
         }
