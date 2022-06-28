@@ -11,7 +11,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos
     {
         public ValidadorGrupoDeVeiculos() {
             RuleFor(x => x.NomeDoGrupo)
-                    .NotNull().NotEmpty();
+                    .NotNull().NotEmpty().WithMessage("Deve ser inserido um nome");
         }
     }
 }

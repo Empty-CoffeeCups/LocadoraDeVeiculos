@@ -48,7 +48,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id,Nome,Cpf,Cnpj,TipoDeCliente,Cnh,Endereco,Email,Telefone);
+            // return HashCode.Combine(Id,Nome,Cpf,Cnpj,TipoDeCliente,Cnh,Endereco,Email,Telefone);
+            // TODO: Resolver Overload e apagar return
+            return 0;
         }
 
         public override string ToString()
