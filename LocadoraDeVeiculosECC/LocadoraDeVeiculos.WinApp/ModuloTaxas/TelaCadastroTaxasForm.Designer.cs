@@ -40,57 +40,61 @@
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(130, 47);
+            this.txtNumero.Location = new System.Drawing.Point(96, 27);
+            this.txtNumero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(176, 27);
+            this.txtNumero.Size = new System.Drawing.Size(154, 23);
             this.txtNumero.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 50);
+            this.label1.Location = new System.Drawing.Point(39, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 20);
+            this.label1.Size = new System.Drawing.Size(51, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Número";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 112);
+            this.label2.Location = new System.Drawing.Point(39, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 20);
+            this.label2.Size = new System.Drawing.Size(58, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Descrição";
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(130, 105);
+            this.txtDescricao.Location = new System.Drawing.Point(96, 71);
+            this.txtDescricao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(176, 27);
+            this.txtDescricao.Size = new System.Drawing.Size(154, 23);
             this.txtDescricao.TabIndex = 3;
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(130, 159);
+            this.txtValor.Location = new System.Drawing.Point(96, 111);
+            this.txtValor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(176, 27);
+            this.txtValor.Size = new System.Drawing.Size(154, 23);
             this.txtValor.TabIndex = 4;
             // 
             // Valor
             // 
             this.Valor.AutoSize = true;
-            this.Valor.Location = new System.Drawing.Point(67, 162);
+            this.Valor.Location = new System.Drawing.Point(39, 114);
             this.Valor.Name = "Valor";
-            this.Valor.Size = new System.Drawing.Size(43, 20);
+            this.Valor.Size = new System.Drawing.Size(33, 15);
             this.Valor.TabIndex = 5;
             this.Valor.Text = "Valor";
             // 
             // btnGravar
             // 
-            this.btnGravar.Location = new System.Drawing.Point(267, 266);
+            this.btnGravar.Location = new System.Drawing.Point(84, 182);
+            this.btnGravar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(94, 41);
+            this.btnGravar.Size = new System.Drawing.Size(82, 31);
             this.btnGravar.TabIndex = 6;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -98,9 +102,10 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(384, 266);
+            this.btnCancelar.Location = new System.Drawing.Point(186, 182);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(94, 41);
+            this.btnCancelar.Size = new System.Drawing.Size(82, 31);
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -108,9 +113,10 @@
             // 
             // TelaCadastroTaxasForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 351);
+            this.CancelButton = this.btnCancelar;
+            this.ClientSize = new System.Drawing.Size(296, 237);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.Valor);
@@ -119,7 +125,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNumero);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaCadastroTaxasForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

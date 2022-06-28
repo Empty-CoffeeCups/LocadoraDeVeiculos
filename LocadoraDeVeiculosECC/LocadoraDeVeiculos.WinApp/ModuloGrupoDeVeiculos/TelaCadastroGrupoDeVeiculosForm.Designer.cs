@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
 {
-    partial class TelaCadastroGrupoDeVeiculos
+    partial class TelaCadastroGrupoDeVeiculosForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,8 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonGravar = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxId
@@ -68,36 +68,41 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "NOME : ";
             // 
-            // button1
+            // buttonGravar
             // 
-            this.button1.Location = new System.Drawing.Point(156, 112);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 34);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "GRAVAR";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonGravar.Location = new System.Drawing.Point(156, 112);
+            this.buttonGravar.Name = "buttonGravar";
+            this.buttonGravar.Size = new System.Drawing.Size(76, 34);
+            this.buttonGravar.TabIndex = 4;
+            this.buttonGravar.Text = "GRAVAR";
+            this.buttonGravar.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonCancelar
             // 
-            this.button2.Location = new System.Drawing.Point(238, 112);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 34);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "CANCELAR";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancelar.Location = new System.Drawing.Point(238, 112);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(76, 34);
+            this.buttonCancelar.TabIndex = 5;
+            this.buttonCancelar.Text = "CANCELAR";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaCadastroGrupoDeVeiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(326, 158);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.buttonGravar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.textBoxId);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaCadastroGrupoDeVeiculos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CADASTRO DO GRUPO DE VEICULOS";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -110,7 +115,7 @@
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonGravar;
+        private System.Windows.Forms.Button buttonCancelar;
     }
 }
