@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,6 +11,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos\LocadoraDeVeiculos.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ModuloFuncionario\" />
+    <Folder Include="ModuloCliente\" />
   </ItemGroup>
 
 </Project>

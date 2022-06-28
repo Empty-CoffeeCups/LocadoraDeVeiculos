@@ -16,7 +16,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         public string Salario { get; set; }
         public bool Admin { get; set; }
 
-
+        public Funcionario() { }
         public Funcionario(string nome, string usuario, string senha, DateTime dataDeEntrada, string salario, bool admin)
         {
             Nome = nome;

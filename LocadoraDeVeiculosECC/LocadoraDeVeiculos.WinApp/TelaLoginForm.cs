@@ -16,5 +16,10 @@ namespace LocadoraDeVeiculos.WinApp
         {
             InitializeComponent();
         }
+
+        private void TelaLoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

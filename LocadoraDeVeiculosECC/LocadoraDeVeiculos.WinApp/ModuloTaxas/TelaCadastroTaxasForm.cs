@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
+using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,12 +53,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
 
         private void TelaCadastroTaxasForm_Load(object sender, EventArgs e)
         {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
         }
 
         private void TelaCadastroTaxasForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
         }
 
         
