@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloCliente\" />
   </ItemGroup>
 

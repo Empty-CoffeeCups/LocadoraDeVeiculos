@@ -11,6 +11,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxas
 {
     public class ServicoTaxa
     {
+        //TODO: VALIDAÇÕES DE TAXAS
+
         private RepositorioTaxasEmBancoDados repositorioTaxa;
 
         public ServicoTaxa(RepositorioTaxasEmBancoDados repositorioTaxa)

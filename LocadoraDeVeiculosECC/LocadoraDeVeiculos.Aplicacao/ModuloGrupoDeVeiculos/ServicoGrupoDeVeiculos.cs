@@ -11,6 +11,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
 {
     public class ServicoGrupoDeVeiculos
     {
+        //TODO: VALIDAÇÕES DE GRUPOS DE VEÍCULOS
+
         private RepositorioGrupoDeVeiculosEmBancoDados repositorioGrupoVeiculos;
 
         public ServicoGrupoDeVeiculos(RepositorioGrupoDeVeiculosEmBancoDados repositorioGrupoVeiculos)
