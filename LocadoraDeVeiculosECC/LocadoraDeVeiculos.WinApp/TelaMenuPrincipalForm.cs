@@ -1,5 +1,8 @@
-﻿using locadoraDeVeiculos.Infra.ModuloFuncionario;
+﻿using locadoraDeVeiculos.Infra.ModuloCliente;
+using locadoraDeVeiculos.Infra.ModuloFuncionario;
+using locadoraDeVeiculos.Infra.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxas;
 using System;
@@ -124,14 +127,14 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
 
         private void InicializarControladores()
         {
-            var repositorioCliente = new RepositorioClienteEmBancoDeDados();
-            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDeDados();
-            var repositorioTaxa = new RepositorioTaxaEmBancoDeDados();
+            var repositorioCliente = new RepositorioClienteEmBancoDados();
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            var repositorioTaxa = new RepositorioTaxasEmBancoDados();
             var repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDados();
 
             controladores = new Dictionary<string, ControladorBase>();
 
-            controladores.Add("Clientes", new ControladorCliente());
+            controladores.Add("Clientes", new ControladorClientes());
             controladores.Add("Funcionários", new ControladorFuncionarios(repositorioFuncionario));
             controladores.Add("Taxas", new ControladorTaxas(repositorioTaxa));
             controladores.Add("Grupo De Veículos", new ControladorGrupoDeVeiculos());
