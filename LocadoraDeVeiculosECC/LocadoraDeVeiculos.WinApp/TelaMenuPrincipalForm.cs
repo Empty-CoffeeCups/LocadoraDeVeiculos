@@ -132,12 +132,18 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             var repositorioTaxa = new RepositorioTaxasEmBancoDados();
             var repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDados();
 
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            var servicoCliente = new ServicoCliente(repositorioCliente);
+            var servicoGrupoVeiculo = new ServicoGrupoDeVeiculos(repositorioGrupoVeiculos);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+
+
             controladores = new Dictionary<string, ControladorBase>();
 
-            controladores.Add("Clientes", new ControladorClientes());
-            controladores.Add("Funcionários", new ControladorFuncionarios(repositorioFuncionario));
-            controladores.Add("Taxas", new ControladorTaxas(repositorioTaxa));
-            controladores.Add("Grupo De Veículos", new ControladorGrupoDeVeiculos());
+            controladores.Add("Clientes", new ControladorCliente(repositorioCliente, servicoCliente));
+            controladores.Add("Grupos de veículos", new ControladorGrupoDeVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculo));
+            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
+            controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
         }
        
     }
