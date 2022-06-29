@@ -64,9 +64,5 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
     #endregion
 
 
-
-
-
-
 }
-}
+
