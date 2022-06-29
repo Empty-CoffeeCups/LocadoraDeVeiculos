@@ -21,10 +21,11 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
 
         public override Taxas ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            var id = Convert.ToInt32(leitorRegistro["ID"]);
-            var descricao = Convert.ToString(leitorRegistro["DESCRICAO"]);
-            var valor = Convert.ToDecimal(leitorRegistro["VALOR"]);
-          
+            var id = Convert.ToInt32(leitorRegistro["TAXA_ID"]);
+            var descricao = Convert.ToString(leitorRegistro["TAXA_DESCRICAO"]);
+            var valor = Convert.ToDecimal(leitorRegistro["TAXA_VALOR"]);
+            
+
 
             var taxa = new Taxas();
             taxa.Id = id;

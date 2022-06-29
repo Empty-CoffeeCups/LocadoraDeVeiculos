@@ -38,26 +38,25 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
 		        WHERE
 			        [ID] = @ID";
 
+        protected override string sqlSelecionarPorId =>
+             @"SELECT 
+                [ID] GRUPODEVEICULO_ID,       
+                [NOME] GRUPODEVEICULO_NOMEDOGRUPO
+            FROM
+                [TBGRUPODEVEICULOS]
+            WHERE 
+             [ID] = @ID";
+
         protected override string sqlSelecionarTodos =>
             @"SELECT 
-		            [ID], 
-		            [NOMEDOGRUPO] 
-	            FROM 
-		            [TBGRUPODEVEICULOS]";
-
-
-        protected override string sqlSelecionarPorId =>
-           @"SELECT 
-		            [ID], 
-		            [NOMEDOGRUPO] 
-	            FROM 
-		            [TBGRUPODEVEICULOS]
-		        WHERE
-                    [ID] = @ID";
+                [ID] GRUPODEVEICULO_ID,       
+                [NOME] GRUPODEVEICULO_NOMEDOGRUPO
+            FROM
+                [TBGRUPODEVEICULOS]";
         #endregion
 
 
- 
+
 
     }
 }

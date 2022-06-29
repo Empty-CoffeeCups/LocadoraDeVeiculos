@@ -7,11 +7,8 @@
 
   <ItemGroup>
     <Compile Remove="ModuloCliente\**" />
-    <Compile Remove="ModuloFuncionario\**" />
     <EmbeddedResource Remove="ModuloCliente\**" />
-    <EmbeddedResource Remove="ModuloFuncionario\**" />
     <None Remove="ModuloCliente\**" />
-    <None Remove="ModuloFuncionario\**" />
   </ItemGroup>
 
   <ItemGroup>

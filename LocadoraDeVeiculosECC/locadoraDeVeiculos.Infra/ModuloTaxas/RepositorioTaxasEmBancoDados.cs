@@ -41,29 +41,32 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
 		        WHERE
 			        [ID] = @ID";
 
-        protected override string sqlSelecionarTodos =>
-             @"SELECT 
-		            [ID], 
-		            [DESCRICAO],
-                    [VALOR]
-	            FROM 
-		            [TBTAXAS]";
         protected override string sqlSelecionarPorId =>
-           @"SELECT 
-		            [ID], 
-		            [DESCRICAO],
-                    [VALOR]
-	            FROM 
-		            [TBTAXAS]
-		        WHERE
-                    [ID] = @ID";
+            @"SELECT 
+                [ID] TAXA_ID,       
+                [DESCRICAO] TAXA_DESCRICAO,
+                [VALOR] TAXA_VALOR
+            FROM
+                [TBTAXAS]
+            WHERE 
+                [ID] = @ID";
 
-        #endregion
+        protected override string sqlSelecionarTodos =>
+            @"SELECT 
+                [ID] TAXA_ID,       
+                [DESCRICAO] TAXA_DESCRICAO,
+                [VALOR] TAXA_VALOR
+            FROM
+                [TBTAXAS]";
 
-       
-
-
-
-       
     }
+
+    #endregion
+
+
+
+
+
+
+}
 }
