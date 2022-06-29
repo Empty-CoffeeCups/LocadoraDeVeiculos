@@ -5,11 +5,11 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Apresentação", "1-Apresentação", "{12FC0513-1214-4142-A365-7D802076A408}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Dominio", "2-Dominio", "{B0761E12-7E99-4AEC-9329-82FEFA603C8F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Dominio", "3-Dominio", "{B0761E12-7E99-4AEC-9329-82FEFA603C8F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Infra", "3-Infra", "{413E2117-7291-4AD2-BA05-01BB0BFE2B6F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infra", "4-Infra", "{413E2117-7291-4AD2-BA05-01BB0BFE2B6F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Testes", "4-Testes", "{0B92946B-F42D-4CDB-8F7E-E88CE7B2B81F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Testes", "5-Testes", "{0B92946B-F42D-4CDB-8F7E-E88CE7B2B81F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Dominio", "LocadoraDeVeiculos\LocadoraDeVeiculos.Dominio.csproj", "{97E513E4-347B-4B05-A980-0811BEF4EE1B}"
 EndProject
@@ -26,6 +26,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes de Integração", "Testes de Integração", "{5AF8EF3B-C908-40C8-8D11-D290F00825DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Dominio.Tests", "LocadoraDeVeiculos.Dominio.Tests\LocadoraDeVeiculos.Dominio.Tests.csproj", "{F41A1D30-7374-4567-91F1-E622F5A8D1A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Aplicação", "2-Aplicação", "{CB16E078-BEEE-4ADC-AA76-15E6ED8E2A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Aplicacao", "LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj", "{3A638B61-6838-4716-9D77-BC2F38DF90F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{F41A1D30-7374-4567-91F1-E622F5A8D1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F41A1D30-7374-4567-91F1-E622F5A8D1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F41A1D30-7374-4567-91F1-E622F5A8D1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A638B61-6838-4716-9D77-BC2F38DF90F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A638B61-6838-4716-9D77-BC2F38DF90F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A638B61-6838-4716-9D77-BC2F38DF90F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A638B61-6838-4716-9D77-BC2F38DF90F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{A43EA929-1101-4A33-BFDC-1A3AEAA0DFF9} = {0B92946B-F42D-4CDB-8F7E-E88CE7B2B81F}
 		{5AF8EF3B-C908-40C8-8D11-D290F00825DD} = {0B92946B-F42D-4CDB-8F7E-E88CE7B2B81F}
 		{F41A1D30-7374-4567-91F1-E622F5A8D1A1} = {A43EA929-1101-4A33-BFDC-1A3AEAA0DFF9}
+		{3A638B61-6838-4716-9D77-BC2F38DF90F9} = {CB16E078-BEEE-4ADC-AA76-15E6ED8E2A30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6627DE2C-9851-4D03-B936-E858BEFC5F2A}
