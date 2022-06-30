@@ -53,10 +53,12 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                 [NOME] GRUPODEVEICULO_NOMEDOGRUPO
             FROM
                 [TBGRUPODEVEICULOS]";
+
+
         #endregion
 
 
-
+       
 
     }
 }

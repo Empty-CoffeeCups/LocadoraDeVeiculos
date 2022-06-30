@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
     public partial class TelaCadastroClienteForm : Form
     {
-        private Cliente clientes;
+        private Cliente cliente;
         public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
 
         public TelaCadastroClienteForm()
@@ -24,22 +24,22 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         }
         public Cliente Clientes
         {
-            get { return clientes; }
+            get { return cliente; }
             set
             {
-                clientes = value;
+                cliente = value;
 
-                textBoxId.Text = clientes.Id.ToString();
-                comboBoxTipoDePessoa.SelectedItem = clientes.TipoDeCliente;
+                textBoxId.Text = cliente.Id.ToString();
+                comboBoxTipoDePessoa.SelectedItem = cliente.TipoDeCliente;
                 if (comboBoxTipoDePessoa.SelectedItem.Equals("Pessoa Fisica"))
-                    textBoxCpfCnpj.Text = clientes.Cpf.ToString();
+                    textBoxCpfCnpj.Text = cliente.Cpf.ToString();
                 else 
-                    textBoxCpfCnpj.Text = clientes.Cnpj.ToString();
-                checkBoxCnh.Enabled = clientes.Cnh;
-                textBoxNome.Text = clientes.Nome.ToString();
-                textBoxEndereco.Text = clientes.Endereco.ToString();
-                textBoxEmail.Text = clientes.Email.ToString();
-                textBoxTelefone.Text = clientes.Telefone.ToString();
+                    textBoxCpfCnpj.Text = cliente.Cnpj.ToString();
+                checkBoxCnh.Enabled = cliente.Cnh;
+                textBoxNome.Text = cliente.Nome.ToString();
+                textBoxEndereco.Text = cliente.Endereco.ToString();
+                textBoxEmail.Text = cliente.Email.ToString();
+                textBoxTelefone.Text = cliente.Telefone.ToString();
 
 
 
@@ -52,27 +52,27 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
             if (comboBoxTipoDePessoa.SelectedItem.Equals("Pessoa Fisica"))
             {
-                clientes.TipoDeCliente = "Pessoa Fisica";
-                clientes.Cpf = textBoxCpfCnpj.Text;
+                cliente.TipoDeCliente = "Pessoa Fisica";
+                cliente.Cpf = textBoxCpfCnpj.Text;
             }
             else
             {
-                clientes.TipoDeCliente = "Pessoa Fisica";
-                clientes.Cnpj = textBoxCpfCnpj.Text;
+                cliente.TipoDeCliente = "Pessoa Fisica";
+                cliente.Cnpj = textBoxCpfCnpj.Text;
             }
 
             if (checkBoxCnh.Enabled)
             {
-                clientes.Cnh = true;
+                cliente.Cnh = true;
             }
             else {
-                clientes.Cnh = false;
+                cliente.Cnh = false;
             }
 
-            clientes.Nome = textBoxNome.Text;
-            clientes.Endereco = textBoxEndereco.Text;
-            clientes.Email = textBoxEmail.Text;
-            clientes.Telefone = textBoxTelefone.Text;
+            cliente.Nome = textBoxNome.Text;
+            cliente.Endereco = textBoxEndereco.Text;
+            cliente.Email = textBoxEmail.Text;
+            cliente.Telefone = textBoxTelefone.Text;
         }
     }
 }

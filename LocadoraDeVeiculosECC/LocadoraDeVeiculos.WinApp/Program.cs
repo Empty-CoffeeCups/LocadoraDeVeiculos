@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
+using System;
 using System.Windows.Forms;
 
 namespace LocadoraDeVeiculos.WinApp
@@ -14,7 +15,7 @@ namespace LocadoraDeVeiculos.WinApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TelaLoginForm());
+            Application.Run(new TelaMenuPrincipalForm());
         }
     }
 }

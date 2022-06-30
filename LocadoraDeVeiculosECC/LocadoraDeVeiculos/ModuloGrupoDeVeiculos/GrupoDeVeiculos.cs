@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos
         {
             return NomeDoGrupo;
         }
-        public GrupoDeVeiculos Clonar()
+        public GrupoDeVeiculos Clone()
         {
             return MemberwiseClone() as GrupoDeVeiculos;
         }

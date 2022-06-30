@@ -51,7 +51,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             }
         }
 
-        internal int ObtemNumeroTaxaSelecionada()
+        internal int ObtemIdFuncionarioSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }

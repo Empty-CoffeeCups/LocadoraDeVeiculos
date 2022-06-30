@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
         {
             return Descricao + " - " + Valor;
         }
-        public Taxas Clonar() {
+        public Taxas Clone() {
             return MemberwiseClone() as Taxas;
         }
     }

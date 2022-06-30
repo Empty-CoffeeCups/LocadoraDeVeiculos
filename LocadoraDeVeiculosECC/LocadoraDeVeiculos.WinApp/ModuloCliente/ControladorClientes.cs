@@ -1,5 +1,7 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
+﻿using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,59 +11,56 @@ using System.Windows.Forms;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
-    public class ControladorClientes
+    public class ControladorClientes : ControladorBase
     {
-        private readonly IRepositorioCliente repositorioClientes;
-        private TabelaClienteControl tabelaClientes;
+        private readonly IRepositorioCliente repositorioCliente;
+        private TabelaClienteControl listagemClientes;
+        private readonly ServicoCliente servicoCliente;
 
-        public ControladorClientes(IRepositorioCliente repositorio)
+        public ControladorClientes(IRepositorioCliente repositorioCliente, ServicoCliente servicoCliente)
         {
-            this.repositorioClientes = repositorio;
+            this.repositorioCliente = repositorioCliente;
+            this.servicoCliente = servicoCliente;
         }
 
-        public void Inserir()
+        public  override void Inserir()
         {
             TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
+
             tela.Clientes = new Cliente();
 
-            tela.GravarRegistro = repositorioClientes.Inserir;
+            tela.GravarRegistro = servicoCliente.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-            {
                 CarregarClientes();
-            }
         }
 
-        public void Editar()
+        public override void Editar()
         {
             Cliente clienteSelecionado = ObtemClienteSelecionado();
 
             if (clienteSelecionado == null)
             {
-                MessageBox.Show("Selecione uma taxa primeiro",
-                "Edição de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um cliente primeiro",
+                "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
 
-            tela.Clientes = clienteSelecionado;
+            tela.Clientes = clienteSelecionado.Clone();
 
-            tela.GravarRegistro = repositorioClientes.Editar;
+            tela.GravarRegistro = servicoCliente.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-            {
                 CarregarClientes();
-            }
-
-
         }
 
-        public void Excluir()
+        public override void Excluir()
         {
             Cliente clienteSelecionado = ObtemClienteSelecionado();
 
@@ -72,46 +71,44 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Cliente?",
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
                 "Exclusão de Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
-            {
-                repositorioClientes.Excluir(clienteSelecionado);
-                CarregarClientes();
-            }
-        }
-
-        public UserControl ObtemListagem()
-        {
-
-            tabelaClientes = new TabelaClienteControl();
+                repositorioCliente.Excluir(clienteSelecionado);
 
             CarregarClientes();
-
-            return tabelaClientes;
         }
 
-
-        public ConfiguracaoToolBoxBase ObtemConfiguracaoToolbox()
+        public override ConfiguracaoToolBoxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxCliente();
         }
 
-
-        private Cliente ObtemClienteSelecionado()
+        public override UserControl ObtemListagem()
         {
-            var Id = tabelaClientes.ObtemNumeroTaxaSelecionada();
+            if (listagemClientes == null)
+                listagemClientes = new TabelaClienteControl();
 
-            return repositorioClientes.SelecionarPorId(Id);
+            CarregarClientes();
+
+            return listagemClientes;
         }
 
         private void CarregarClientes()
         {
-            List<Cliente> cliente = repositorioClientes.SelecionarTodos();
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
 
-            tabelaClientes.AtualizarRegistros(cliente);
+            listagemClientes.AtualizarRegistros(clientes);
 
+            TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+        }
+
+        private Cliente ObtemClienteSelecionado()
+        {
+            var id = listagemClientes.ObtemIdClienteSelecionado();
+
+            return repositorioCliente.SelecionarPorId(id);
         }
     }
 }

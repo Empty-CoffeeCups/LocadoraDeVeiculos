@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             Telefone = registro.Telefone;
         }
 
-        public Cliente Clonar()
+        public Cliente Clone()
         {
             return MemberwiseClone() as Cliente;
         }

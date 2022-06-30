@@ -8,7 +8,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 {
     public partial class TelaCadastroFuncionarioForm : Form
     {
-        private Funcionario funcionarios;
+        private Funcionario funcionario;
         public Func<Funcionario,ValidationResult> GravarRegistro { get; set; }
         public TelaCadastroFuncionarioForm()
         {
@@ -17,29 +17,30 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public Funcionario Funcionarios
         {
-            get { return funcionarios; }
+            get { return funcionario; }
             set
             {
-                funcionarios = value;
+                funcionario = value;
 
-                textBoxId.Text = funcionarios.Id.ToString();
-                textBoxNome.Text = funcionarios.Nome.ToString();
-                textBoxUsuario.Text = funcionarios.Usuario.ToString();
-                textBoxSenha.Text = funcionarios.Senha.ToString();
-                textBoxData.Text = funcionarios.DataDeEntrada.ToString();
-                checkBoxAdmin.Enabled = funcionarios.Admin;
+                textBoxId.Text = funcionario.Id.ToString();
+                textBoxNome.Text = funcionario.Nome.ToString();
+                textBoxUsuario.Text = funcionario.Usuario.ToString();
+                textBoxSenha.Text = funcionario.Senha.ToString();
+                textBoxData.Text = funcionario.DataDeEntrada.ToString();
+                textBoxSalario.Text = funcionario.Salario.ToString();
+                checkBoxAdmin.Enabled = funcionario.Admin;
 
             }
         }
 
         private void buttonGravar_Click(object sender, EventArgs e)
         {
-            funcionarios.Nome = textBoxNome.Text;
-            funcionarios.Usuario = textBoxUsuario.Text;
-            funcionarios.Senha = textBoxSenha.Text;
-            funcionarios.DataDeEntrada = DateTime.Parse(textBoxData.Text);
-            funcionarios.Salario = textBoxSalario.Text;
-            funcionarios.Admin = checkBoxAdmin.Checked;
+            funcionario.Nome = textBoxNome.Text;
+            funcionario.Usuario = textBoxUsuario.Text;
+            funcionario.Senha = textBoxSenha.Text;
+            funcionario.DataDeEntrada = DateTime.Parse(textBoxData.Text);
+            funcionario.Salario = Decimal.Parse(textBoxSalario.Text);
+            funcionario.Admin = checkBoxAdmin.Checked;
         }
         private void TelaCadastroFuncionarioForm_Load(object sender, EventArgs e)
         {
