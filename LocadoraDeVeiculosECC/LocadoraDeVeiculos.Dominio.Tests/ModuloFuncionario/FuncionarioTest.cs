@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             data = DateTime.Now;
-            Funcionario paciente = new Funcionario("L", "Lucas", "12345",data, "1500",true);
+            Funcionario paciente = new Funcionario("L", "Lucas", "12345",data, 1500,true);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 
@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             data = DateTime.Now;
-            Funcionario paciente = new Funcionario("Lucas de Aguiar", "L", "12345", data, "1500", true);
+            Funcionario paciente = new Funcionario("Lucas de Aguiar", "L", "12345", data, 1500, true);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 
@@ -51,7 +51,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             data = DateTime.Now;
-            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12", data, "1500", true);
+            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12", data, 1500, true);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 
@@ -65,13 +65,13 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             data = DateTime.Now;
-            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, "", true);
+            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, -3, true);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 
             var resultado1 = validadorFuncionario.Validate(paciente);
 
-            Assert.AreEqual("Deve ser inserido um salário", resultado1.Errors[0].ErrorMessage);
+            Assert.AreEqual("Valor de salário deve ser maior do que 0", resultado1.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             
-            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, "1500", true);
+            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, 1500, true);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 
@@ -96,7 +96,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
             data = DateTime.Now;
             bool admin = new bool();
 
-            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, "1500", admin);
+            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, 1500, admin);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 

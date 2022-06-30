@@ -31,7 +31,7 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
             var login = Convert.ToString(leitorRegistro["FUNCIONARIO_USUARIO"]);
             var senha = Convert.ToString(leitorRegistro["FUNCIONARIO_SENHA"]);
             var dataAdmissao = Convert.ToDateTime(leitorRegistro["FUNCIONARIO_DATA_ENTRADA"]);
-            var salario = Convert.ToString(leitorRegistro["FUNCIONARIO_SALARIO"]);
+            var salario = Convert.ToDecimal(leitorRegistro["FUNCIONARIO_SALARIO"]);
             var ehAdmin = Convert.ToBoolean(leitorRegistro["FUNCIONARIO_IS_ADMIN"]);
           
 

@@ -13,11 +13,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         public string Usuario{ get; set; }
         public string Senha{ get; set; }
         public DateTime DataDeEntrada { get; set; }
-        public string Salario { get; set; }
+        public decimal Salario { get; set; }
         public bool Admin { get; set; }
 
         public Funcionario() { }
-        public Funcionario(string nome, string usuario, string senha, DateTime dataDeEntrada, string salario, bool admin)
+        public Funcionario(string nome, string usuario, string senha, DateTime dataDeEntrada, decimal salario, bool admin)
         {
             Nome = nome;
             Usuario = usuario;

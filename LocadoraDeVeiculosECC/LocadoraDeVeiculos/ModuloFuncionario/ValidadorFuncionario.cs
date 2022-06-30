@@ -24,9 +24,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
                 .NotNull().NotEmpty().WithMessage("Deve ser inserido uma data");
             
             RuleFor(x => x.Salario)
-                .NotNull().NotEmpty().WithMessage("Deve ser inserido um salário");
+                .NotNull().NotEmpty().WithMessage("Deve ser inserido um salário")
+                .GreaterThan(0)
+                .WithMessage("Valor de salário deve ser maior do que 0");
 
-        
 
             RuleFor(x => x.Admin)
                 .NotNull().NotEmpty().WithMessage("Deve ser inserido um valor");
