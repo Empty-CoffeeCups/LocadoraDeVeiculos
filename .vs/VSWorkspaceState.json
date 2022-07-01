@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\LocadoraDeVeiculosECC"
+    "\\LocadoraDeVeiculosECC",
+    "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos.WinApp",
+    "\\LocadoraDeVeiculosECC\\LocadoraVeiculos.Infra.BancoDados",
+    "\\LocadoraDeVeiculosECC\\LocadoraVeiculos.Infra.BancoDados\\ModuloCliente"
   ],
-  "SelectedNode": "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculosECC.sln",
+  "SelectedNode": "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos.WinApp\\TelaMenuPrincipalForm.Designer.cs",
   "PreviewInSolutionExplorer": false
 }

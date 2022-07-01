@@ -40,9 +40,9 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] = @NOME,
                    [USUARIO] = @USUARIO,
                    [SENHA] = @SENHA,
-                   [DATA_ENTRADA] = @DATADEENTRADA,
+                   [DATADEENTRADA] = @DATADEENTRADA,
                    [SALARIO] = @SALARIO,
-                   [IS_ADMIN] = @IS_ADMIN
+                   [ADMIN] = @ADMIN
 
                     WHERE [ID] = @ID";
 
@@ -56,9 +56,9 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] FUNCIONARIO_NOME,
                    [USUARIO] FUNCIONARIO_USUARIO,
                    [SENHA] FUNCIONARIO_SENHA,
-                   [DATA_ENTRADA] FUNCIONARIO_DATADEENTRADA,
+                   [DATADEENTRADA] FUNCIONARIO_DATADEENTRADA,
                    [SALARIO] FUNCIONARIO_SALARIO,
-                   [IS_ADMIN] FUNCIONARIO_IS_ADMIN
+                   [ADMIN] FUNCIONARIO_ADMIN
             FROM
                 [TBFUNCIONARIO]
             WHERE 
@@ -70,9 +70,9 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] FUNCIONARIO_NOME,
                    [USUARIO] FUNCIONARIO_USUARIO,
                    [SENHA] FUNCIONARIO_SENHA,
-                   [DATA_ENTRADA] FUNCIONARIO_DATADEENTRADA,
+                   [DATADEENTRADA] FUNCIONARIO_DATADEENTRADA,
                    [SALARIO] FUNCIONARIO_SALARIO,
-                   [IS_ADMIN] FUNCIONARIO_IS_ADMIN
+                   [ADMIN] FUNCIONARIO_ADMIN
             FROM
                 [TBFUNCIONARIO]";
 
@@ -82,9 +82,9 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] FUNCIONARIO_NOME,
                    [USUARIO] FUNCIONARIO_USUARIO,
                    [SENHA] FUNCIONARIO_SENHA,
-                   [DATA_ENTRADA] FUNCIONARIO_DATADEENTRADA,
+                   [DATADEENTRADA] FUNCIONARIO_DATADEENTRADA,
                    [SALARIO] FUNCIONARIO_SALARIO,
-                   [IS_ADMIN] FUNCIONARIO_IS_ADMIN
+                   [ADMIN] FUNCIONARIO_ADMIN
             FROM
                 [TBFUNCIONARIO]
             WHERE 
@@ -96,9 +96,9 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] FUNCIONARIO_NOME,
                    [USUARIO] FUNCIONARIO_USUARIO,
                    [SENHA] FUNCIONARIO_SENHA,
-                   [DATA_ENTRADA] FUNCIONARIO_DATADEENTRADA,
+                   [DATADEENTRADA] FUNCIONARIO_DATADEENTRADA,
                    [SALARIO] FUNCIONARIO_SALARIO,
-                   [IS_ADMIN] FUNCIONARIO_ADMIN
+                   [ADMIN] FUNCIONARIO_ADMIN
             FROM
                 [TBFUNCIONARIO]
             WHERE 
