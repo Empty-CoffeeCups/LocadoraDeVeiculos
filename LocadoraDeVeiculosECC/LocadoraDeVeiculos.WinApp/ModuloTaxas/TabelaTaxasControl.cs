@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloTaxas;
+﻿using LocadoraDeVeiculos.Dominio.Compartilhado;
+using LocadoraDeVeiculos.Dominio.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
                 new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"},
 
                  new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"},
+
+                 new DataGridViewTextBoxColumn { DataPropertyName = "TipoCalculo", HeaderText = "Tipo de Cálculo"}
            };
 
             return colunas;
@@ -42,7 +45,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
 
             foreach (Taxas taxa in taxas)
             {
-                grid.Rows.Add(taxa.Id, taxa.Descricao, taxa.Valor);
+                grid.Rows.Add(taxa.Id, taxa.Descricao, taxa.Valor, taxa.TipoCalculo.GetDescription());
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Compartilhado;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,14 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
     {
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
+        public TipoCalculo TipoCalculo { get; set; }
 
-        public Taxas(string descricao, decimal valor)
+
+        public Taxas(string descricao, decimal valor, TipoCalculo tipoCalculo)
         {
             Descricao = descricao;
             Valor = valor;
+            TipoCalculo = tipoCalculo;
         }
 
         public Taxas() { }
@@ -31,7 +35,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
         }
         public override string ToString()
         {
-            return Descricao + " - " + Valor;
+            return string.Format("{0}, {1}, {2}", Descricao, Valor, TipoCalculo.GetDescription());
         }
         public Taxas Clone() {
             return MemberwiseClone() as Taxas;

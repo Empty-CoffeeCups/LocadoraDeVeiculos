@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\LocadoraDeVeiculosECC",
+    "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos",
     "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos.WinApp",
+    "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos\\ModuloTaxas",
     "\\LocadoraDeVeiculosECC\\LocadoraVeiculos.Infra.BancoDados",
     "\\LocadoraDeVeiculosECC\\LocadoraVeiculos.Infra.BancoDados\\ModuloCliente"
   ],
-  "SelectedNode": "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculosECC.sln",
+  "SelectedNode": "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos\\ModuloTaxas\\Taxas.cs",
   "PreviewInSolutionExplorer": false
 }

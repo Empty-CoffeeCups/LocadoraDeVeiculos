@@ -30,18 +30,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
             set
             {
                 taxas = value;
-
-                txtNumero.Text = taxas.Id.ToString();
                 txtDescricao.Text = taxas.Descricao;
-                txtValor.Text = taxas.Valor.ToString();
-
+                numericValor.Value = taxas.Valor;
+                if (taxas.TipoCalculo == 0)
+                    radioButtonDiario.Checked = true;
+                else radioButtonFixo.Checked = true;
             }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
             taxas.Descricao = txtDescricao.Text;
-            taxas.Valor = Convert.ToDecimal(txtValor.Text);
+            taxas.Valor = numericValor.Value;
+            taxas.TipoCalculo = (TipoCalculo)(radioButtonDiario.Checked == true ? 0 : 1);
 
             var resultadoValidacao = GravarRegistro(taxas);
 

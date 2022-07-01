@@ -20,32 +20,34 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
             @"INSERT INTO [TBTAXAS] 
                 (
                     [DESCRICAO],
-                    [VALOR]
+                    [VALOR],
+                    [TIPOCALCULO]
 	            )
 	            VALUES
                 (
                     @DESCRICAO,
-                    @VALOR
+                    @VALOR,
+                    @TIPOCALCULO
                 );SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
-            @"UPDATE [TBTAXAS]	
-		        SET
-			        [DESCRICAO] = @DESCRICAO,
-                    [VALOR] = @VALOR
-		        WHERE
-			        [ID] = @ID";
+            @" UPDATE [TBTAXAS]
+                    SET 
+                        [DESCRICAO] = @DESCRICAO,
+                        [VALOR] = @VALOR,
+                        [TIPOCALCULO] = @TIPOCALCULO
+                    WHERE [ID] = @ID";
 
         protected override string sqlExcluir =>
             @"DELETE FROM [TBTAXAS]
-		        WHERE
-			        [ID] = @ID";
+                WHERE [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
             @"SELECT 
                 [ID] TAXA_ID,       
                 [DESCRICAO] TAXA_DESCRICAO,
-                [VALOR] TAXA_VALOR
+                [VALOR] TAXA_VALOR,
+                [TIPOCALCULO] TAXA_TIPOCALCULO
             FROM
                 [TBTAXAS]
             WHERE 
@@ -55,7 +57,8 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
             @"SELECT 
                 [ID] TAXA_ID,       
                 [DESCRICAO] TAXA_DESCRICAO,
-                [VALOR] TAXA_VALOR
+                [VALOR] TAXA_VALOR,
+                [TIPOCALCULO] TAXA_TIPOCALCULO
             FROM
                 [TBTAXAS]";
 
