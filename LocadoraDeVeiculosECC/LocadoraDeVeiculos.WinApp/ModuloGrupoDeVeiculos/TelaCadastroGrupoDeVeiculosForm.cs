@@ -28,7 +28,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
             {
                 gruposDeVeiculos = value;
 
-                textBoxNome.Text = gruposDeVeiculos.NomeDoGrupo.ToString();
+                textBoxNome.Text = gruposDeVeiculos.NomeDoGrupo;
 
             }
         }
