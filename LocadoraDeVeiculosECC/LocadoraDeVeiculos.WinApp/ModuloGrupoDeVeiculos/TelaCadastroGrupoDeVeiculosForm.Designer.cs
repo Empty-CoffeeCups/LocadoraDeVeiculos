@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.textBoxId = new System.Windows.Forms.TextBox();
-            this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.txtNomeDogrupo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonGravar = new System.Windows.Forms.Button();
+            this.btnGravar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -44,12 +44,12 @@
             this.textBoxId.Size = new System.Drawing.Size(44, 23);
             this.textBoxId.TabIndex = 0;
             // 
-            // textBoxNome
+            // txtNomeDogrupo
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(67, 73);
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(247, 23);
-            this.textBoxNome.TabIndex = 1;
+            this.txtNomeDogrupo.Location = new System.Drawing.Point(67, 73);
+            this.txtNomeDogrupo.Name = "txtNomeDogrupo";
+            this.txtNomeDogrupo.Size = new System.Drawing.Size(247, 23);
+            this.txtNomeDogrupo.TabIndex = 1;
             // 
             // label1
             // 
@@ -69,15 +69,16 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "NOME : ";
             // 
-            // buttonGravar
+            // btnGravar
             // 
-            this.buttonGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonGravar.Location = new System.Drawing.Point(156, 112);
-            this.buttonGravar.Name = "buttonGravar";
-            this.buttonGravar.Size = new System.Drawing.Size(76, 34);
-            this.buttonGravar.TabIndex = 4;
-            this.buttonGravar.Text = "GRAVAR";
-            this.buttonGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnGravar.Location = new System.Drawing.Point(156, 112);
+            this.btnGravar.Name = "btnGravar";
+            this.btnGravar.Size = new System.Drawing.Size(76, 34);
+            this.btnGravar.TabIndex = 4;
+            this.btnGravar.Text = "GRAVAR";
+            this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.buttonGravar_Click_1);
             // 
             // buttonCancelar
             // 
@@ -96,10 +97,10 @@
             this.CancelButton = this.buttonCancelar;
             this.ClientSize = new System.Drawing.Size(326, 158);
             this.Controls.Add(this.buttonCancelar);
-            this.Controls.Add(this.buttonGravar);
+            this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxNome);
+            this.Controls.Add(this.txtNomeDogrupo);
             this.Controls.Add(this.textBoxId);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -114,10 +115,10 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBoxId;
-        private System.Windows.Forms.TextBox textBoxNome;
+        private System.Windows.Forms.TextBox txtNomeDogrupo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonGravar;
+        private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button buttonCancelar;
     }
 }
