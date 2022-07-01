@@ -41,8 +41,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
         private void btnGravar_Click(object sender, EventArgs e)
         {
             taxas.Descricao = txtDescricao.Text;
-            // TODO: Tratar se houver formatações futuras na tela.
             taxas.Valor = Convert.ToDecimal(txtValor.Text);
+
+            var resultadoValidacao = GravarRegistro(taxas);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -45,6 +45,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(154, 23);
             this.txtNumero.TabIndex = 0;
+            this.txtNumero.Visible = false;
             // 
             // label1
             // 
@@ -91,6 +92,7 @@
             // 
             // btnGravar
             // 
+            this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Location = new System.Drawing.Point(84, 182);
             this.btnGravar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGravar.Name = "btnGravar";
@@ -102,6 +104,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(186, 182);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";

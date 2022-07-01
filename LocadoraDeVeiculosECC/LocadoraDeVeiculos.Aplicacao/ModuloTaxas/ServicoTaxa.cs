@@ -11,7 +11,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxas
 {
     public class ServicoTaxa
     {
-        //TODO: VALIDAÇÕES DE TAXAS
+        
 
         private RepositorioTaxasEmBancoDados repositorioTaxa;
 
@@ -22,12 +22,32 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxas
 
         public ValidationResult Inserir(Taxas arg)
         {
-            throw new NotImplementedException();
+            var resultadoValidacao = ValidarTaxa(arg);
+
+            if (resultadoValidacao.IsValid)
+                repositorioTaxa.Inserir(arg);
+
+            return resultadoValidacao;
         }
 
         public ValidationResult Editar(Taxas arg)
         {
-            throw new NotImplementedException();
+            var resultadoValidacao = ValidarTaxa(arg);
+
+            if (resultadoValidacao.IsValid)
+                repositorioTaxa.Editar(arg);
+
+            return resultadoValidacao;
+        }
+
+       
+        private ValidationResult ValidarTaxa(Taxas arg)
+        {
+            ValidadorTaxas validador = new ValidadorTaxas();
+
+            var resultadoValidacao = validador.Validate(arg);
+
+            return resultadoValidacao;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
             @"INSERT INTO [TBTAXAS] 
                 (
                     [DESCRICAO],
-                    [VALOR],
+                    [VALOR]
 	            )
 	            VALUES
                 (
