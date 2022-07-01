@@ -9,38 +9,58 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
     public partial class TelaCadastroFuncionarioForm : Form
     {
         private Funcionario funcionario;
-        public Func<Funcionario,ValidationResult> GravarRegistro { get; set; }
+        
         public TelaCadastroFuncionarioForm()
         {
             InitializeComponent();
+            DefinirDataAdmissaoMaxima();
+          
         }
 
         public Funcionario Funcionarios
         {
-            get { return funcionario; }
+            get => funcionario; 
             set
             {
                 funcionario = value;
+                if (funcionario.Id != 0)
+                    PreencherDadosNaTela();
 
-                textBoxId.Text = funcionario.Id.ToString();
-                textBoxNome.Text = funcionario.Nome.ToString();
-                textBoxUsuario.Text = funcionario.Usuario.ToString();
-                textBoxSenha.Text = funcionario.Senha.ToString();
-                textBoxData.Text = funcionario.DataDeEntrada.ToString();
-                textBoxSalario.Text = funcionario.Salario.ToString();
-                checkBoxAdmin.Enabled = funcionario.Admin;
+               // textBoxId.Text = funcionario.Id.ToString();
+              //  textBoxNome.Text = funcionario.Nome;
+              //  textBoxUsuario.Text = funcionario.Usuario;
+              //  textBoxSenha.Text = funcionario.Senha;
+              //  dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada;
+             //   textBoxSalario.Text = funcionario.Salario.ToString();
+            //    checkBoxAdmin.Enabled = funcionario.Admin;
 
             }
         }
 
+        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
+
+
         private void buttonGravar_Click(object sender, EventArgs e)
         {
-            funcionario.Nome = textBoxNome.Text;
-            funcionario.Usuario = textBoxUsuario.Text;
-            funcionario.Senha = textBoxSenha.Text;
-            funcionario.DataDeEntrada = DateTime.Parse(textBoxData.Text);
-            funcionario.Salario = Decimal.Parse(textBoxSalario.Text);
-            funcionario.Admin = checkBoxAdmin.Checked;
+            //funcionario.Nome = textBoxNome.Text;
+           // funcionario.Usuario = textBoxUsuario.Text;
+           // funcionario.Senha = textBoxSenha.Text;
+          //  funcionario.DataDeEntrada = dateTimePickerDataDeEntrada.Value;
+           // funcionario.Salario = Decimal.Parse(textBoxSalario.Text);
+          //  funcionario.Admin = checkBoxAdmin.Checked;
+
+            ObterDadosTela();
+
+            var resultadoValidacao = GravarRegistro(funcionario);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
         }
         private void TelaCadastroFuncionarioForm_Load(object sender, EventArgs e)
         {
@@ -54,6 +74,48 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
         { 
+        }
+
+        private void DefinirDataAdmissaoMaxima()
+        {
+            dateTimePickerDataDeEntrada.MaxDate = DateTime.Today;
+        }
+
+        private void PreencherDadosNaTela()
+        {
+            textBoxNome.Text = funcionario.Nome;
+            textBoxUsuario.Text = funcionario.Usuario;
+            textBoxSenha.Text = funcionario.Senha;
+            textBoxSalario.Text = funcionario.Salario.ToString();
+            dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada;
+
+            if (funcionario.Admin == true)
+                checkBoxAdmin.Checked = true;
+            else
+                checkBoxAdmin.Checked = false;
+        }
+
+        private void ObterDadosTela()
+        {
+            funcionario.Nome = textBoxNome.Text;
+            funcionario.Usuario = textBoxUsuario.Text;
+            funcionario.Senha = textBoxSenha.Text;
+
+            if (string.IsNullOrEmpty(textBoxSalario.Text) == false)
+            {
+                var valorFormatado = textBoxSalario.Text.Replace(".", ",");
+
+                var conversaoRealizada = decimal.TryParse(valorFormatado, out decimal resultado);
+                if (conversaoRealizada)
+                    funcionario.Salario = resultado;
+            }
+
+            funcionario.DataDeEntrada = dateTimePickerDataDeEntrada.Value;
+
+            if (checkBoxAdmin.Checked == true)
+                funcionario.Admin = true;
+            else
+                funcionario.Admin = false;
         }
     }
 }

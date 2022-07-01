@@ -38,11 +38,11 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.textBoxSenha = new System.Windows.Forms.TextBox();
-            this.textBoxData = new System.Windows.Forms.TextBox();
             this.textBoxSalario = new System.Windows.Forms.TextBox();
             this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
             this.buttonGravar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
+            this.dateTimePickerDataDeEntrada = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // labelId
@@ -103,6 +103,7 @@
             // 
             this.textBoxId.Location = new System.Drawing.Point(66, 24);
             this.textBoxId.Name = "textBoxId";
+            this.textBoxId.ReadOnly = true;
             this.textBoxId.Size = new System.Drawing.Size(45, 23);
             this.textBoxId.TabIndex = 8;
             // 
@@ -126,13 +127,6 @@
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.Size = new System.Drawing.Size(283, 23);
             this.textBoxSenha.TabIndex = 11;
-            // 
-            // textBoxData
-            // 
-            this.textBoxData.Location = new System.Drawing.Point(66, 138);
-            this.textBoxData.Name = "textBoxData";
-            this.textBoxData.Size = new System.Drawing.Size(283, 23);
-            this.textBoxData.TabIndex = 12;
             // 
             // textBoxSalario
             // 
@@ -173,16 +167,24 @@
             this.buttonCancelar.Text = "CANCELAR";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
+            // dateTimePickerDataDeEntrada
+            // 
+            this.dateTimePickerDataDeEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDataDeEntrada.Location = new System.Drawing.Point(69, 140);
+            this.dateTimePickerDataDeEntrada.Name = "dateTimePickerDataDeEntrada";
+            this.dateTimePickerDataDeEntrada.Size = new System.Drawing.Size(280, 23);
+            this.dateTimePickerDataDeEntrada.TabIndex = 18;
+            // 
             // TelaCadastroFuncionarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(387, 294);
+            this.Controls.Add(this.dateTimePickerDataDeEntrada);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonGravar);
             this.Controls.Add(this.checkBoxAdmin);
             this.Controls.Add(this.textBoxSalario);
-            this.Controls.Add(this.textBoxData);
             this.Controls.Add(this.textBoxSenha);
             this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.textBoxNome);
@@ -216,10 +218,10 @@
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.TextBox textBoxUsuario;
         private System.Windows.Forms.TextBox textBoxSenha;
-        private System.Windows.Forms.TextBox textBoxData;
         private System.Windows.Forms.TextBox textBoxSalario;
         private System.Windows.Forms.CheckBox checkBoxAdmin;
         private System.Windows.Forms.Button buttonGravar;
         private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDataDeEntrada;
     }
 }

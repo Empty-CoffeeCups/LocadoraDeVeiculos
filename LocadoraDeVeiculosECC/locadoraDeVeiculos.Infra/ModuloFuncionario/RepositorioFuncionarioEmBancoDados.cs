@@ -29,7 +29,7 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
                    @NOME,
                    @USUARIO,
                    @SENHA,
-                   @DATADEDENTRADA,
+                   @DATADEENTRADA,
                    @SALARIO,
                    @ADMIN
                 );  SELECT SCOPE_IDENTITY();";
