@@ -40,6 +40,7 @@
             // 
             this.textBoxId.Location = new System.Drawing.Point(67, 44);
             this.textBoxId.Name = "textBoxId";
+            this.textBoxId.ReadOnly = true;
             this.textBoxId.Size = new System.Drawing.Size(44, 23);
             this.textBoxId.TabIndex = 0;
             // 
@@ -70,6 +71,7 @@
             // 
             // buttonGravar
             // 
+            this.buttonGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonGravar.Location = new System.Drawing.Point(156, 112);
             this.buttonGravar.Name = "buttonGravar";
             this.buttonGravar.Size = new System.Drawing.Size(76, 34);
@@ -87,7 +89,7 @@
             this.buttonCancelar.Text = "CANCELAR";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
-            // TelaCadastroGrupoDeVeiculos
+            // TelaCadastroGrupoDeVeiculosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,7 +103,7 @@
             this.Controls.Add(this.textBoxId);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCadastroGrupoDeVeiculos";
+            this.Name = "TelaCadastroGrupoDeVeiculosForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CADASTRO DO GRUPO DE VEICULOS";
             this.ResumeLayout(false);
