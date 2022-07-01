@@ -5,6 +5,7 @@
     [CNPJ]          VARCHAR (80)  NULL,
     [TipoDeCliente] VARCHAR (80)  NOT NULL,
     [CNH]           BIT           NOT NULL,
+    [Endereco]      VARCHAR(200)  NOT NULL,
     [Email]         VARCHAR (100) NOT NULL,
     [Telefone]      VARCHAR (100) NOT NULL
 );
