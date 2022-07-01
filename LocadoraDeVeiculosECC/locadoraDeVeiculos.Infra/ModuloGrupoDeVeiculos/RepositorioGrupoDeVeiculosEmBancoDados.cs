@@ -41,7 +41,7 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
         protected override string sqlSelecionarPorId =>
              @"SELECT 
                 [ID] GRUPODEVEICULO_ID,       
-                [NOME] GRUPODEVEICULO_NOMEDOGRUPO
+                [NOMEDOGRUPO] GRUPODEVEICULO_NOMEDOGRUPO
             FROM
                 [TBGRUPODEVEICULOS]
             WHERE 
@@ -50,7 +50,7 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
         protected override string sqlSelecionarTodos =>
             @"SELECT 
                 [ID] GRUPODEVEICULO_ID,       
-                [NOME] GRUPODEVEICULO_NOMEDOGRUPO
+                [NOMEDOGRUPO] GRUPODEVEICULO_NOMEDOGRUPO
             FROM
                 [TBGRUPODEVEICULOS]";
 
