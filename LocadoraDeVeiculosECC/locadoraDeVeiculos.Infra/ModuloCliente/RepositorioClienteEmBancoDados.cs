@@ -57,7 +57,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
             @"SELECT 
 	            [ID] CLIENTE_ID,
                 [NOME] CLIENTE_NOME,
-                [DOCUMENTO] CLIENTE_CPF,
+                [CPF] CLIENTE_CPF,
                 [EMAIL] CLIENTE_CNPJ,
                 [TELEFONE] CLIENTE_TIPODECLIENTE,
                 [CNH] CLIENTE_CNH,
@@ -74,7 +74,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
             @"SELECT 
 	            [ID] CLIENTE_ID,
                 [NOME] CLIENTE_NOME,
-                [DOCUMENTO] CLIENTE_CPF,
+                [CPF] CLIENTE_CPF,
                 [EMAIL] CLIENTE_CNPJ,
                 [TELEFONE] CLIENTE_TIPODECLIENTE,
                 [CNH] CLIENTE_CNH,
