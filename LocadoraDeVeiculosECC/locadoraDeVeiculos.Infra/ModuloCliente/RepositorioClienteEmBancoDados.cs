@@ -15,9 +15,8 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
            @"INSERT INTO [TBCLIENTE]
                  (
 		            [NOME],
-                    [CPF],
-                    [CNPJ],
-                    [TIPODECLIENTE,
+                    [DOCUMENTO],
+                    [TIPODECLIENTE],
                     [CNH],
                     [ENDERECO],
                     [EMAIL],
@@ -26,8 +25,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
             VALUES
                 (
 		            @NOME, 
-                    @CPF, 
-                    @CNPJ,
+                    @DOCUMENTO,
                     @TIPODECLIENTE,
                     @CNH,
                     @ENDERECO,
@@ -39,8 +37,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
            @"UPDATE [TBCLIENTE]
                 SET
 		            [NOME] = @NOME,
-                    [CPF] = @CPF,
-                    [CNPJ] = @CNPJ,
+                    [DOCUMENTO] = @DOCUMENTO,
                    [TIPODECLIENTE] = @TIPODECLIENTE,
                     [CNH] = @CNH,
                     [ENDERECO] = @ENDERECO,
@@ -57,9 +54,8 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
             @"SELECT 
 	            [ID] CLIENTE_ID,
                 [NOME] CLIENTE_NOME,
-                [CPF] CLIENTE_CPF,
-                [EMAIL] CLIENTE_CNPJ,
-                [TELEFONE] CLIENTE_TIPODECLIENTE,
+                [DOCUMENTO] CLIENTE_DOCUMENTO,
+                [TIPODECLIENTE] CLIENTE_TIPODECLIENTE,
                 [CNH] CLIENTE_CNH,
                 [ENDERECO] CLIENTE_ENDERECO,
                 [EMAIL] CLIENTE_EMAIL,
@@ -74,9 +70,8 @@ namespace locadoraDeVeiculos.Infra.ModuloCliente
             @"SELECT 
 	            [ID] CLIENTE_ID,
                 [NOME] CLIENTE_NOME,
-                [CPF] CLIENTE_CPF,
-                [EMAIL] CLIENTE_CNPJ,
-                [TELEFONE] CLIENTE_TIPODECLIENTE,
+                [DOCUMENTO] CLIENTE_DOCUMENTO,
+                [TIPODECLIENTE] CLIENTE_TIPODECLIENTE,
                 [CNH] CLIENTE_CNH,
                 [ENDERECO] CLIENTE_ENDERECO,
                 [EMAIL] CLIENTE_EMAIL,

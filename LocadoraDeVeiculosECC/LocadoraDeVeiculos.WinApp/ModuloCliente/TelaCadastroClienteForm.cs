@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
     public partial class TelaCadastroClienteForm : Form
     {
         private Cliente cliente;
-        public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
-
         public TelaCadastroClienteForm()
         {
             InitializeComponent();
@@ -27,53 +26,133 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             get => cliente;
             set
             {
-                
                 cliente = value;
-                
-                textBoxId.Text = cliente.Id.ToString();
-                comboBoxTipoDePessoa.SelectedItem = cliente.TipoDeCliente;
-                if (comboBoxTipoDePessoa.SelectedItem.Equals("Pessoa Fisica"))
-                    textBoxCpfCnpj.Text = cliente.Cpf.ToString();
-                else 
-                    textBoxCpfCnpj.Text = cliente.Cnpj.ToString();
-                checkBoxCnh.Enabled = cliente.Cnh;
-                textBoxNome.Text = cliente.Nome.ToString();
-                textBoxEndereco.Text = cliente.Endereco.ToString();
-                textBoxEmail.Text = cliente.Email.ToString();
-                textBoxTelefone.Text = cliente.Telefone.ToString();
 
-
+                if (cliente.Id != 0)
+                    PreencherDadosNaTela();
+                else
+                {
+                    HabilitarPessoaFisica();
+                    radioButtonPessoaFisica.Checked = true;
+                    DesabilitarPessoaJuridica();
+                }
 
             }
         }
 
+        public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            ObterDadosTela();
 
+            var resultadoValidacao = GravarRegistro(cliente);
 
-            if (comboBoxTipoDePessoa.SelectedItem.Equals("Pessoa Fisica"))
+            if (resultadoValidacao.IsValid == false)
             {
-                cliente.TipoDeCliente = "Pessoa Fisica";
-                cliente.Cpf = textBoxCpfCnpj.Text;
-            }
-            else
-            {
-                cliente.TipoDeCliente = "Pessoa Fisica";
-                cliente.Cnpj = textBoxCpfCnpj.Text;
-            }
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-            if (checkBoxCnh.Enabled)
-            {
-                cliente.Cnh = true;
-            }
-            else {
-                cliente.Cnh = false;
-            }
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButtonPessoaFisica_CheckedChanged(object sender, EventArgs e)
+        {
+            HabilitarPessoaFisica();
+            DesabilitarPessoaJuridica();
+        }
+
+        private void radioButtonPessoaJuridica_CheckedChanged(object sender, EventArgs e)
+        {
+            HabilitarPessoaJuridica();
+            DesabilitarPessoaFisica();
+        }
+
+
+        //Métodos Privados
+
+        private void ObterDadosTela()
+        {
             cliente.Nome = textBoxNome.Text;
-            cliente.Endereco = textBoxEndereco.Text;
             cliente.Email = textBoxEmail.Text;
             cliente.Telefone = textBoxTelefone.Text;
+            cliente.Cpf = txtCpf.Text;
+            cliente.Cnpj = txtCnpj.Text;
+            cliente.Cnh = txtCnh.Text;
+            cliente.Endereco = textBoxEndereco.Text;
+            cliente.TipoDeCliente = ObterTipoCliente();
+           
+        }
+
+        private void PreencherDadosNaTela()
+        {
+            textBoxNome.Text = cliente.Nome;
+            textBoxEmail.Text = cliente.Email;
+            textBoxTelefone.Text = cliente.Telefone;
+            txtCpf.Text = cliente.Cpf;
+            txtCnpj.Text = cliente.Cnpj;
+            txtCnh.Text = cliente.Cnh;
+            textBoxEndereco.Text = cliente.Endereco;
+            PreencherTipoCliente();
+        }
+
+        private void PreencherTipoCliente()
+        {
+            if (cliente.TipoDeCliente == TipoCliente.PessoaFisica)
+            {
+                radioButtonPessoaFisica.Checked = true;
+                DesabilitarPessoaJuridica();
+                HabilitarPessoaFisica();
+                txtCpf.Text = cliente.Cpf;
+            }
+            else if (cliente.TipoDeCliente == TipoCliente.PessoaJuridica)
+            {
+                radioButtonPessoaJuridica.Checked = true;
+                DesabilitarPessoaFisica();
+                HabilitarPessoaJuridica();
+                txtCnpj.Text = cliente.Cnpj;
+            }
+        }
+
+        private void HabilitarPessoaFisica()
+        {
+            txtCpf.Enabled = true;
+        }
+
+        private void HabilitarPessoaJuridica()
+        {
+            txtCnpj.Enabled = true;
+        }
+
+        private void DesabilitarPessoaFisica()
+        {
+            txtCpf.Clear();
+            txtCpf.Enabled = false;
+        }
+
+        private void DesabilitarPessoaJuridica()
+        {
+            txtCnpj.Clear();
+            txtCnpj.Enabled = false;
+        }
+
+        private TipoCliente ObterTipoCliente()
+        {
+            TipoCliente retorno = TipoCliente.PessoaFisica;
+
+            if (radioButtonPessoaFisica.Checked && string.IsNullOrEmpty(txtCpf.Text) == false)
+                retorno = TipoCliente.PessoaFisica;
+            else if (radioButtonPessoaJuridica.Checked && string.IsNullOrEmpty(txtCnpj.Text) == false)
+                retorno = TipoCliente.PessoaJuridica;
+
+            return retorno;
         }
     }
 }

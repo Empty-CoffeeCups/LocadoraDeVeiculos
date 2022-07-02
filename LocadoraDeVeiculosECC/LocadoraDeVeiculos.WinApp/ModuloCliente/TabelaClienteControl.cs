@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
+﻿using LocadoraDeVeiculos.Dominio.Compartilhado;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cpf", HeaderText = "CPF"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "CNPJ", HeaderText = "CNPJ"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "TipoDeCliente", HeaderText = "Tipo de Cliente"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cnpj", HeaderText = "CNPJ"},
 
                  new DataGridViewTextBoxColumn { DataPropertyName = "CNH", HeaderText = "CNH"},
 
@@ -53,7 +52,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
             foreach (Cliente cliente in clientes)
             {
-                grid.Rows.Add(cliente.Id, cliente.Nome, cliente.Cpf, cliente.Cnpj, cliente.TipoDeCliente, cliente.Cnh, cliente.Endereco, cliente.Telefone);
+                var tipo = cliente.TipoDeCliente.GetDescription();
+
+                grid.Rows.Add(cliente.Id, cliente.Nome, cliente.Telefone, cliente.Email,
+                              tipo, cliente.Cpf, cliente.Cnpj, cliente.Cnh,
+                              cliente.Endereco);
             }
         }
 

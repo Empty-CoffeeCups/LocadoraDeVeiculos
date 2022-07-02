@@ -12,14 +12,14 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Cnpj { get; set; }
-        public string TipoDeCliente { get; set; }
-        public bool Cnh { get; set; }
+        public TipoCliente TipoDeCliente { get; set; }
+        public string Cnh { get; set; }
         public string Endereco { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
 
         public Cliente() { }
-        public Cliente(string nome, string cpf, string cnpj, string tipoDeCliente, bool cnh,string endereco, string email, string telefone)
+        public Cliente(string nome, string cpf, string cnpj, TipoCliente tipoDeCliente, string cnh,string endereco, string email, string telefone)
         {
             Nome = nome;
             Cpf = cpf;
