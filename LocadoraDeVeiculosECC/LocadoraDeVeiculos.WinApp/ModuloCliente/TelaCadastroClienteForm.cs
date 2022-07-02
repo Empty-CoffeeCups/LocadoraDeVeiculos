@@ -24,11 +24,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         }
         public Cliente Clientes
         {
-            get { return cliente; }
+            get => cliente;
             set
             {
+                
                 cliente = value;
-
+                
                 textBoxId.Text = cliente.Id.ToString();
                 comboBoxTipoDePessoa.SelectedItem = cliente.TipoDeCliente;
                 if (comboBoxTipoDePessoa.SelectedItem.Equals("Pessoa Fisica"))

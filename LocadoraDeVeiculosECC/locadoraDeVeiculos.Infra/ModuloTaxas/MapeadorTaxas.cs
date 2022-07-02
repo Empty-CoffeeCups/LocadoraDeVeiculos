@@ -33,7 +33,7 @@ namespace locadoraDeVeiculos.Infra.ModuloTaxas
             taxa.Id = id;
             taxa.Descricao = descricao;
             taxa.Valor = valor;
-           
+            taxa.TipoCalculo = (TipoCalculo)tipoCalculo;
 
             return taxa;
         }

@@ -45,6 +45,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
             taxas.TipoCalculo = (TipoCalculo)(radioButtonDiario.Checked == true ? 0 : 1);
 
             var resultadoValidacao = GravarRegistro(taxas);
+            
 
             if (resultadoValidacao.IsValid == false)
             {

@@ -40,5 +40,20 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
         public Taxas Clone() {
             return MemberwiseClone() as Taxas;
         }
+
+        public override bool Equals(object obj)
+        {
+            Taxas t = obj as Taxas;
+
+            if (t == null)
+                return false;
+
+            return
+             t.Id.Equals(Id) &&
+             t.Descricao.Equals(Descricao) &&
+             t.Valor.Equals(Valor) &&
+             t.TipoCalculo.Equals(TipoCalculo);
+
+        }
     }
 }

@@ -4,10 +4,11 @@
     "\\LocadoraDeVeiculosECC",
     "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos",
     "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos.WinApp",
+    "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos.WinApp\\ModuloTaxas",
     "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos\\ModuloTaxas",
     "\\LocadoraDeVeiculosECC\\LocadoraVeiculos.Infra.BancoDados",
     "\\LocadoraDeVeiculosECC\\LocadoraVeiculos.Infra.BancoDados\\ModuloCliente"
   ],
-  "SelectedNode": "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos\\ModuloTaxas\\Taxas.cs",
+  "SelectedNode": "\\LocadoraDeVeiculosECC\\LocadoraDeVeiculos.WinApp\\ModuloTaxas\\TelaCadastroTaxasForm.cs",
   "PreviewInSolutionExplorer": false
 }
