@@ -42,6 +42,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.funcionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoDeVeículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.condurtoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
@@ -128,7 +129,8 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.clientesToolStripMenuItem,
             this.funcionáriosToolStripMenuItem,
             this.grupoDeVeículosToolStripMenuItem,
-            this.taxasToolStripMenuItem});
+            this.taxasToolStripMenuItem,
+            this.condurtoresToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.cadastrosToolStripMenuItem.Text = "Menu";
@@ -136,30 +138,37 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesMenuItem_Click);
             // 
             // funcionáriosToolStripMenuItem
             // 
             this.funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
-            this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.funcionáriosToolStripMenuItem.Text = "Funcionários";
             this.funcionáriosToolStripMenuItem.Click += new System.EventHandler(this.funcionariosMenuItem_Click);
             // 
             // grupoDeVeículosToolStripMenuItem
             // 
             this.grupoDeVeículosToolStripMenuItem.Name = "grupoDeVeículosToolStripMenuItem";
-            this.grupoDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.grupoDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.grupoDeVeículosToolStripMenuItem.Text = "Grupo de Veículos";
             this.grupoDeVeículosToolStripMenuItem.Click += new System.EventHandler(this.grupoDeVeiculosMenuItem_Click);
             // 
             // taxasToolStripMenuItem
             // 
             this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
-            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.taxasToolStripMenuItem.Text = "Taxas";
             this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasMenuItem_Click);
+            // 
+            // condurtoresToolStripMenuItem
+            // 
+            this.condurtoresToolStripMenuItem.Name = "condurtoresToolStripMenuItem";
+            this.condurtoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.condurtoresToolStripMenuItem.Text = "Condutores";
+            this.condurtoresToolStripMenuItem.Click += new System.EventHandler(this.condurtoresToolStripMenuItem_Click);
             // 
             // panelRegistros
             // 
@@ -227,5 +236,6 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
         private Panel panelRegistros;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel labelRodape;
+        private ToolStripMenuItem condurtoresToolStripMenuItem;
     }
 }

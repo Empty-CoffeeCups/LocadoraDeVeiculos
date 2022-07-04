@@ -34,7 +34,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCondutor
             string nome = Convert.ToString(leitorRegistro["NOME"]);
             string cpf = Convert.ToString(leitorRegistro["CPF"]);
             string cnh = Convert.ToString(leitorRegistro["CNH"]);
-            DateTime dataValidadeCnh = Convert.ToDateTime(leitorRegistro["DATAVALIDADECNH"]);
+            DateTime dataValidadeCnh = Convert.ToDateTime(leitorRegistro["VALIDADECNH"]);
             string email = Convert.ToString(leitorRegistro["EMAIL"]);
             string telefone = Convert.ToString(leitorRegistro["TELEFONE"]);
             string endereco = Convert.ToString(leitorRegistro["ENDERECO"]);

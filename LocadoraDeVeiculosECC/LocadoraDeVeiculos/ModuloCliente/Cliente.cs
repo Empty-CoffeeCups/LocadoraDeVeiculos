@@ -32,6 +32,18 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             Telefone = telefone;
         }
 
+        public Cliente(string nome, string cpf, string cnpj,  string cnh, string endereco, string email, string telefone)
+        {
+            Nome = nome;
+            Cpf = cpf;
+            Cnh = cnh;
+            Cnpj = cnpj;
+            Cnh = cnh;
+            Endereco = endereco;
+            Email = email;
+            Telefone = telefone;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Cliente cliente &&

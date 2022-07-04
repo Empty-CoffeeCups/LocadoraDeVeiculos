@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void NomeValido()
         {
            
-            Cliente cliente = new Cliente("Lu", "592.636.550-30", "44.792.231/0001-50", "especial",true, "Lages Centro", "lucasomior@gmail.com", "(61) 3784-8355");
+            Cliente cliente = new Cliente("Lu", "592.636.550-30", "44.792.231/0001-50", "83534234300", "Lages Centro", "lucasomior@gmail.com", "(61) 3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -34,7 +34,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void CpfValido()
         {
 
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.50-30", "44.792.231/0001-50", "especial", true, "Lages Centro", "lucasomior@gmail.com", "(61)3784-8355");
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.50-30", "44.792.231/0001-50", "83534234300", "Lages Centro", "lucasomior@gmail.com", "(61)3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -47,7 +47,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void EndereçoValido()
         {
 
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "especial", true, "La", "lucasomior@gmail.com", "(61)3784-8355");
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "83534234300", "La", "lucasomior@gmail.com", "(61)3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -60,7 +60,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void CnpjValido()
         {
 
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/001-50", "especial", true, "Lages", "lucasomior@gmail.com", "(61)3784-8355");
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/001-50", "83534234300", "Lages", "lucasomior@gmail.com", "(61)3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -73,7 +73,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void TipoDeClienteValido()
         {
 
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "", true, "Lages", "lucasomior@gmail.com", "(61)3784-8355");
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "83534234300", "Lages", "lucasomior@gmail.com", "(61)3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -85,9 +85,8 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         [TestMethod]
         public void CnhValida()
         {
-            bool cnh = new bool();
-
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "especial", cnh, "Lages", "lucasomior@gmail.com", "(61)3784-8355");
+          
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "",  "Lages", "lucasomior@gmail.com", "(61)3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -101,7 +100,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void EmailValido()
         {
 
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "especial", true, "Lages", "lucasomior", "(61)3784-8355");
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "83534234300", "Lages", "lucasomior", "(61)3784-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 
@@ -114,7 +113,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCliente
         public void TelefoneValido()
         {
 
-            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "especial", true, "Lages", "lucasomior@gmail.com", "(61)34-8355");
+            Cliente cliente = new Cliente("Lucas de Aguiar", "592.636.550-30", "44.792.231/0001-50", "83534234300", "Lages", "lucasomior@gmail.com", "(61)34-8355");
 
             ValidadorCliente validadorCliente = new ValidadorCliente();
 

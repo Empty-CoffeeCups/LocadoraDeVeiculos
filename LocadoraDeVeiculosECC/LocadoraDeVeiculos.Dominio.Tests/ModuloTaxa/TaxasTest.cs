@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloTaxa
         [TestMethod]
         public void DescricaoValida()
         {
-            Taxas taxas = new Taxas("",100);
+            Taxas taxas = new Taxas("",100,TipoCalculo.Fixo);
 
             ValidadorTaxas validadorPaciente = new ValidadorTaxas();
 
@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloTaxa
         [TestMethod]
         public void ValorValido()
         {
-            Taxas taxas = new Taxas("Taxa Comum", -100);
+            Taxas taxas = new Taxas("Taxa Comum", -100, TipoCalculo.Fixo);
 
             ValidadorTaxas validadorPaciente = new ValidadorTaxas();
 
