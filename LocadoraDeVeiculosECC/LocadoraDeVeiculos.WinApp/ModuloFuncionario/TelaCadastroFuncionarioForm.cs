@@ -25,15 +25,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
                 funcionario = value;
                 if (funcionario.Id != 0)
                     PreencherDadosNaTela();
-
-               // textBoxId.Text = funcionario.Id.ToString();
-              //  textBoxNome.Text = funcionario.Nome;
-              //  textBoxUsuario.Text = funcionario.Usuario;
-              //  textBoxSenha.Text = funcionario.Senha;
-              //  dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada;
-             //   textBoxSalario.Text = funcionario.Salario.ToString();
-            //    checkBoxAdmin.Enabled = funcionario.Admin;
-
             }
         }
 
@@ -42,12 +33,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         private void buttonGravar_Click(object sender, EventArgs e)
         {
-            //funcionario.Nome = textBoxNome.Text;
-           // funcionario.Usuario = textBoxUsuario.Text;
-           // funcionario.Senha = textBoxSenha.Text;
-          //  funcionario.DataDeEntrada = dateTimePickerDataDeEntrada.Value;
-           // funcionario.Salario = Decimal.Parse(textBoxSalario.Text);
-          //  funcionario.Admin = checkBoxAdmin.Checked;
+            
 
             ObterDadosTela();
 
