@@ -14,4 +14,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Documento" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="95e74008-86f0-4b49-8def-84580ff72f8c" ChangeDateTime="07/04/2022 17:23:35">
+    <Property Name="ElementName" Value="[dbo].[TBCondutor].[Validade]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBCondutor]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ValidadeCNH" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3a0c335c-ce37-48ef-ad4c-eb22ba9bdc55" ChangeDateTime="07/04/2022 18:40:48">
+    <Property Name="ElementName" Value="[dbo].[TBCondutor].[Validade]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TBCondutor]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ValidadeCnh" />
+  </Operation>
 </Operations>
