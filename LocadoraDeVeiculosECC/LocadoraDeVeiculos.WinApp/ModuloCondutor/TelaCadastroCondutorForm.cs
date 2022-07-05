@@ -138,6 +138,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                     {
                         txtNome.Text = cliente.Nome;
                         txtCpf.Text = cliente.Cpf;
+                        txtCnh.Text = cliente.Cnh;
                         txtEmail.Text = cliente.Email;
                         txtEndereco.Text = cliente.Endereco;
                         txtTelefone.Text = cliente.Telefone;
