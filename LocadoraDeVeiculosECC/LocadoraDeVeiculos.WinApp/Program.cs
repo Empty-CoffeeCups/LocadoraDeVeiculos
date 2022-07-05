@@ -17,5 +17,9 @@ namespace LocadoraDeVeiculos.WinApp
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new TelaMenuPrincipalForm());
         }
+
+        
+
+
     }
 }
