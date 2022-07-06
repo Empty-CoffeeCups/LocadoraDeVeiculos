@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +21,44 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 
         public ValidationResult Inserir(Condutor condutor)
         {
+            Log.Logger.Information("Tentando inserir condutor...{@condutor}", condutor);
+
             var resultadoValidacao = Validar(condutor);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCondutor.Inserir(condutor);
+                Log.Logger.Information("Condutor {@condutorId}", condutor.Id);
+            }
+            else
+            {
+                foreach(var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Condutor {CondutorNome} -> Motivo: {erro}", condutor.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Condutor condutor)
         {
+            Log.Logger.Information("Tentando editar condutor...{@condutor}", condutor);
+
             var resultadoValidacao = Validar(condutor);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCondutor.Editar(condutor);
+                Log.Logger.Information("Condutor {@condutorId}", condutor.Id);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Condutor {CondutorNome} -> Motivo: {erro}", condutor.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\locadoraDeVeiculos.Infra\locadoraDeVeiculos.Infra.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos\LocadoraDeVeiculos.Dominio.csproj" />
   </ItemGroup>
