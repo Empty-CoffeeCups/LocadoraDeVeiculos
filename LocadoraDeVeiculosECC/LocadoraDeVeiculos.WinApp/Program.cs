@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
+﻿using LocadoraDeVeiculos.Infra.Logging;
+using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace LocadoraDeVeiculos.WinApp
         [STAThread]
         static void Main()
         {
+            ConfiguracaoLogsLocadora.ConfigurarEscritaLogs();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
