@@ -28,6 +28,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             if (resultadoValidacao.IsValid)
             {
                 repositorioFuncionario.Inserir(funcionario);
+                Log.Logger.Information("Funcionario {@funcionarioId}", funcionario.Id);
             }
             else
             {
@@ -49,6 +50,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             if (resultadoValidacao.IsValid)
             {
                 repositorioFuncionario.Editar(funcionario);
+                Log.Logger.Information("Funcionario {@funcionarioId}", funcionario.Id);
             }
             else
             {

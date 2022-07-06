@@ -50,6 +50,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             if (resultadoValidacao.IsValid)
             {
                 repositorioCliente.Editar(arg);
+                Log.Logger.Information("Cliente {@clienteId}", arg.Id);
             }
             else
             {
