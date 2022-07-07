@@ -12,8 +12,21 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
         public ValidadorPlanoDeCobranca()
         {
 
+            RuleFor(x => x.TipoDePlano)
+                   .NotNull().NotEmpty();
 
+            RuleFor(x => x.ValorDiario)
+                  .NotNull().NotEmpty()
+                  .GreaterThanOrEqualTo(0).WithMessage("O valor diário deve ser maior ou igual a 0");
 
+            RuleFor(x => x.ValorKmIncluso)
+                  .NotNull().NotEmpty()
+                  .GreaterThanOrEqualTo(0).WithMessage("O valor de Km Incluso deve ser maior ou igual a 0");
+
+            RuleFor(x => x.PrecoKmRodado)
+                  .NotNull().NotEmpty()
+                  .GreaterThanOrEqualTo(0).WithMessage("O valor diário deve ser maior ou igual a 0");
+                  
         }
     }
 }

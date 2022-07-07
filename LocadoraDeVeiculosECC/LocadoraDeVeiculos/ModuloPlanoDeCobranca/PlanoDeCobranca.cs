@@ -29,6 +29,16 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
             GrupoDeVeiculo = grupoVeiculo;
         }
 
+        public override void Atualizar(PlanoDeCobranca registro)
+        {
+            Id = registro.Id;
+            TipoDePlano = registro.TipoDePlano;
+            ValorDiario = registro.ValorDiario;
+            ValorKmIncluso = registro.ValorKmIncluso;
+            PrecoKmRodado = registro.PrecoKmRodado;
+            GrupoDeVeiculo = registro.GrupoDeVeiculo;
+        }
+
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
