@@ -39,7 +39,7 @@
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(525, 205);
+            this.grid.Size = new System.Drawing.Size(528, 239);
             this.grid.TabIndex = 0;
             // 
             // TabelaClienteControl
@@ -48,7 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
             this.Name = "TabelaClienteControl";
-            this.Size = new System.Drawing.Size(525, 208);
+            this.Size = new System.Drawing.Size(531, 239);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

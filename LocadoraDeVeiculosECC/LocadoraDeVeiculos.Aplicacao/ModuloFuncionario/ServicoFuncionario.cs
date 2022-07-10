@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +20,45 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
 
         public ValidationResult Inserir(Funcionario funcionario)
         {
+
+            Log.Logger.Information("Tentando inserir funcionario...{@funcionario}", funcionario);
+
             ValidationResult resultadoValidacao = Validar(funcionario);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioFuncionario.Inserir(funcionario);
+                Log.Logger.Information("Funcionario {@funcionarioId}", funcionario.Id);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Funcionario{FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Funcionario funcionario)
         {
+            Log.Logger.Information("Tentando editar funcionario...{@funcionario}", funcionario);
+
             ValidationResult resultadoValidacao = Validar(funcionario);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioFuncionario.Editar(funcionario);
+                Log.Logger.Information("Funcionario {@funcionarioId}", funcionario.Id);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Funcionario{FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }

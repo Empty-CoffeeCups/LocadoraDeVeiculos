@@ -94,7 +94,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         private void PreencherDadosNaTela()
         {
             textBoxNome.Text = cliente.Nome;
-            textBoxEmail.Text = cliente.Email;
+            textBoxEmail.Text = cliente.Email.ToString();
             textBoxTelefone.Text = cliente.Telefone;
             txtCpf.Text = cliente.Cpf;
             txtCnpj.Text = cliente.Cnpj;
