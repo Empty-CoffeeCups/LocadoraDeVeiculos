@@ -20,4 +20,9 @@
     <ProjectReference Include="..\locadoraDeVeiculos.Infra\locadoraDeVeiculos.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloCondutor\" />
+    <Folder Include="ModuloPlanoDeCobranca\" />
+  </ItemGroup>
+
 </Project>
