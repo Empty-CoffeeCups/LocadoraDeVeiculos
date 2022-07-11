@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
     public partial class TelaCadastroPlanoDeCobranca : Form
     {
         private PlanoDeCobranca plano;
-        
+        ValidadorBase validador = new ValidadorBase();
 
         public TelaCadastroPlanoDeCobranca(List<GrupoDeVeiculos> grupos)
         {
             InitializeComponent();
             this.ConfigurarTela();
-            CarregarGrupos(grupos);
             ConfigInicialDaTela();
+            CarregarGrupos(grupos);
         }
 
         public PlanoDeCobranca Plano
@@ -63,11 +64,48 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            string valorComPontoDiario = txtDiario.Text.Replace(",", ".");
+            string valorComVirgulaDiario = txtDiario.Text.Replace(".", ",");
+
+            if (!validador.ApenasNumerosInteirosOuDecimais(valorComPontoDiario))
+            {
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape("Insira um número válido no campo 'Valor da Diária'.");
+                DialogResult = DialogResult.None;
+
+                return;
+            }
+
+
+
+            string valorComPontoKmIncluso = txtKmIncluso.Text.Replace(",", ".");
+            string valorComVirgulaKmIncluso = txtKmIncluso.Text.Replace(".", ",");
+
+            if (!validador.ApenasNumerosInteirosOuDecimais(valorComPontoKmIncluso))
+            {
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape("Insira um número válido no campo 'KM Incluso'.");
+                DialogResult = DialogResult.None;
+
+                return;
+            }
+
+
+
+            string valorComPontoPrecoKm = txtKmRodado.Text.Replace(",", ".");
+            string valorComVirgulaPrecoKm = txtKmRodado.Text.Replace(".", ",");
+
+            if (!validador.ApenasNumerosInteirosOuDecimais(valorComPontoPrecoKm))
+            {
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape("Insira um número válido no campo 'Preço por KM'.");
+                DialogResult = DialogResult.None;
+
+                return;
+            }
+
             plano.GrupoDeVeiculo = (GrupoDeVeiculos)cbGrupoDeVeiculo.SelectedItem;
-            plano.TipoDePlano = (TipoDePlano)cbTipoDePlano.SelectedItem;
-            plano.ValorDiario = Convert.ToDecimal(txtDiario);
-            plano.ValorKmIncluso = Convert.ToDecimal(txtKmIncluso);
-            plano.PrecoKmRodado = Convert.ToDecimal(txtKmRodado);
+            plano.TipoDePlano = (string)cbTipoDePlano.SelectedItem;
+            plano.ValorDiario = Convert.ToDecimal(valorComVirgulaDiario);
+            plano.ValorKmIncluso = Convert.ToDecimal(valorComVirgulaKmIncluso);
+            plano.PrecoKmRodado = Convert.ToDecimal(valorComVirgulaPrecoKm);
 
 
             var resultadoValidacao = GravarRegistro(plano);
@@ -86,7 +124,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
         private void cbTipoDePlano_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipoDePlano.SelectedItem.Equals(TipoDePlano.Diario))
+            if (cbTipoDePlano.SelectedItem == "Plano Diário")
             {
                 txtDiario.Clear();
                 txtKmIncluso.Clear();
@@ -98,7 +136,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
                 txtDiario.Enabled = true;
                 txtKmRodado.Enabled = true;
             }
-            else if (cbTipoDePlano.SelectedItem.Equals(TipoDePlano.Controlado))
+            else if (cbTipoDePlano.SelectedItem == "Km Controlado")
             {
                 txtDiario.Clear();
                 txtKmIncluso.Clear();
@@ -109,7 +147,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
                 txtKmRodado.Enabled = true;
 
             }
-            else if (cbTipoDePlano.SelectedItem.Equals(TipoDePlano.Livre))
+            else if (cbTipoDePlano.SelectedItem == "Km Livre")
             {
                 txtDiario.Clear();
                 txtKmIncluso.Clear();
@@ -126,7 +164,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
         private void ConfigInicialDaTela()
         {
-            cbTipoDePlano.Enabled = false;
+            cbTipoDePlano.Enabled = true;
             txtDiario.Enabled = false;
             txtKmIncluso.Enabled = false;
             txtKmRodado.Enabled = false;

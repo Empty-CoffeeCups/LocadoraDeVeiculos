@@ -45,6 +45,10 @@
             // cbTipoDePlano
             // 
             this.cbTipoDePlano.FormattingEnabled = true;
+            this.cbTipoDePlano.Items.AddRange(new object[] {
+            "Plano Diário",
+            "Km Controlado",
+            "Km Livre"});
             this.cbTipoDePlano.Location = new System.Drawing.Point(172, 29);
             this.cbTipoDePlano.Name = "cbTipoDePlano";
             this.cbTipoDePlano.Size = new System.Drawing.Size(151, 23);

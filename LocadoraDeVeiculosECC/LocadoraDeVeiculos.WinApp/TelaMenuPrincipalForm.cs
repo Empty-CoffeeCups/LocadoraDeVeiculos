@@ -1,17 +1,20 @@
 ﻿using locadoraDeVeiculos.Infra.ModuloCliente;
 using locadoraDeVeiculos.Infra.ModuloCondutor;
 using locadoraDeVeiculos.Infra.ModuloFuncionario;
+using locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
 using locadoraDeVeiculos.Infra.ModuloTaxas;
 using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.WinApp.ModuloTaxas;
 using System;
 using System.Collections.Generic;
@@ -62,6 +65,10 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
+        private void planosDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
 
         private void taxasMenuItem_Click(object sender, EventArgs e)
         {
@@ -146,12 +153,14 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             var repositorioTaxa = new RepositorioTaxasEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
             var repositorioCondutor = new RepositorioCondutorEmBancoDados();
+            var repositorioPlano = new RepositorioPlanoDeCobrancaEmBancoDados();
 
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoGrupoVeiculo = new ServicoGrupoDeVeiculos(repositorioGrupoVeiculos);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             var servicoCondutor = new ServicoCondutor(repositorioCondutor);
+            var servicoPlano = new ServicoPlanoDeCobranca(repositorioPlano);
 
             controladores = new Dictionary<string, ControladorBase>();
 
@@ -160,6 +169,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             controladores.Add("Taxas", new ControladorTaxas(repositorioTaxa, servicoTaxa));
             controladores.Add("Grupo de Veículos", new ControladorGrupoDeVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculo));
             controladores.Add("Condutores", new ControladorCondutores(repositorioCondutor, servicoCondutor));
+            controladores.Add("Planos de Cobrança", new ControladorPlanoDeCobranca(repositorioPlano, servicoPlano));
 
 
         }

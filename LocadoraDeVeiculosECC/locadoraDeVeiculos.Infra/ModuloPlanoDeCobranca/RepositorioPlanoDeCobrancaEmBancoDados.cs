@@ -26,10 +26,10 @@ namespace locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
                 )
             VALUES
                 (
-                    @TIPOPLANO,
-                    @VALORDIARIA,
-                    @KMINCLUSO,
-                    @PRECOKM,
+                    @TIPODEPLANO,
+                    @VALORDIARIO,
+                    @VALORKMINCLUSO,
+                    @PRECOKMRODADO,
                     @GRUPODEVEICULOS_ID
                 ); SELECT SCOPE_IDENTITY();";
 
