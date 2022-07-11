@@ -10,9 +10,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
 {
     public class PlanoDeCobranca : EntidadeBase<PlanoDeCobranca>
     {
-        public PlanoDeCobranca()
-        {
-        }
+        
 
         public string TipoDePlano { get; set; }
         public Decimal ValorDiario { get; set; }
@@ -27,6 +25,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
             ValorKmIncluso = valorKmIncluso;
             PrecoKmRodado = precoKmRodado;
             GrupoDeVeiculo = grupoVeiculo;
+        }
+
+        public PlanoDeCobranca()
+        {
         }
 
         public override void Atualizar(PlanoDeCobranca registro)
