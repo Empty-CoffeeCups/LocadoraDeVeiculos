@@ -18,7 +18,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
     public partial class TelaCadastroPlanoDeCobranca : Form
     {
         private PlanoDeCobranca plano;
-        ValidadorBase validador = new ValidadorBase();
+        
 
         public TelaCadastroPlanoDeCobranca(List<GrupoDeVeiculos> grupos)
         {
@@ -67,39 +67,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             string valorComPontoDiario = txtDiario.Text.Replace(",", ".");
             string valorComVirgulaDiario = txtDiario.Text.Replace(".", ",");
 
-            if (!validador.ApenasNumerosInteirosOuDecimais(valorComPontoDiario))
-            {
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape("Insira um número válido no campo 'Valor da Diária'.");
-                DialogResult = DialogResult.None;
-
-                return;
-            }
-
 
 
             string valorComPontoKmIncluso = txtKmIncluso.Text.Replace(",", ".");
             string valorComVirgulaKmIncluso = txtKmIncluso.Text.Replace(".", ",");
 
-            if (!validador.ApenasNumerosInteirosOuDecimais(valorComPontoKmIncluso))
-            {
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape("Insira um número válido no campo 'KM Incluso'.");
-                DialogResult = DialogResult.None;
-
-                return;
-            }
+       
 
 
 
             string valorComPontoPrecoKm = txtKmRodado.Text.Replace(",", ".");
             string valorComVirgulaPrecoKm = txtKmRodado.Text.Replace(".", ",");
 
-            if (!validador.ApenasNumerosInteirosOuDecimais(valorComPontoPrecoKm))
-            {
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape("Insira um número válido no campo 'Preço por KM'.");
-                DialogResult = DialogResult.None;
-
-                return;
-            }
+           
 
             plano.GrupoDeVeiculo = (GrupoDeVeiculos)cbGrupoDeVeiculo.SelectedItem;
             plano.TipoDePlano = (string)cbTipoDePlano.SelectedItem;
@@ -184,6 +164,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
         {
             TelaMenuPrincipalForm.Instancia.AtualizarRodape("");
         }
+
+       
 
     }
 }
