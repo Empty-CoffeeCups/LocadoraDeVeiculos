@@ -24,7 +24,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
 
             RuleFor(x => x.PrecoKmRodado)
                   .GreaterThanOrEqualTo(0).WithMessage("O valor diário deve ser maior ou igual a 0");
-                  
+
+            RuleFor(x => x.GrupoDeVeiculo)
+                  .NotNull().NotEmpty();
+
         }
     }
 }
