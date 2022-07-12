@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ModuloCondutor\**" />
+    <Compile Remove="ModuloPlanoDeCobranca\**" />
+    <EmbeddedResource Remove="ModuloCondutor\**" />
+    <EmbeddedResource Remove="ModuloPlanoDeCobranca\**" />
+    <None Remove="ModuloCondutor\**" />
+    <None Remove="ModuloPlanoDeCobranca\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
@@ -21,8 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloCondutor\" />
-    <Folder Include="ModuloPlanoDeCobranca\" />
+    <None Update="ConfiguracaoAplicacao.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
