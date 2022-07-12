@@ -28,12 +28,12 @@ namespace locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         public override PlanoDeCobranca ConverterRegistro(SqlDataReader leitorRegistro)
         {
             
-            int id = Convert.ToInt32(leitorRegistro["ID"]);
+            var id = Guid.Parse(leitorRegistro["ID"].ToString());
             string tipoDePlano = Convert.ToString(leitorRegistro["TIPODEPLANO"]);
             Decimal valorDiaria = Convert.ToDecimal(leitorRegistro["VALORDIARIO"]);
             Decimal kmIncluso = Convert.ToDecimal(leitorRegistro["VALORKMINCLUSO"]);
             Decimal precoKm = Convert.ToDecimal(leitorRegistro["PRECOKMRODADO"]);
-            int idGrupo = Convert.ToInt32(leitorRegistro["GRUPODEVEICULOS_ID"]);
+            var idGrupo = Guid.Parse(leitorRegistro["GRUPODEVEICULOS_ID"].ToString());
 
             var plano = new PlanoDeCobranca
             {

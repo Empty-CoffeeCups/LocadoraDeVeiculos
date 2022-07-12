@@ -23,8 +23,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             set
             {
                 funcionario = value;
-                if (funcionario.Id != 0)
-                    PreencherDadosNaTela();
+                PreencherDadosNaTela();
+                
             }
         }
 
@@ -67,12 +67,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             dateTimePickerDataDeEntrada.MaxDate = DateTime.Today;
         }
 
+        private void DefinirDataAdmissaoMinima()
+        {
+
+            
+
+            DateTime dataMinima = new DateTime(01/01/2001);
+            
+            dateTimePickerDataDeEntrada.MinDate = dataMinima;
+
+       
+        }
+
         private void PreencherDadosNaTela()
         {
             textBoxNome.Text = funcionario.Nome;
             textBoxUsuario.Text = funcionario.Usuario;
             textBoxSenha.Text = funcionario.Senha;
             textBoxSalario.Text = funcionario.Salario.ToString();
+           
             dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada;
 
             if (funcionario.Admin == true)

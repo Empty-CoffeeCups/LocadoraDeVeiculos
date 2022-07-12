@@ -19,12 +19,14 @@ namespace locadoraDeVeiculos.Infra.ModuloFuncionario
         protected override string sqlInserir =>
             @"INSERT INTO [TBGRUPODEVEICULOS] 
                 (
+                    [ID],
                     [NOMEDOGRUPO]
 	            )
 	            VALUES
                 (
+                    @ID,
                     @NOMEDOGRUPO
-                );SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
             @"UPDATE [TBGRUPODEVEICULOS]	

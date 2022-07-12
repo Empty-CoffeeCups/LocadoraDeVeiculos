@@ -44,9 +44,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
             }
         }
 
-        internal int ObtemIdGrupoDeVeiculosSelecionado()
+        internal Guid ObtemIdGrupoDeVeiculosSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarNumero<Guid>();
         }
     }
 }

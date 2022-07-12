@@ -32,6 +32,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             Telefone = telefone;
         }
 
+
         public Cliente(string nome, string cpf, string cnpj,  string cnh, string endereco, string email, string telefone)
         {
             Nome = nome;

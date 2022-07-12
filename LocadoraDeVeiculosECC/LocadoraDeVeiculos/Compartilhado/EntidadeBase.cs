@@ -8,7 +8,12 @@ namespace LocadoraDeVeiculos.Compartilhado
 {
     public abstract class EntidadeBase<T>
     {
-        public int Id{ get; set; }
+        public Guid Id{ get; set; }
+
+        protected EntidadeBase()
+        {
+            Id = Guid.NewGuid();
+        }
 
         public abstract void Atualizar(T registro);
     }

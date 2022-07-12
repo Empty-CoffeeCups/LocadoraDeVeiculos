@@ -17,6 +17,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCondutor
         protected override string sqlInserir =>
             @"INSERT INTO [TBCONDUTOR]
                 (   
+                    [ID],
                     [NOME], 
                     [CPF],
                     [CNH],                    
@@ -28,6 +29,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCondutor
                 )
             VALUES
                 (
+                    @ID,
                     @NOME,
                     @CPF,
                     @CNH,
@@ -36,7 +38,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCondutor
                     @TELEFONE,
                     @ENDERECO,
                     @CLIENTE_ID
-                ); SELECT SCOPE_IDENTITY();";
+                );";
 
 
         protected override string sqlEditar =>
@@ -120,7 +122,7 @@ namespace locadoraDeVeiculos.Infra.ModuloCondutor
                 WHERE 
                     [CPF] = @CPF";
 
-        public Condutor SelecionarCondutorPorCliente(int id)
+        public Condutor SelecionarCondutorPorCliente(Guid id)
         {
             return SelecionarPorParametro(sqlSelecionarPorCliente, new SqlParameter("CLIENTE_ID", id));
         }

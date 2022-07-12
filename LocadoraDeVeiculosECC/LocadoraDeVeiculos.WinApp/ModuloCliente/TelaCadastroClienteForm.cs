@@ -28,15 +28,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             {
                 cliente = value;
 
-                if (cliente.Id != 0)
+              
                     PreencherDadosNaTela();
-                else
-                {
                     HabilitarPessoaFisica();
                     radioButtonPessoaFisica.Checked = true;
                     DesabilitarPessoaJuridica();
-                }
-
+                
             }
         }
 
@@ -94,7 +91,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         private void PreencherDadosNaTela()
         {
             textBoxNome.Text = cliente.Nome;
-            textBoxEmail.Text = cliente.Email.ToString();
+            textBoxEmail.Text = cliente.Email;
             textBoxTelefone.Text = cliente.Telefone;
             txtCpf.Text = cliente.Cpf;
             txtCnpj.Text = cliente.Cnpj;
