@@ -40,7 +40,60 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
 
         public override void Atualizar(Veiculo registro)
         {
+            Id = registro.Id;
+            GruposDeVeiculos = registro.GruposDeVeiculos;
+            Modelo = registro.Modelo;
+            Marca = registro.Marca;
+            Placa = registro.Placa;
+            Cor = registro.Cor;
+            TipoDeCombustivel = registro.TipoDeCombustivel;
+            CapacidadeDoTanque = registro.CapacidadeDoTanque;
+            Ano = registro.Ano;
+            KmPercorrido = registro.KmPercorrido;
+            Foto = registro.Foto;
             throw new NotImplementedException();
+        }
+        public Veiculo Clone()
+        {
+            return MemberwiseClone() as Veiculo;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Veiculo veiculo &&
+                   Id == veiculo.Id &&
+                   EqualityComparer<GrupoDeVeiculos>.Default.Equals(GruposDeVeiculos, veiculo.GruposDeVeiculos) &&
+                   Modelo == veiculo.Modelo &&
+                   Marca == veiculo.Marca &&
+                   Placa == veiculo.Placa &&
+                   Cor == veiculo.Cor &&
+                   TipoDeCombustivel == veiculo.TipoDeCombustivel &&
+                   CapacidadeDoTanque == veiculo.CapacidadeDoTanque &&
+                   Ano == veiculo.Ano &&
+                   KmPercorrido == veiculo.KmPercorrido &&
+                   EqualityComparer<Bitmap>.Default.Equals(Foto, veiculo.Foto);
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(GruposDeVeiculos);
+            hash.Add(Modelo);
+            hash.Add(Marca);
+            hash.Add(Placa);
+            hash.Add(Cor);
+            hash.Add(TipoDeCombustivel);
+            hash.Add(CapacidadeDoTanque);
+            hash.Add(Ano);
+            hash.Add(KmPercorrido);
+            hash.Add(Foto);
+            return hash.ToHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }
