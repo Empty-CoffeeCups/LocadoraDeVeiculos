@@ -1,6 +1,8 @@
 ﻿using LocadoraDeVeiculos.Infra.Logging;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
+using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraDeVeiculos.WinApp

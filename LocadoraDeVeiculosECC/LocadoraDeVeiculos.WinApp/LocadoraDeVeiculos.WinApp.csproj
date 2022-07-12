@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Serilog" Version="2.11.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
@@ -19,6 +21,12 @@
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Logging\LocadoraDeVeiculos.Infra.Logging.csproj" />
     <ProjectReference Include="..\locadoraDeVeiculos.Infra\locadoraDeVeiculos.Infra.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos\LocadoraDeVeiculos.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ConfiguracaoAplicacao.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

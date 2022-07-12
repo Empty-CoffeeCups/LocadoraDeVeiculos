@@ -65,7 +65,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
 
         private ValidationResult ValidarGrupoDeVeiculos(GrupoDeVeiculos arg)
         {
-            ValidadorPlanoDeCobranca validador = new ValidadorPlanoDeCobranca();
+            ValidadorGrupoDeVeiculos validador = new ValidadorGrupoDeVeiculos();
 
             var resultadoValidacao = validador.Validate(arg);
 
