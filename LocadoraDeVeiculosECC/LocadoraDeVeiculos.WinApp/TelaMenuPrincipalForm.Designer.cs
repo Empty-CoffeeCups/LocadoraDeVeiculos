@@ -46,6 +46,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
+            this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox.SuspendLayout();
             this.menu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -130,7 +131,8 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.funcionáriosToolStripMenuItem,
             this.grupoDeVeículosToolStripMenuItem,
             this.taxasToolStripMenuItem,
-            this.condurtoresToolStripMenuItem});
+            this.condurtoresToolStripMenuItem,
+            this.planosDeCobrançaToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.cadastrosToolStripMenuItem.Text = "Menu";
@@ -195,6 +197,13 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.labelRodape.Size = new System.Drawing.Size(52, 17);
             this.labelRodape.Text = "[rodapé]";
             // 
+            // planosDeCobrançaToolStripMenuItem
+            // 
+            this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
+            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
+            this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planosDeCobrançaToolStripMenuItem_Click);
+            // 
             // TelaMenuPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -237,5 +246,6 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel labelRodape;
         private ToolStripMenuItem condurtoresToolStripMenuItem;
+        private ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
     }
 }

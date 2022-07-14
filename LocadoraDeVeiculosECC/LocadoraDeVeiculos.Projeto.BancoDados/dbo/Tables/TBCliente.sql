@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[TBCliente] (
-    [Id]            INT           IDENTITY (1, 1) NOT NULL,
+    [Id]            UNIQUEIDENTIFIER  NOT NULL,
     [Nome]          VARCHAR (50)  NOT NULL,
     [Documento]           VARCHAR (50)  NOT NULL,
     [TipoDeCliente] INT  NOT NULL,

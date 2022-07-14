@@ -20,13 +20,14 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
                   .GreaterThanOrEqualTo(0).WithMessage("O valor diário deve ser maior ou igual a 0");
 
             RuleFor(x => x.ValorKmIncluso)
-                  .NotNull().NotEmpty()
                   .GreaterThanOrEqualTo(0).WithMessage("O valor de Km Incluso deve ser maior ou igual a 0");
 
             RuleFor(x => x.PrecoKmRodado)
-                  .NotNull().NotEmpty()
-                  .GreaterThanOrEqualTo(0).WithMessage("O valor diário deve ser maior ou igual a 0");
-                  
+                  .GreaterThanOrEqualTo(0).WithMessage("O preço Km rodado deve ser maior ou igual a 0");
+
+            RuleFor(x => x.GrupoDeVeiculo)
+                  .NotNull().NotEmpty().WithMessage("'Grupo De Veiculo' não pode ser nulo.");
+
         }
     }
 }

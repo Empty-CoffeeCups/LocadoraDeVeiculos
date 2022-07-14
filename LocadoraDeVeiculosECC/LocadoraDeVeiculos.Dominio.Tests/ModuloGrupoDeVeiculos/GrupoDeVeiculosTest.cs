@@ -22,10 +22,11 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloGrupoDeVeiculos
         public void NomeValido()
         {
             GrupoDeVeiculos grupoDeVeiculos = new GrupoDeVeiculos("");
+          
 
-            ValidadorGrupoDeVeiculos validadorPaciente = new ValidadorGrupoDeVeiculos();
+            ValidadorGrupoDeVeiculos validadorGrupo = new ValidadorGrupoDeVeiculos();
 
-            var resultado1 = validadorPaciente.Validate(grupoDeVeiculos);
+            var resultado1 = validadorGrupo.Validate(grupoDeVeiculos);
 
             Assert.AreEqual("Deve ser inserido um nome", resultado1.Errors[0].ErrorMessage);
         }

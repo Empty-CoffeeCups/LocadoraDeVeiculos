@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Compartilhado
@@ -19,6 +20,6 @@ namespace LocadoraDeVeiculos.Compartilhado
 
         List<T> SelecionarTodos();
 
-        T SelecionarPorId(int Id);
+        T SelecionarPorId(Guid Id);
     }
 }

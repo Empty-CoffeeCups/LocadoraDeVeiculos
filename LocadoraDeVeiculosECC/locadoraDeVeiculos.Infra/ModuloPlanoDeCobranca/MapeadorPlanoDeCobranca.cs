@@ -20,20 +20,20 @@ namespace locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
             comando.Parameters.AddWithValue("ID", registro.Id);
             comando.Parameters.AddWithValue("TIPODEPLANO", registro.TipoDePlano);
             comando.Parameters.AddWithValue("VALORDIARIO", registro.ValorDiario);
-            comando.Parameters.AddWithValue("VALORKMNCLUSO", registro.ValorKmIncluso);
+            comando.Parameters.AddWithValue("VALORKMINCLUSO", registro.ValorKmIncluso);
             comando.Parameters.AddWithValue("PRECOKMRODADO", registro.PrecoKmRodado);
-            comando.Parameters.AddWithValue("GRUPODEVEICULOS_ID", registro.PrecoKmRodado);
+            comando.Parameters.AddWithValue("GRUPODEVEICULOS_ID", registro.GrupoDeVeiculo.Id);
         }
 
         public override PlanoDeCobranca ConverterRegistro(SqlDataReader leitorRegistro)
         {
             
-            int id = Convert.ToInt32(leitorRegistro["ID"]);
-            Enum.TryParse(leitorRegistro["TIPODEPLANO"].ToString(), out TipoDePlano tipoDePlano);
+            var id = Guid.Parse(leitorRegistro["ID"].ToString());
+            string tipoDePlano = Convert.ToString(leitorRegistro["TIPODEPLANO"]);
             Decimal valorDiaria = Convert.ToDecimal(leitorRegistro["VALORDIARIO"]);
             Decimal kmIncluso = Convert.ToDecimal(leitorRegistro["VALORKMINCLUSO"]);
             Decimal precoKm = Convert.ToDecimal(leitorRegistro["PRECOKMRODADO"]);
-            int idGrupo = Convert.ToInt32(leitorRegistro["GRUPODEVEICULOS_ID"]);
+            var idGrupo = Guid.Parse(leitorRegistro["GRUPODEVEICULOS_ID"].ToString());
 
             var plano = new PlanoDeCobranca
             {
