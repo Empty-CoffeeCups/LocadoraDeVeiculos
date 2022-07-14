@@ -14,7 +14,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
         {
             InitializeComponent();
             DefinirDataAdmissaoMaxima();
-          
+        
+            
         }
 
         public Funcionario Funcionarios
@@ -67,17 +68,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             dateTimePickerDataDeEntrada.MaxDate = DateTime.Today;
         }
 
-        private void DefinirDataAdmissaoMinima()
-        {
-
-            
-
-            DateTime dataMinima = new DateTime(01/01/2001);
-            
-            dateTimePickerDataDeEntrada.MinDate = dataMinima;
-
-       
-        }
+        
 
         private void PreencherDadosNaTela()
         {
@@ -85,8 +76,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             textBoxUsuario.Text = funcionario.Usuario;
             textBoxSenha.Text = funcionario.Senha;
             textBoxSalario.Text = funcionario.Salario.ToString();
-           
-            dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada;
+
+            if(funcionario.DataDeEntrada > DateTime.MinValue) 
+             dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada.Date;
+            else
+             dateTimePickerDataDeEntrada.Value = new DateTime(1900,01,01);
+            
 
             if (funcionario.Admin == true)
                 checkBoxAdmin.Checked = true;
