@@ -165,7 +165,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionários", new ControladorFuncionarios(servicoFuncionario));
-            controladores.Add("Clientes", new ControladorClientes(repositorioCliente, servicoCliente));
+            controladores.Add("Clientes", new ControladorClientes(servicoCliente));
             controladores.Add("Taxas", new ControladorTaxas(repositorioTaxa, servicoTaxa));
             controladores.Add("Grupo de Veículos", new ControladorGrupoDeVeiculos(repositorioGrupoVeiculos, servicoGrupoVeiculo));
             controladores.Add("Condutores", new ControladorCondutores(repositorioCondutor, servicoCondutor));
