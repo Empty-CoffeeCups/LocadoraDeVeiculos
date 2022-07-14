@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -16,7 +17,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
     public partial class TelaCadastroGrupoDeVeiculosForm : Form
     {
         private GrupoDeVeiculos gruposDeVeiculos;
-        public Func<GrupoDeVeiculos, ValidationResult> GravarRegistro { get; set; }
+        public Func<GrupoDeVeiculos, Result<GrupoDeVeiculos>> GravarRegistro { get; set; }
         public TelaCadastroGrupoDeVeiculosForm()
         {
             InitializeComponent();
@@ -51,17 +52,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
         private void buttonGravar_Click_1(object sender, EventArgs e)
         {
             gruposDeVeiculos.NomeDoGrupo = txtNomeDogrupo.Text;
-          
 
-            var resultadoValidacao = GravarRegistro(gruposDeVeiculos);
 
-            if (resultadoValidacao.IsValid == false)
+            var resultadoValidacao = GravarRegistro(GruposDeVeiculos);
+
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Grupo De Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
     }
