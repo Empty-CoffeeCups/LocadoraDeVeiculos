@@ -58,7 +58,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxas
 
         public Result<Taxas> Editar(Taxas taxas)
         {
-            Log.Logger.Debug("Tentando editar Cliente... {@f}", taxas);
+            Log.Logger.Debug("Tentando editar Taxa... {@f}", taxas);
 
             Result resultadoValidacao = ValidarTaxas(taxas);
 
