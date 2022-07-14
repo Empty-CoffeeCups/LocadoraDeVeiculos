@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -29,7 +30,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             }
         }
 
-        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
+        public Func<Funcionario, Result<Funcionario>> GravarRegistro { get; set; }
+
 
 
         private void buttonGravar_Click(object sender, EventArgs e)
@@ -40,13 +42,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             var resultadoValidacao = GravarRegistro(funcionario);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
         private void TelaCadastroFuncionarioForm_Load(object sender, EventArgs e)
