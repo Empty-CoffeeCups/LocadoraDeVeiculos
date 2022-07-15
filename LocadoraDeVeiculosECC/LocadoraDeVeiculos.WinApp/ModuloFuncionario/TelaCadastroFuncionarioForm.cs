@@ -16,7 +16,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             InitializeComponent();
             DefinirDataAdmissaoMaxima();
         
-            
         }
 
         public Funcionario Funcionarios
