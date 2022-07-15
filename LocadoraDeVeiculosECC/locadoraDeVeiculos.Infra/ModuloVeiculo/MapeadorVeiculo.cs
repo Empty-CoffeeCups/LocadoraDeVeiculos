@@ -18,7 +18,7 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
         public override void ConfigurarParametros(Veiculo registro, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", registro.Id);
-            comando.Parameters.AddWithValue("GRUPODEVEICULOS_ID", registro.GruposDeVeiculos);
+            comando.Parameters.AddWithValue("GRUPODEVEICULOS_ID", registro.GruposDeVeiculos.Id);
             comando.Parameters.AddWithValue("MODELO", registro.Modelo);
             comando.Parameters.AddWithValue("MARCA", registro.Marca);
             comando.Parameters.AddWithValue("PLACA", registro.Placa);
@@ -38,8 +38,8 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
         }
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            var id = Convert.ToInt32(leitorRegistro["VEICULO_ID"]);
-            int idGrupo = Convert.ToInt32(leitorRegistro["GRUPODEVEICULOS_ID"]);
+            var id = Guid.Parse(leitorRegistro["VEICULO_ID"].ToString());
+            var idGrupo = Guid.Parse(leitorRegistro["GRUPODEVEICULOS_ID"].ToString());
             var modelo = Convert.ToString(leitorRegistro["VEICULO_MODELO"]);
             var marca = Convert.ToString(leitorRegistro["VEICULO_MARCA"]);
             var placa = Convert.ToString(leitorRegistro["VEICULO_PLACA"]);
@@ -64,7 +64,6 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
                 Ano = ano,
                 KmPercorrido = kmPercorrido,
                 Foto = (Bitmap)foto
-
             };
                
              
