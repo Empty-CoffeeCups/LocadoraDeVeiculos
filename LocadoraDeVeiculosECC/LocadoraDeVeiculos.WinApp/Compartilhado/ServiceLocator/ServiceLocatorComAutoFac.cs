@@ -2,21 +2,25 @@
 using locadoraDeVeiculos.Infra.ModuloCliente;
 using locadoraDeVeiculos.Infra.ModuloCondutor;
 using locadoraDeVeiculos.Infra.ModuloFuncionario;
+using locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
 using locadoraDeVeiculos.Infra.ModuloTaxas;
 using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.WinApp.ModuloTaxas;
 using System;
 using System.Collections.Generic;
@@ -54,6 +58,11 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             builder.RegisterType<RepositorioTaxasEmBancoDados>().As<IRepositorioTaxas>();
             builder.RegisterType<ServicoTaxa>().AsSelf();
             builder.RegisterType<ControladorTaxas>().AsSelf();
+
+
+            builder.RegisterType<RepositorioPlanoDeCobrancaEmBancoDados>().As<IRepositorioPlanoDeCobranca>();
+            builder.RegisterType<ServicoPlanoDeCobranca>().AsSelf();
+            builder.RegisterType<ControladorPlanoDeCobranca>().AsSelf();
 
             container = builder.Build();
         }
