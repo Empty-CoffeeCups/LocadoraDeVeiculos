@@ -16,7 +16,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         public decimal Salario { get; set; }
         public bool Admin { get; set; }
 
-        public Funcionario() { }
+        public Funcionario() {
+            DataDeEntrada = DateTime.Now;
+        }
         public Funcionario(string nome, string usuario, string senha, DateTime dataDeEntrada, decimal salario, bool admin)
         {
             Nome = nome;

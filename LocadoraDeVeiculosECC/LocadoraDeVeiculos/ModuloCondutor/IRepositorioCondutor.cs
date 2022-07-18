@@ -9,6 +9,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
 {
     public interface IRepositorioCondutor : IRepositorio<Condutor>
     {
-        
+        Condutor SelecionarCondutorPorCliente(Guid id);
+        Condutor SelecionarCondutorPorCpf(string cpf);
     }
 }

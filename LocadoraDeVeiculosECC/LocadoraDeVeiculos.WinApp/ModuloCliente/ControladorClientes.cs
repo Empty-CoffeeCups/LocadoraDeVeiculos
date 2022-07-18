@@ -13,71 +13,95 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
     public class ControladorClientes : ControladorBase
     {
-        private readonly IRepositorioCliente repositorioCliente;
+        
         private TabelaClienteControl listagemClientes;
         private readonly ServicoCliente servicoCliente;
 
-        public ControladorClientes(IRepositorioCliente repositorioCliente, ServicoCliente servicoCliente)
+        public ControladorClientes(ServicoCliente servicoCliente)
         {
-            this.repositorioCliente = repositorioCliente;
             this.servicoCliente = servicoCliente;
         }
 
-        public  override void Inserir()
+        public override void Inserir()
         {
-            TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
+            var tela = new TelaCadastroClienteForm();
 
             tela.Clientes = new Cliente();
 
             tela.GravarRegistro = servicoCliente.Inserir;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
                 CarregarClientes();
+            }
         }
 
         public override void Editar()
         {
-            Cliente clienteSelecionado = ObtemClienteSelecionado();
+            var id = listagemClientes.ObtemIdClienteSelecionado();
 
-            if (clienteSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
-                "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Cliente primeiro",
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroClienteForm tela = new TelaCadastroClienteForm();
+            var resultado = servicoCliente.SelecionarPorId(id);
 
-            tela.Clientes = clienteSelecionado.Clone();
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultado.Value;
+
+            var tela = new TelaCadastroClienteForm();
+
+            tela.Clientes = funcionarioSelecionado.Clone();
 
             tela.GravarRegistro = servicoCliente.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarClientes();
+
         }
 
         public override void Excluir()
         {
-            Cliente clienteSelecionado = ObtemClienteSelecionado();
+            var id = listagemClientes.ObtemIdClienteSelecionado();
 
-            if (clienteSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
-                "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Cliente primeiro",
+                    "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
-                "Exclusão de Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = servicoCliente.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
-                repositorioCliente.Excluir(clienteSelecionado);
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            CarregarClientes();
+            var funcionarioSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o Cliente?", "Exclusão de Cliente",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoCliente.Excluir(funcionarioSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarClientes();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override ConfiguracaoToolBoxBase ObtemConfiguracaoToolbox()
@@ -97,18 +121,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         private void CarregarClientes()
         {
-            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            var resultado = servicoCliente.SelecionarTodos();
 
-            listagemClientes.AtualizarRegistros(clientes);
+            if (resultado.IsSuccess)
+            {
+                List<Cliente> clientes = resultado.Value;
 
-            TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+                listagemClientes.AtualizarRegistros(clientes);
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} Cliente(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Cliente",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private Cliente ObtemClienteSelecionado()
-        {
-            var id = listagemClientes.ObtemIdClienteSelecionado();
 
-            return repositorioCliente.SelecionarPorId(id);
-        }
     }
 }

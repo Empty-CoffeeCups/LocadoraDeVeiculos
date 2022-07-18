@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -22,7 +23,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
 
         private Taxas taxas;
 
-        public Func<Taxas, ValidationResult> GravarRegistro { get; set; }
+        public Func<Taxas, Result<Taxas>> GravarRegistro { get; set; }
 
         public Taxas Taxas
         {
@@ -44,16 +45,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
             taxas.Valor = numericValor.Value;
             taxas.TipoCalculo = (TipoCalculo)(radioButtonDiario.Checked == true ? 0 : 1);
 
-            var resultadoValidacao = GravarRegistro(taxas);
-            
+            var resultadoValidacao = GravarRegistro(Taxas);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
@@ -27,7 +28,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         }
 
-        public Func<Condutor, ValidationResult> GravarRegistro { get; set; }
+        public Func<Condutor, Result<Condutor>> GravarRegistro { get; set; }
 
         public Condutor Condutor
         {
@@ -84,13 +85,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             var resultadoValidacao = GravarRegistro(condutor);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -14,7 +15,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
         {
             InitializeComponent();
             DefinirDataAdmissaoMaxima();
-          
+        
         }
 
         public Funcionario Funcionarios
@@ -28,7 +29,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             }
         }
 
-        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
+        public Func<Funcionario, Result<Funcionario>> GravarRegistro { get; set; }
+
 
 
         private void buttonGravar_Click(object sender, EventArgs e)
@@ -39,13 +41,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             var resultadoValidacao = GravarRegistro(funcionario);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
             }
         }
         private void TelaCadastroFuncionarioForm_Load(object sender, EventArgs e)
@@ -67,17 +77,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             dateTimePickerDataDeEntrada.MaxDate = DateTime.Today;
         }
 
-        private void DefinirDataAdmissaoMinima()
-        {
-
-            
-
-            DateTime dataMinima = new DateTime(01/01/2001);
-            
-            dateTimePickerDataDeEntrada.MinDate = dataMinima;
-
-       
-        }
+        
 
         private void PreencherDadosNaTela()
         {
@@ -85,8 +85,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             textBoxUsuario.Text = funcionario.Usuario;
             textBoxSenha.Text = funcionario.Senha;
             textBoxSalario.Text = funcionario.Salario.ToString();
-           
-            dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada;
+
+            if(funcionario.DataDeEntrada > DateTime.MinValue) 
+             dateTimePickerDataDeEntrada.Value = funcionario.DataDeEntrada.Date;
+            else
+             dateTimePickerDataDeEntrada.Value = new DateTime(1900,01,01);
+            
 
             if (funcionario.Admin == true)
                 checkBoxAdmin.Checked = true;

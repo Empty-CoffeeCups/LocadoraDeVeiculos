@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraDeVeiculos.Compartilhado;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ namespace locadoraDeVeiculos.Infra.Compartilhado
             conexaoComBanco.Close();
         }
 
-        public virtual void Excluir(T registro)
+        public void Excluir(T registro)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -78,9 +79,18 @@ namespace locadoraDeVeiculos.Infra.Compartilhado
 
             comandoExclusao.Parameters.AddWithValue("ID", registro.Id);
 
-            conexaoComBanco.Open();
-            comandoExclusao.ExecuteNonQuery();
-            conexaoComBanco.Close();
+            try
+            {
+                conexaoComBanco.Open();
+                comandoExclusao.ExecuteNonQuery();
+                conexaoComBanco.Close();
+            }
+            catch (Exception ex)
+            {
+                if (ex != null && ex.Message.Contains("The DELETE statement conflicted with the REFERENCE constraint"))
+                    throw new NaoPodeExcluirEsteRegistroException(ex);
+                throw;
+            }
         }
 
         public virtual T SelecionarPorId(Guid id)
