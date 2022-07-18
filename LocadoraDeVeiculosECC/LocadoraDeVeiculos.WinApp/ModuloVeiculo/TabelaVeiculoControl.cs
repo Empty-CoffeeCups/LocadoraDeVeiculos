@@ -27,7 +27,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = " GruposDeVeiculos", HeaderText = " Grupos De Veiculos"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "GruposDeVeiculos", HeaderText = " Grupos De Veiculos"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
 

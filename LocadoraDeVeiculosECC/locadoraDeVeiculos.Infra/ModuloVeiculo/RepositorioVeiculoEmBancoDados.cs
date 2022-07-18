@@ -57,17 +57,17 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
                 WHERE [ID] = @ID";
         protected override string sqlSelecionarPorId =>
             @"SELECT 
-                [ID] VEICULO_ID,
-	            [GRUPODEVEICULOS] VEICULO_GRUPODEVEICULOS,
-                [MODELO] VEICULO_MODELO,
-                [MARCA] VEICULO_MARCA,
-                [PLACA] VEICULO_PLACA,
-                [COR] VEICULO_COR,
-                [TIPODECOMBUSTIVEL] VEICULO_TIPODECOMBUSTIVEL,
-                [CAPACIDADEDOTANQUE] VEICULO_CAPACIDADEDOTANQUE,
-                [ANO] VEICULO_ANO,
-                [KMPERCORRIDO] VEICULO_KMPERCORRIDO,
-                [FOTO] VEICULO_FOTO
+                [ID],
+	            [GRUPODEVEICULOS],
+                [MODELO],
+                [MARCA],
+                [PLACA],
+                [COR],
+                [TIPODECOMBUSTIVEL],
+                [CAPACIDADEDOTANQUE],
+                [ANO],
+                [KMPERCORRIDO],
+                [FOTO]
                
             FROM
                 [TBVEICULO]
@@ -75,18 +75,17 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
                 [ID] = @ID";
         protected override string sqlSelecionarTodos =>
             @"SELECT 
-                [ID] VEICULO_ID,
-	            [GRUPODEVEICULOS] VEICULO_GRUPODEVEICULOS,
-                [MODELO] VEICULO_MODELO,
-                [MARCA] VEICULO_MARCA,
-                [PLACA] VEICULO_PLACA,
-                [COR] VEICULO_COR,
-                [TIPODECOMBUSTIVEL] VEICULO_TIPODECOMBUSTIVEL,
-                [CAPACIDADEDOTANQUE] VEICULO_CAPACIDADEDOTANQUE,
-                [ANO] VEICULO_ANO,
-                [KMPERCORRIDO] VEICULO_KMPERCORRIDO,
-                [FOTO] VEICULO_FOTO
-               
+                [ID],
+	            [GRUPODEVEICULOS],
+                [MODELO],
+                [MARCA],
+                [PLACA],
+                [COR],
+                [TIPOCOMBUSTIVEL],
+                [CAPACIDADEDOTANQUE],
+                [ANO],
+                [KMPERCORRIDO],
+                [FOTO]           
             FROM
                 [TBVEICULO]";
     }

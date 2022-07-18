@@ -18,7 +18,7 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
         public override void ConfigurarParametros(Veiculo registro, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", registro.Id);
-            comando.Parameters.AddWithValue("GRUPODEVEICULOS_ID", registro.GruposDeVeiculos.Id);
+            comando.Parameters.AddWithValue("GRUPODEVEICULOS", registro.GruposDeVeiculos.Id);
             comando.Parameters.AddWithValue("MODELO", registro.Modelo);
             comando.Parameters.AddWithValue("MARCA", registro.Marca);
             comando.Parameters.AddWithValue("PLACA", registro.Placa);
@@ -38,17 +38,17 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
         }
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            var id = Guid.Parse(leitorRegistro["VEICULO_ID"].ToString());
-            var idGrupo = Guid.Parse(leitorRegistro["GRUPODEVEICULOS_ID"].ToString());
-            var modelo = Convert.ToString(leitorRegistro["VEICULO_MODELO"]);
-            var marca = Convert.ToString(leitorRegistro["VEICULO_MARCA"]);
-            var placa = Convert.ToString(leitorRegistro["VEICULO_PLACA"]);
-            var cor = Convert.ToString(leitorRegistro["VEICULO_COR"]);
-            var tipoDeCombustivel = Convert.ToInt32(leitorRegistro["VEICULO_TIPODECOMBUSTIVEL"]);
-            var capacidadeDoTanque = Convert.ToInt32(leitorRegistro["VEICULO_CAPACIDADEDOTANQUE"]);
-            var ano = Convert.ToDateTime(leitorRegistro["VEICULO_ANO"]);
-            var kmPercorrido = Convert.ToInt32(leitorRegistro["VEICULO_KMPERCORRIDO"]);
-            byte[] data = (byte[])leitorRegistro["VEICULO_FOTO"];
+            var id = Guid.Parse(leitorRegistro["ID"].ToString());
+            var idGrupo = Guid.Parse(leitorRegistro["GRUPODEVEICULOS"].ToString());
+            var modelo = Convert.ToString(leitorRegistro["MODELO"]);
+            var marca = Convert.ToString(leitorRegistro["MARCA"]);
+            var placa = Convert.ToString(leitorRegistro["PLACA"]);
+            var cor = Convert.ToString(leitorRegistro["COR"]);
+            var tipoDeCombustivel = Convert.ToInt32(leitorRegistro["TIPODECOMBUSTIVEL"]);
+            var capacidadeDoTanque = Convert.ToInt32(leitorRegistro["CAPACIDADEDOTANQUE"]);
+            var ano = Convert.ToDateTime(leitorRegistro["ANO"]);
+            var kmPercorrido = Convert.ToInt32(leitorRegistro["KMPERCORRIDO"]);
+            byte[] data = (byte[])leitorRegistro["FOTO"];
             var foto = Image.FromStream(new System.IO.MemoryStream(data));
 
             var veiculo = new Veiculo()
