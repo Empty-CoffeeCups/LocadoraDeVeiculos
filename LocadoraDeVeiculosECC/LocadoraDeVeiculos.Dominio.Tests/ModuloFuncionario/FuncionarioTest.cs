@@ -94,7 +94,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             data = DateTime.Now;
-            bool admin = new bool();
+            bool admin = true;
 
             Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, 1500, admin);
 
