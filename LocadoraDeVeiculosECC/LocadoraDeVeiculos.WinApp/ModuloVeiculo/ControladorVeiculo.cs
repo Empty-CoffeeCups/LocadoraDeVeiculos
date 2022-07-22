@@ -15,12 +15,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
-
+        private readonly RepositorioVeiculoEmBancoDados repositorioVeiculo;
         private readonly RepositorioGrupoDeVeiculosEmBancoDados repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDados();
         private TabelaVeiculoControl listagemVeiculos;
         private readonly ServicoVeiculo servicoVeiculo;
-        public ControladorVeiculo(ServicoVeiculo servicoVeiculo)
+
+        public ControladorVeiculo(RepositorioVeiculoEmBancoDados repositorioVeiculo, ServicoVeiculo servicoVeiculo)
         {
+            this.repositorioVeiculo = repositorioVeiculo;
             this.servicoVeiculo = servicoVeiculo;
         }
 
