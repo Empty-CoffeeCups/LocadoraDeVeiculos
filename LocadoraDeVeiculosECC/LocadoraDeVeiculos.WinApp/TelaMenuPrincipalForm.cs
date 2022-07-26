@@ -26,14 +26,11 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
     public partial class TelaMenuPrincipalForm : Form
     {
         private ControladorBase controlador;
-    //  private Dictionary<string, ControladorBase> controladores;
-        private IServiceLocator serviceLocator;
+        private readonly IServiceLocator serviceLocator;
 
         public TelaMenuPrincipalForm(IServiceLocator serviceLocator)
         {
             InitializeComponent();
-
-            this.serviceLocator = serviceLocator;
 
             this.ConfigurarTela();
 
@@ -41,8 +38,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-
-         //   InicializarControladores();
+            this.serviceLocator = serviceLocator;
         }
 
         public static TelaMenuPrincipalForm Instancia
