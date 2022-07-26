@@ -15,14 +15,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
-        private readonly RepositorioVeiculoEmBancoDados repositorioVeiculo;
+
         private readonly RepositorioGrupoDeVeiculosEmBancoDados repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDados();
         private TabelaVeiculoControl listagemVeiculos;
         private readonly ServicoVeiculo servicoVeiculo;
 
-        public ControladorVeiculo(RepositorioVeiculoEmBancoDados repositorioVeiculo, ServicoVeiculo servicoVeiculo)
+        public ControladorVeiculo(ServicoVeiculo servicoVeiculo)
         {
-            this.repositorioVeiculo = repositorioVeiculo;
+
             this.servicoVeiculo = servicoVeiculo;
         }
 
@@ -30,7 +30,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         {
             var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new TelaCadastroVeiculo(grupos);
+            TelaCadastroVeiculoForm tela = new TelaCadastroVeiculoForm(grupos);
+           
             tela.Veiculo = new Veiculo();
 
             tela.GravarRegistro = servicoVeiculo.Inserir;
@@ -55,7 +56,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
             var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new TelaCadastroVeiculo(grupos);
+            TelaCadastroVeiculoForm tela = new TelaCadastroVeiculoForm(grupos);
 
             tela.Veiculo = veiculoSelecionado.Clone();
 
@@ -70,22 +71,36 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         }
         public override void Excluir()
         {
-            Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
+            var id = listagemVeiculos.ObtemNumeroVeiculoSelecionado();
 
-            if (veiculoSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
-                "Exclusão de veiculos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Veiculo primeiro",
+                    "Exclusão de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o veiculo?",
-                "Exclusão de veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = servicoVeiculo.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultadoSelecao.IsFailed)
             {
-                repositorioVeiculo.Excluir(veiculoSelecionado);
-                CarregarVeiculos();
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var planoSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o Veiculo?", "Exclusão de Veiculo",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoVeiculo.Excluir(planoSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarVeiculos();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public override UserControl ObtemListagem()

@@ -139,9 +139,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
         #endregion
     }
 }

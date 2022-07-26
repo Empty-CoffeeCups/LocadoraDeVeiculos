@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloVeiculo;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using Serilog;
@@ -12,62 +13,166 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
 {
     public class ServicoVeiculo
     {
-        private RepositorioVeiculoEmBancoDados repositorioVeiculo;
+        private IRepositorioVeiculo repositorioVeiculo;
 
-        public ServicoVeiculo(RepositorioVeiculoEmBancoDados repositorioVeiculo)
+        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo)
         {
             this.repositorioVeiculo = repositorioVeiculo;
         }
 
-        public ValidationResult Inserir(Veiculo arg)
+        public Result<Veiculo> Inserir(Veiculo veiculo)
         {
-            Log.Logger.Information("Tentando inserir veiculo...{@veiculo}", arg);
+            Log.Logger.Debug("Tentando inserir Veiculo... {@f}", veiculo);
 
-            var resultadoValidacao = ValidarVeiculo(arg);
+            Result resultadoValidacao = ValidarVeiculo(veiculo);
 
-            if (resultadoValidacao.IsValid)
-            {
-                repositorioVeiculo.Inserir(arg);
-                Log.Logger.Information("Veiculo {@veiculoId}", arg.Id);
-            }
-            else
+            if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir veiculo{Modelo} -> Motivo: {erro}", arg.Modelo, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir o Veiculo {VeiculoId} - {Motivo}",
+                       veiculo.Id, erro.Message);
                 }
+
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
-            return resultadoValidacao;
-        }
-        public ValidationResult Editar(Veiculo arg)
-        {
-            Log.Logger.Information("Tentando editar veiculo...{@veiculo}", arg);
-
-            var resultadoValidacao = ValidarVeiculo(arg);
-
-            if (resultadoValidacao.IsValid)
+            try
             {
-                repositorioVeiculo.Editar(arg);
-                Log.Logger.Information("Veiculo {@VeiculoId}", arg.Id);
+                repositorioVeiculo.Inserir(veiculo);
+
+                Log.Logger.Information("Veiculo {VeiculoId} inserido com sucesso", veiculo.Id);
+
+                return Result.Ok(veiculo);
             }
-            else
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar inserir o Veiculo";
+
+                Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+        public Result<Veiculo> Editar(Veiculo veiculo)
+        {
+            Log.Logger.Debug("Tentando editar Veiculo... {@f}", veiculo);
+
+            Result resultadoValidacao = ValidarVeiculo(veiculo);
+
+            if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar Veiculo {VeiculoModelo} -> Motivo: {erro}", arg.Modelo, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar o Veiculo {VeiculoId} - {Motivo}",
+                       veiculo.Id, erro.Message);
                 }
+
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
-            return resultadoValidacao;
+            try
+            {
+                repositorioVeiculo.Editar(veiculo);
+
+                Log.Logger.Information("Veiculo {VeiculoId} editado com sucesso", veiculo.Id);
+
+                return Result.Ok(veiculo);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar editar o Veiculo";
+
+                Log.Logger.Error(ex, msgErro + "{VeiuculoId}", veiculo.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
-        private ValidationResult ValidarVeiculo(Veiculo arg)
+        public Result Excluir(Veiculo veiculo)
+        {
+            Log.Logger.Debug("Tentando excluir Veiculo... {@f}", veiculo);
+
+            try
+            {
+                repositorioVeiculo.Excluir(veiculo);
+
+                Log.Logger.Information("Veiculo {VeiculoId} excluído com sucesso", veiculo.Id);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir o Veiculo";
+
+                Log.Logger.Error(ex, msgErro + "{VeiucloId}", veiculo.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+        public Result<Veiculo> SelecionarPorId(Guid id)
+        {
+            try
+            {
+                return Result.Ok(repositorioVeiculo.SelecionarPorId(id));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar o Veiculo";
+
+                Log.Logger.Error(ex, msgErro + "{VeiculoId}", id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+        public Result<List<Veiculo>> SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(repositorioVeiculo.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os Veiculos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        private Result ValidarVeiculo(Veiculo veiculo)
         {
             ValidadorVeiculo validador = new ValidadorVeiculo();
 
-            var resultadoValidacao = validador.Validate(arg);
+            var resultadoValidacao = validador.Validate(veiculo);
 
-            return resultadoValidacao;
+            List<Error> errors = new List<Error>();
+
+            foreach (ValidationFailure r in resultadoValidacao.Errors)
+            {
+                errors.Add(new Error(r.ErrorMessage));
+            }
+
+            if (resultadoValidacao.IsValid)
+            {
+                if (veiculo.Placa != "              ")
+                    if (PlacaDuplicada(veiculo))
+                        errors.Add(new Error("Placa do veiculo já cadastrada"));
+            }
+            if (errors.Any())
+            {
+                return Result.Fail(errors);
+            }
+
+            return Result.Ok();
+        }
+        private bool PlacaDuplicada(Veiculo veiculo)
+        {
+            var veiculoEncontrado = repositorioVeiculo.SelecionarVeiculoPorPlaca(veiculo.Placa);
+
+            return veiculoEncontrado != null &&
+                   veiculoEncontrado.Placa == veiculo.Placa &&
+                   veiculoEncontrado.Id != veiculo.Id;
         }
     }
 }

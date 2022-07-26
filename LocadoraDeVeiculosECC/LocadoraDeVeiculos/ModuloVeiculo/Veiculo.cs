@@ -51,7 +51,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
             Ano = registro.Ano;
             KmPercorrido = registro.KmPercorrido;
             Foto = registro.Foto;
-            throw new NotImplementedException();
+            
         }
         public Veiculo Clone()
         {

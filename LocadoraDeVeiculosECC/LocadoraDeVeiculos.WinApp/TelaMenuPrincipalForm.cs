@@ -95,7 +95,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
         }
         private void veiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
         }
         private void btnInserir_Click(object sender, EventArgs e)
         {

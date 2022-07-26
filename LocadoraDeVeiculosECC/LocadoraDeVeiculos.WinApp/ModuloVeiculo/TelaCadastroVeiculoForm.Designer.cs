@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
-    partial class TelaCadastroVeiculo
+    partial class TelaCadastroVeiculoForm
     {
         /// <summary>
         /// Required designer variable.

@@ -2,13 +2,14 @@
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace locadoraDeVeiculos.Infra.ModuloVeiculo
 {
-    public class RepositorioVeiculoEmBancoDados : RepositorioBase<Veiculo, MapeadorVeiculo>
+    public class RepositorioVeiculoEmBancoDados : RepositorioBase<Veiculo, MapeadorVeiculo>, IRepositorioVeiculo
     {
         protected override string sqlInserir =>
            @"INSERT INTO [TBVEICULO]
@@ -36,7 +37,7 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
                     @ANO,
                     @KMPERCORRIDO,
                     @FOTO
-			);SELECT SCOPE_IDENTITY();";
+			);";
         protected override string sqlEditar =>
           @"UPDATE [TBVEICULO]
                 SET
@@ -88,5 +89,29 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
                 [FOTO]           
             FROM
                 [TBVEICULO]";
+
+        protected string sqlSelecionarPlaca =>
+            @"SELECT 
+                [ID],
+	            [GRUPODEVEICULOS],
+                [MODELO],
+                [MARCA],
+                [PLACA],
+                [COR],
+                [TIPOCOMBUSTIVEL],
+                [CAPACIDADEDOTANQUE],
+                [ANO],
+                [KMPERCORRIDO],
+                [FOTO]           
+            FROM
+                [TBVEICULO]
+
+            WHERE
+                [PLACA] = @PLACA";
+
+        public Veiculo SelecionarVeiculoPorPlaca(string placa)
+        {
+            return SelecionarPorParametro(sqlSelecionarPlaca, new SqlParameter("PLACA", placa));
+        }
     }
 }

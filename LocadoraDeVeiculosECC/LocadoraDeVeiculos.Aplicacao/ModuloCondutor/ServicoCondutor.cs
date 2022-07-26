@@ -159,8 +159,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
                 errors.Add(new Error(r.ErrorMessage));
             }
 
-            
-
+      
             if (resultadoValidacao.IsValid)
             {
                 if (condutor.Cpf != "              ")

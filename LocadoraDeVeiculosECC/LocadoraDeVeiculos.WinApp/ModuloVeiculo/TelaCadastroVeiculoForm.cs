@@ -14,10 +14,10 @@ using System.Windows.Forms;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
-    public partial class TelaCadastroVeiculo : Form
+    public partial class TelaCadastroVeiculoForm : Form
     {
         private Veiculo veiculo;
-        public TelaCadastroVeiculo(List<GrupoDeVeiculos> grupos)
+        public TelaCadastroVeiculoForm(List<GrupoDeVeiculos> grupos)
         {
             InitializeComponent();
             this.ConfigurarTela();
