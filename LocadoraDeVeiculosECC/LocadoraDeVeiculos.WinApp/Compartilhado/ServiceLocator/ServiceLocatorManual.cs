@@ -9,6 +9,7 @@ using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Infra.Orm;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
@@ -65,9 +66,9 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             controladores.Add("ControladorFuncionarios", new ControladorFuncionarios(servicoFuncionario));
 
-            var repositorioTaxa = new RepositorioTaxasEmBancoDados();
-            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
-            controladores.Add("ControladorTaxa", new ControladorTaxas(servicoTaxa));
+            var repositorioTaxa = new RepositorioTaxasOrm(contextoDadosOrm);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa, contextoDadosOrm);
+            controladores.Add("ControladorTaxas", new ControladorTaxas(servicoTaxa));
 
           
             var repositorioGrupoVeiculos = new RepositorioGrupoDeVeiculosOrm(contextoDadosOrm);

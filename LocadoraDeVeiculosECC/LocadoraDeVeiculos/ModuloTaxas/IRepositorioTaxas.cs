@@ -9,5 +9,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
 {
     public interface IRepositorioTaxas : IRepositorio<Taxas>
     {
+        
+
     }
 }
