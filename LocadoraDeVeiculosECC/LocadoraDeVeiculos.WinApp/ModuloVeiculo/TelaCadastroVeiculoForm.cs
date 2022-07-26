@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
@@ -20,10 +21,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         public TelaCadastroVeiculoForm(List<GrupoDeVeiculos> grupos)
         {
             InitializeComponent();
-            this.ConfigurarTela();
             CarregarGrupos(grupos);
         }
-
+        public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; set; }
         public Veiculo Veiculo
         {
             get { return veiculo; }
@@ -55,7 +55,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
                 comboBoxGrupoDeVeiculos.Items.Add(item);
             }
         }
-        public Func<Veiculo, ValidationResult> GravarRegistro { get; set; }
 
         //Metodos privados :
         private void button2_Click(object sender, EventArgs e)

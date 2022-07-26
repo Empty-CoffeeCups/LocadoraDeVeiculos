@@ -25,7 +25,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             InitializeComponent();
             CarregarClientes(clientes);
            
-
         }
 
         public Func<Condutor, Result<Condutor>> GravarRegistro { get; set; }

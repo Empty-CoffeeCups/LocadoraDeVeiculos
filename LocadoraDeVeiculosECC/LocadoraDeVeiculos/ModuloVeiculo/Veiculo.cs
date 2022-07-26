@@ -53,7 +53,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
             Foto = registro.Foto;
             
         }
-        public Veiculo Clone()
+        public Veiculo Clonar()
         {
             return MemberwiseClone() as Veiculo;
         }

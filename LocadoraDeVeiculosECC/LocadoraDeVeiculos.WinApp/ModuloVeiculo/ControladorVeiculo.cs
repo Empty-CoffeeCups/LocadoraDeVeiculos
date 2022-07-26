@@ -22,7 +22,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
         public ControladorVeiculo(ServicoVeiculo servicoVeiculo)
         {
-
             this.servicoVeiculo = servicoVeiculo;
         }
 
@@ -31,7 +30,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
 
             TelaCadastroVeiculoForm tela = new TelaCadastroVeiculoForm(grupos);
-           
+
             tela.Veiculo = new Veiculo();
 
             tela.GravarRegistro = servicoVeiculo.Inserir;
@@ -45,29 +44,37 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         }
         public override void Editar()
         {
-            Veiculo veiculoSelecionado = ObtemVeiculoSelecionado();
+            
+            var id = listagemVeiculos.ObtemNumeroVeiculoSelecionado();
 
-            if (veiculoSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
-                "Edição veiculos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Veiculo primeiro",
+                    "Edição de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var resultado = servicoVeiculo.SelecionarPorId(id);
 
-            TelaCadastroVeiculoForm tela = new TelaCadastroVeiculoForm(grupos);
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            tela.Veiculo = veiculoSelecionado.Clone();
+            var planoSelecionado = resultado.Value;
+
+            var grupoDeVeiculos = repositorioGrupoDeVeiculos.SelecionarTodos();
+
+            var tela = new TelaCadastroVeiculoForm(grupoDeVeiculos);
+
+            tela.Veiculo = planoSelecionado.Clonar();
 
             tela.GravarRegistro = servicoVeiculo.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarVeiculos();
-            }
         }
         public override void Excluir()
         {
@@ -105,7 +112,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         }
         public override UserControl ObtemListagem()
         {
-            listagemVeiculos = new TabelaVeiculoControl();
+            if (listagemVeiculos == null)
+                listagemVeiculos = new TabelaVeiculoControl();
 
             CarregarVeiculos();
 
@@ -113,23 +121,34 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         }
         private void CarregarVeiculos()
         {
-            List<Veiculo> veiculos = repositorioVeiculo.SelecionarTodos();
+            var resultado = servicoVeiculo.SelecionarTodos();
 
-            listagemVeiculos.AtualizarRegistros(veiculos);
+            if (resultado.IsSuccess)
+            {
+                List<Veiculo> veiculos = resultado.Value;
 
-            TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} veiculo(s)");
+                listagemVeiculos.AtualizarRegistros(veiculos);
+
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Veiculo(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Veiculo",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         public override ConfiguracaoToolBoxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxVeiculo();
         }
-        private Veiculo ObtemVeiculoSelecionado()
-        {
-            var numero = listagemVeiculos.ObtemNumeroVeiculoSelecionado();
 
-            return repositorioVeiculo.SelecionarPorId(numero);
-        }
+        //private Veiculo ObtemVeiculoSelecionado()
+        //{
+        //    var numero = listagemVeiculos.ObtemNumeroVeiculoSelecionado();
+
+        //    return repositorioVeiculo.SelecionarPorId(numero);
+        //}
 
     }
 }
