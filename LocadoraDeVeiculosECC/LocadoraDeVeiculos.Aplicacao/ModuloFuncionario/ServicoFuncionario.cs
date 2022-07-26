@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using Serilog;
 using System;
@@ -13,10 +14,12 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
     public class ServicoFuncionario
     {
         private IRepositorioFuncionario repositorioFuncionario;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoFuncionario(IRepositorioFuncionario repositorioFuncionario)
+        public ServicoFuncionario(IRepositorioFuncionario repositorioFuncionario, IContextoPersistencia contexto)
         {
             this.repositorioFuncionario = repositorioFuncionario;
+            this.contextoPersistencia = contexto;
         }
 
         public Result<Funcionario> Inserir(Funcionario funcionario)
@@ -39,6 +42,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 repositorioFuncionario.Inserir(funcionario);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Funcionário {FuncionarioId} inserido com sucesso", funcionario.Id);
 
@@ -74,6 +78,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 repositorioFuncionario.Editar(funcionario);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Funcionário {FuncionarioId} editado com sucesso", funcionario.Id);
 
@@ -97,6 +102,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 repositorioFuncionario.Excluir(funcionario);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Funcionário {FuncionarioId} excluído com sucesso", funcionario.Id);
 
