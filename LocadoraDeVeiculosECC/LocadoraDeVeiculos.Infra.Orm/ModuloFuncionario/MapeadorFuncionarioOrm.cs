@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario
 {
-    public class MapeadorFuncionario : IEntityTypeConfiguration<Funcionario>
+    public class MapeadorFuncionarioOrm : IEntityTypeConfiguration<Funcionario>
     {
         public void Configure(EntityTypeBuilder<Funcionario> builder)
         {
