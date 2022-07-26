@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using Serilog;
 using System;
@@ -13,13 +14,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
 {
     public class ServicoGrupoDeVeiculos
     {
-        //TODO: VALIDAÇÕES DE GRUPOS DE VEÍCULOS
+        
 
         private IRepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoGrupoDeVeiculos(IRepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos)
+        public ServicoGrupoDeVeiculos(IRepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos, IContextoPersistencia contexto)
         {
             this.repositorioGrupoDeVeiculos = repositorioGrupoDeVeiculos;
+            this.contextoPersistencia = contexto;
         }
 
         public Result<GrupoDeVeiculos> Inserir(GrupoDeVeiculos grupoDeVeiculos)
@@ -42,6 +45,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
             try
             {
                 repositorioGrupoDeVeiculos.Inserir(grupoDeVeiculos);
+
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Grupo De Veiculos {GrupoDeVeiculosId} inserido com sucesso", grupoDeVeiculos.Id);
 
@@ -78,6 +83,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
             {
                 repositorioGrupoDeVeiculos.Editar(grupoDeVeiculos);
 
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Information("Grupo De Veiculos {GrupoDeVeiculosId} editado com sucesso", grupoDeVeiculos.Id);
 
                 return Result.Ok(grupoDeVeiculos);
@@ -100,6 +107,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
             {
                 repositorioGrupoDeVeiculos.Excluir(grupoDeVeiculos);
 
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Information("Grupo De Veiculos {GrupoDeVeiculosId} excluído com sucesso", grupoDeVeiculos.Id);
 
                 return Result.Ok();
@@ -116,9 +125,14 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
 
         public Result<List<GrupoDeVeiculos>> SelecionarTodos()
         {
+            Log.Logger.Debug("Tentando selecionar grupo de veiculos...");
+
             try
             {
+                Log.Logger.Information("Grupos de veicúlos selecionados com sucesso");
+
                 return Result.Ok(repositorioGrupoDeVeiculos.SelecionarTodos());
+
             }
             catch (Exception ex)
             {
@@ -132,9 +146,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
 
         public Result<GrupoDeVeiculos> SelecionarPorId(Guid id)
         {
+            Log.Logger.Debug("Tentando selecionar grupo de veículos {GrupoDeVeiculosId}...", id);
+
             try
             {
                 return Result.Ok(repositorioGrupoDeVeiculos.SelecionarPorId(id));
+
+                Log.Logger.Information("Grupo de Veículos {GrupoDeVeiculosId} selecionado com sucesso", id);
             }
             catch (Exception ex)
             {
