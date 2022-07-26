@@ -4,14 +4,16 @@ using LocadoraDeVeiculos.Infra.Orm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraDeVeiculosDbContext))]
-    partial class LocadoraDeVeiculosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220726191217_AddTabelaPlanoDeCobranca")]
+    partial class AddTabelaPlanoDeCobranca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,7 +112,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("GrupoDeVeiculoId")
+                    b.Property<Guid?>("GrupoDeVeiculoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("PrecoKmRodado")
@@ -158,9 +160,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 {
                     b.HasOne("LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos.GrupoDeVeiculos", "GrupoDeVeiculo")
                         .WithMany()
-                        .HasForeignKey("GrupoDeVeiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GrupoDeVeiculoId");
 
                     b.Navigation("GrupoDeVeiculo");
                 });

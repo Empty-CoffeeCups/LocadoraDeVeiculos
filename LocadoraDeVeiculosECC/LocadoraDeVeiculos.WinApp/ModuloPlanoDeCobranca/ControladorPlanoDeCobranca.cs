@@ -1,5 +1,6 @@
 ﻿using locadoraDeVeiculos.Infra.ModuloFuncionario;
 using locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
@@ -16,18 +17,20 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
     public class ControladorPlanoDeCobranca : ControladorBase
     {
        
-        private readonly RepositorioGrupoDeVeiculosEmBancoDados repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDados();
+        
         private TabelaPlanoDeCobrancaControl listagemPlanos;
         private readonly ServicoPlanoDeCobranca servicoPlanoDeCobranca;
+        private readonly ServicoGrupoDeVeiculos servicoGrupoDeVeiculos;
 
-        public ControladorPlanoDeCobranca(ServicoPlanoDeCobranca servicoPlanoDeCobranca)
+        public ControladorPlanoDeCobranca(ServicoPlanoDeCobranca servicoPlanoDeCobranca, ServicoGrupoDeVeiculos servicoGrupoDeVeiculos)
         {
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
+            this.servicoGrupoDeVeiculos = servicoGrupoDeVeiculos;
         }
 
         public override void Inserir()
         {
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupoDeVeiculos.SelecionarTodos().Value;
 
             var tela = new TelaCadastroPlanoDeCobranca(grupos);
 
@@ -63,7 +66,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
             var planoSelecionado = resultado.Value;
 
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupoDeVeiculos.SelecionarTodos().Value;
 
             var tela = new TelaCadastroPlanoDeCobranca(grupos);
 

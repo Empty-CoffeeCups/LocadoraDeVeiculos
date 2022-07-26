@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using Serilog;
 using System;
@@ -16,10 +17,12 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
         //TODO: Refatorar Em Log
 
         private IRepositorioPlanoDeCobranca repositorioPlanoDeCobranca;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoPlanoDeCobranca(IRepositorioPlanoDeCobranca repositorioPlanoDeCobranca)
+        public ServicoPlanoDeCobranca(IRepositorioPlanoDeCobranca repositorioPlanoDeCobranca, IContextoPersistencia contexto)
         {
             this.repositorioPlanoDeCobranca = repositorioPlanoDeCobranca;
+            this.contextoPersistencia = contexto;
         }
 
         public Result<PlanoDeCobranca> Inserir(PlanoDeCobranca planoDeCobranca)
@@ -42,6 +45,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             try
             {
                 repositorioPlanoDeCobranca.Inserir(planoDeCobranca);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano De Cobranca {PlanoDeCobrancaId} inserido com sucesso", planoDeCobranca.Id);
 
@@ -77,6 +81,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             try
             {
                 repositorioPlanoDeCobranca.Editar(planoDeCobranca);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano De Cobranca {PlanoDeCobrancaId} editado com sucesso", planoDeCobranca.Id);
 
@@ -99,6 +104,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             try
             {
                 repositorioPlanoDeCobranca.Excluir(planoDeCobranca);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano De Cobranca {PlanoDeCobrancaId} excluído com sucesso", planoDeCobranca.Id);
 

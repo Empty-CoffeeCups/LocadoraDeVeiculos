@@ -10,13 +10,27 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
 {
     public class PlanoDeCobranca : EntidadeBase<PlanoDeCobranca>
     {
-        
+
+        private GrupoDeVeiculos grupoDeVeiculos;
 
         public string TipoDePlano { get; set; }
         public Decimal ValorDiario { get; set; }
         public Decimal ValorKmIncluso { get; set; }
         public Decimal PrecoKmRodado { get; set; }
-        public GrupoDeVeiculos GrupoDeVeiculo { get; set; }
+        public GrupoDeVeiculos GrupoDeVeiculo 
+        {
+            get 
+            {
+                return grupoDeVeiculos; 
+            }  
+            set 
+            {
+                grupoDeVeiculos = value;
+                GrupoDeVeiculoId = value.Id; 
+            } 
+        }
+
+        public Guid GrupoDeVeiculoId { get; set; }
 
         public PlanoDeCobranca(string tipoDePlano, decimal valorDiario, decimal valorKmIncluso, decimal precoKmRodado, GrupoDeVeiculos grupoVeiculo)
         {

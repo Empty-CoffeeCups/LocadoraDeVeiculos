@@ -6,16 +6,19 @@ using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Infra.Orm;
 using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Infra.Orm.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.WinApp.ModuloTaxas;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -76,6 +79,10 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             var repositorioGrupoVeiculos = new RepositorioGrupoDeVeiculosOrm(contextoDadosOrm);
             var servicoGrupoDeVeiculos = new ServicoGrupoDeVeiculos(repositorioGrupoVeiculos, contextoDadosOrm);
             controladores.Add("ControladorGrupoDeVeiculos", new ControladorGrupoDeVeiculos(servicoGrupoDeVeiculos));
+
+            var repositorioPlanoDeCobranca = new RepositorioPlanoDeCobrancaOrm(contextoDadosOrm);
+            var servicoPlanoDeCobranca = new ServicoPlanoDeCobranca(repositorioPlanoDeCobranca, contextoDadosOrm);
+            controladores.Add("ControladorPlanoDeCobranca", new ControladorPlanoDeCobranca(servicoPlanoDeCobranca, servicoGrupoDeVeiculos));
 
             var repositorioCondutor = new RepositorioCondutorEmBancoDados();
             var servicoCondutor = new ServicoCondutor(repositorioCondutor);
