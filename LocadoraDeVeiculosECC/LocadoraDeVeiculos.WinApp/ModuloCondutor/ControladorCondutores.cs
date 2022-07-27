@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -15,7 +16,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public class ControladorCondutores : ControladorBase
     {
-        private readonly RepositorioClienteEmBancoDados repositorioCliente = new RepositorioClienteEmBancoDados();
+       
+        
 
         private TabelaCondutorControl listagemCondutores;
         private readonly ServicoCondutor servicoCondutor;
@@ -26,14 +28,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         {
             this.servicoCondutor = servicoCondutor;
             this.servicoCliente = servicoCliente;
-            this.repositorioCliente = repositorioCliente;
+           
         }
 
         public override void Inserir()
         {
             var clientes = servicoCliente.SelecionarTodos().Value;
 
-            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(clientes);
+            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(clientes, servicoCliente);
 
             tela.Condutor = new Condutor();
 
@@ -71,7 +73,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             var clientes = servicoCliente.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroCondutorForm(clientes);
+            var tela = new TelaCadastroCondutorForm(clientes ,servicoCliente);
 
             tela.Condutor = planoSelecionado.Clonar();
 

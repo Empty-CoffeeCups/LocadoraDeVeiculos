@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
@@ -22,12 +23,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         private Condutor condutor = new Condutor();
        
 
-        RepositorioClienteEmBancoDados repositorioCliente = new RepositorioClienteEmBancoDados();
+        ServicoCliente servicoCliente;
 
-        public TelaCadastroCondutorForm(List<Cliente> clientes)
+        public TelaCadastroCondutorForm(List<Cliente> clientes, ServicoCliente servicoCliente)
         {
             InitializeComponent();
             CarregarClientes(clientes);
+            this.servicoCliente = servicoCliente;
 
         }
 
@@ -118,7 +120,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             if (checkBoxClienteCondutor.Checked == true)
             {
-            //    pegarCliente();
+                pegarCliente();
             }
 
             if (checkBoxClienteCondutor.Checked == false)
@@ -139,7 +141,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         
         private void pegarCliente()
         {
-            var clientes = repositorioCliente.SelecionarTodos();
+            var clientes = servicoCliente.SelecionarTodos().Value;
 
             var clienteSelecionado = (Cliente)cmbCliente.SelectedItem;
 
