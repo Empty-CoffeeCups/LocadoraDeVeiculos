@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public partial class TelaCadastroCondutorForm : Form
     {
-        private Condutor condutor;
+        private Condutor condutor = new Condutor();
+       
+
         RepositorioClienteEmBancoDados repositorioCliente = new RepositorioClienteEmBancoDados();
+
         public TelaCadastroCondutorForm(List<Cliente> clientes)
         {
             InitializeComponent();
             CarregarClientes(clientes);
-           
 
         }
 
@@ -115,7 +118,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             if (checkBoxClienteCondutor.Checked == true)
             {
-                pegarCliente();
+            //    pegarCliente();
             }
 
             if (checkBoxClienteCondutor.Checked == false)
@@ -133,6 +136,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             txtTelefone.Clear();
         }
 
+        
         private void pegarCliente()
         {
             var clientes = repositorioCliente.SelecionarTodos();
@@ -163,7 +167,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
                 }
             }
+        
         }
-
+        
     }
 }

@@ -10,6 +10,7 @@ using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Infra.Orm;
 using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCondutor;
 using LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Infra.Orm.ModuloPlanoDeCobranca;
@@ -84,9 +85,9 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             var servicoPlanoDeCobranca = new ServicoPlanoDeCobranca(repositorioPlanoDeCobranca, contextoDadosOrm);
             controladores.Add("ControladorPlanoDeCobranca", new ControladorPlanoDeCobranca(servicoPlanoDeCobranca, servicoGrupoDeVeiculos));
 
-            var repositorioCondutor = new RepositorioCondutorEmBancoDados();
-            var servicoCondutor = new ServicoCondutor(repositorioCondutor);
-            controladores.Add("ControladorCondutor", new ControladorCondutores(servicoCondutor));
+            var repositorioCondutor = new RepositorioCondutorOrm(contextoDadosOrm);
+            var servicoCondutor = new ServicoCondutor(repositorioCondutor, contextoDadosOrm);
+            controladores.Add("ControladorCondutores", new ControladorCondutores(servicoCondutor, servicoCliente));
         }
     }
 }
