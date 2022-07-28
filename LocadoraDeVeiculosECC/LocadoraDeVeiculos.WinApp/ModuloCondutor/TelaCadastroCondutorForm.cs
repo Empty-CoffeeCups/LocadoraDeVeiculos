@@ -1,8 +1,10 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -18,13 +20,17 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public partial class TelaCadastroCondutorForm : Form
     {
-        private Condutor condutor;
-        RepositorioClienteEmBancoDados repositorioCliente = new RepositorioClienteEmBancoDados();
-        public TelaCadastroCondutorForm(List<Cliente> clientes)
+        private Condutor condutor = new Condutor();
+       
+
+        ServicoCliente servicoCliente;
+
+        public TelaCadastroCondutorForm(List<Cliente> clientes, ServicoCliente servicoCliente)
         {
             InitializeComponent();
             CarregarClientes(clientes);
-           
+            this.servicoCliente = servicoCliente;
+
         }
 
         public Func<Condutor, Result<Condutor>> GravarRegistro { get; set; }
@@ -132,9 +138,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             txtTelefone.Clear();
         }
 
+        
         private void pegarCliente()
         {
-            var clientes = repositorioCliente.SelecionarTodos();
+            var clientes = servicoCliente.SelecionarTodos().Value;
 
             var clienteSelecionado = (Cliente)cmbCliente.SelectedItem;
 
@@ -162,7 +169,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
                 }
             }
+        
         }
-
+        
     }
 }

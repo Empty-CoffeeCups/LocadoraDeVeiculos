@@ -1,6 +1,8 @@
 ﻿using locadoraDeVeiculos.Infra.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -14,22 +16,26 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public class ControladorCondutores : ControladorBase
     {
-        private readonly RepositorioClienteEmBancoDados repositorioCliente = new RepositorioClienteEmBancoDados();
+       
+        
+
         private TabelaCondutorControl listagemCondutores;
         private readonly ServicoCondutor servicoCondutor;
+        private readonly ServicoCliente servicoCliente;
+       
 
-
-        public ControladorCondutores(ServicoCondutor servicoCondutor)
+        public ControladorCondutores(ServicoCondutor servicoCondutor, ServicoCliente servicoCliente)
         {
             this.servicoCondutor = servicoCondutor;
+            this.servicoCliente = servicoCliente;
            
         }
 
         public override void Inserir()
         {
-            var clientes = repositorioCliente.SelecionarTodos();
+            var clientes = servicoCliente.SelecionarTodos().Value;
 
-            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(clientes);
+            TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm(clientes, servicoCliente);
 
             tela.Condutor = new Condutor();
 
@@ -65,9 +71,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             var planoSelecionado = resultado.Value;
 
-            var clientes = repositorioCliente.SelecionarTodos();
+            var clientes = servicoCliente.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroCondutorForm(clientes);
+            var tela = new TelaCadastroCondutorForm(clientes ,servicoCliente);
 
             tela.Condutor = planoSelecionado.Clonar();
 

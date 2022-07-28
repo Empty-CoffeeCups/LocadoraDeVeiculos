@@ -20,7 +20,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
     {
         private PlanoDeCobranca plano;
         
-
         public TelaCadastroPlanoDeCobranca(List<GrupoDeVeiculos> grupos)
         {
             InitializeComponent();

@@ -46,7 +46,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos
 
         public List<GrupoDeVeiculos> SelecionarTodos()
         {
-            return gruposDeVeiculos.ToList();
+            var x =  gruposDeVeiculos.ToList();
+            return x;
         }
     }
 }
