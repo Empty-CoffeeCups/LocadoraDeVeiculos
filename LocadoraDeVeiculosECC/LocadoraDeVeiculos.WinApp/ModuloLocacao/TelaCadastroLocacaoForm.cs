@@ -143,8 +143,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.DataDevolucaoPrevista = dtpDevolucaoPrevista.Value;
             // locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
             locacao.ValorTotalPrevisto = 1000;
-            var resultadoValidacao = GravarRegistro(locacao);
             CarregarTaxasNaLocacao();
+            var resultadoValidacao = GravarRegistro(locacao);
+            
             Console.WriteLine(locacao.Taxas.ToString());
             if (resultadoValidacao.IsFailed)
             {
