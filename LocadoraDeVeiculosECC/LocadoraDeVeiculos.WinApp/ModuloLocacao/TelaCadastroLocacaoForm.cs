@@ -233,7 +233,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void btnAtualizarValor_Click(object sender, EventArgs e)
         {
-            CarregarTaxasNaLocacao();
+            txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
         }
     }
 }
