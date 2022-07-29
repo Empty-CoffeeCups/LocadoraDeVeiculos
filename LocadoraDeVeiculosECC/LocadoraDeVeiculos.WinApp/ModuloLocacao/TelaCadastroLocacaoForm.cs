@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
+using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
     {
         private Locacao locacao = new Locacao();
         List<Taxas> taxas = new List<Taxas>();
-
+       
         public TelaCadastroLocacaoForm(List<Funcionario> funcionarios,List<Cliente> clientes, List<Condutor> condutores, /*List<Veiculo> veiculos,*/ List<PlanoDeCobranca> planos, List<Taxas> taxas)
         {
             InitializeComponent();
@@ -67,7 +68,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 {
                     foreach (var item in locacao.Taxas)
                     {
-                        listTaxas.Items.Add(item);
+                        cbTaxas.Items.Add(item);
                     }
                 }
 
@@ -119,11 +120,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void CarregarTaxas(List<Taxas> taxas)
         {
-            listTaxas.Items.Clear();
+            cbTaxas.Items.Clear();
 
             foreach (var item in taxas)
             {
-                listTaxas.Items.Add(item);
+                cbTaxas.Items.Add(item);
             }
         }
 
@@ -137,8 +138,52 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.Taxas = taxas;
             locacao.DataLocacao = dtpDataDeLocacao.Value;
             locacao.DataDevolucaoPrevista = dtpDevolucaoPrevista.Value;
-            locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
+            // locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
+            locacao.ValorTotalPrevisto = 1000;
+            var resultadoValidacao = GravarRegistro(locacao);
+            CarregarTaxasNaLocacao();
+            Console.WriteLine(locacao.Taxas.ToString());
+            if (resultadoValidacao.IsFailed)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
+
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Locações", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+            }
+
+
         }
+
+        private void cbTaxas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void CarregarTaxasNaLocacao()
+        {
+            locacao.Taxas.Clear();
+           
+
+            var taxasChecked = new List<Taxas>();
+
+            foreach (var item in cbTaxas.CheckedItems)
+            {
+                taxasChecked.Add((Taxas)item);
+            }
+
+            locacao.Taxas = taxasChecked;
+        }
+
+        
 
         /*
         private void CarregarVeiculos(List<Veiculo> veiculos) -- esperando merge de modulo veiculo

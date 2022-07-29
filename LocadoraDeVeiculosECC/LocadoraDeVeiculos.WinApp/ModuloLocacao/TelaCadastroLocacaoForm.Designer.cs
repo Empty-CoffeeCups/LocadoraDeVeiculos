@@ -52,7 +52,7 @@
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.gbTaxas = new System.Windows.Forms.GroupBox();
-            this.listTaxas = new System.Windows.Forms.ListBox();
+            this.cbTaxas = new System.Windows.Forms.CheckedListBox();
             this.gbTaxas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -255,7 +255,7 @@
             // 
             // gbTaxas
             // 
-            this.gbTaxas.Controls.Add(this.listTaxas);
+            this.gbTaxas.Controls.Add(this.cbTaxas);
             this.gbTaxas.Location = new System.Drawing.Point(37, 378);
             this.gbTaxas.Name = "gbTaxas";
             this.gbTaxas.Size = new System.Drawing.Size(666, 172);
@@ -263,14 +263,14 @@
             this.gbTaxas.TabStop = false;
             this.gbTaxas.Text = "Taxas";
             // 
-            // listTaxas
+            // cbTaxas
             // 
-            this.listTaxas.FormattingEnabled = true;
-            this.listTaxas.ItemHeight = 15;
-            this.listTaxas.Location = new System.Drawing.Point(27, 33);
-            this.listTaxas.Name = "listTaxas";
-            this.listTaxas.Size = new System.Drawing.Size(613, 124);
-            this.listTaxas.TabIndex = 0;
+            this.cbTaxas.FormattingEnabled = true;
+            this.cbTaxas.Location = new System.Drawing.Point(12, 26);
+            this.cbTaxas.Name = "cbTaxas";
+            this.cbTaxas.Size = new System.Drawing.Size(638, 130);
+            this.cbTaxas.TabIndex = 0;
+            this.cbTaxas.SelectedIndexChanged += new System.EventHandler(this.cbTaxas_SelectedIndexChanged);
             // 
             // TelaCadastroLocacaoForm
             // 
@@ -338,6 +338,6 @@
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox gbTaxas;
-        private System.Windows.Forms.ListBox listTaxas;
+        private System.Windows.Forms.CheckedListBox cbTaxas;
     }
 }
