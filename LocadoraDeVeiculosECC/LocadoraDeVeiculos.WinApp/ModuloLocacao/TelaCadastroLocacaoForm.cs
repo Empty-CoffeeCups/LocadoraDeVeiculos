@@ -127,6 +127,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             }
         }
 
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            locacao.Funcionario = (Funcionario)cmbFuncionario.SelectedItem;
+            locacao.Cliente = (Cliente)cmbCliente.SelectedItem;
+            locacao.Condutor = (Condutor)cmbCondutor.SelectedItem;
+            //locacao.Veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+            locacao.PlanoDeCobranca = (PlanoDeCobranca)cmbPlanoDeCobranca.SelectedItem;
+            locacao.Taxas = taxas;
+            locacao.DataLocacao = dtpDataDeLocacao.Value;
+            locacao.DataDevolucaoPrevista = dtpDevolucaoPrevista.Value;
+            locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
+        }
+
         /*
         private void CarregarVeiculos(List<Veiculo> veiculos) -- esperando merge de modulo veiculo
         {

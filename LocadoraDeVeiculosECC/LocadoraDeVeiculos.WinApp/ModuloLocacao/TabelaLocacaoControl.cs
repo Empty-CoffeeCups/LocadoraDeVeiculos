@@ -17,7 +17,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         public TabelaLocacaoControl()
         {
             InitializeComponent();
-           Grid.ConfigurarGridZebrado();
+            Grid.ConfigurarGridZebrado();
             Grid.ConfigurarGridSomenteLeitura();
             Grid.Columns.AddRange(ObterColunas());
         }
