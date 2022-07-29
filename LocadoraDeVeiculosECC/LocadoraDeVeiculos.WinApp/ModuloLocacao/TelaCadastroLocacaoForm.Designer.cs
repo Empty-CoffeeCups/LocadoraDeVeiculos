@@ -53,6 +53,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.gbTaxas = new System.Windows.Forms.GroupBox();
             this.cbTaxas = new System.Windows.Forms.CheckedListBox();
+            this.cbCondutorCliente = new System.Windows.Forms.CheckBox();
             this.gbTaxas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -272,11 +273,23 @@
             this.cbTaxas.TabIndex = 0;
             this.cbTaxas.SelectedIndexChanged += new System.EventHandler(this.cbTaxas_SelectedIndexChanged);
             // 
+            // cbCondutorCliente
+            // 
+            this.cbCondutorCliente.AutoSize = true;
+            this.cbCondutorCliente.Location = new System.Drawing.Point(473, 42);
+            this.cbCondutorCliente.Name = "cbCondutorCliente";
+            this.cbCondutorCliente.Size = new System.Drawing.Size(167, 19);
+            this.cbCondutorCliente.TabIndex = 24;
+            this.cbCondutorCliente.Text = "Puxar cliente de Condutor:";
+            this.cbCondutorCliente.UseVisualStyleBackColor = true;
+            this.cbCondutorCliente.CheckedChanged += new System.EventHandler(this.cbCondutorCliente_CheckedChanged);
+            // 
             // TelaCadastroLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 703);
+            this.Controls.Add(this.cbCondutorCliente);
             this.Controls.Add(this.gbTaxas);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
@@ -339,5 +352,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox gbTaxas;
         private System.Windows.Forms.CheckedListBox cbTaxas;
+        private System.Windows.Forms.CheckBox cbCondutorCliente;
     }
 }

@@ -32,6 +32,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
            // CarregarVeiculos(veiculos); -- esperando merge de modulo veiculo
             CarregarPlanosDeCobranca(planos);
             CarregarTaxas(taxas);
+            
         }
 
         public Func<Locacao, Result<Locacao>> GravarRegistro { get; set; }
@@ -78,12 +79,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void CarregarClientes(List<Cliente> clientes)
         {
+            /*
             cmbCliente.Items.Clear();
 
             foreach (var item in clientes)
             {
                 cmbCliente.Items.Add(item);
             }
+            */
         }
 
 
@@ -183,7 +186,24 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.Taxas = taxasChecked;
         }
 
-        
+        private void cbCondutorCliente_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbCliente.Items.Clear();
+            if(cbCondutorCliente.Checked == true)
+            {
+               Condutor condutor =  PegarCondutor();
+              
+                
+                cmbCliente.Items.Add(condutor.Cliente);
+            }
+            
+        }
+
+        private Condutor PegarCondutor()
+        {
+            var condutorSelecionado = (Condutor)cmbCondutor.SelectedItem;
+            return condutorSelecionado;
+        }
 
         /*
         private void CarregarVeiculos(List<Veiculo> veiculos) -- esperando merge de modulo veiculo
