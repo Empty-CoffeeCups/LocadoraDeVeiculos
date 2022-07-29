@@ -54,6 +54,7 @@
             this.gbTaxas = new System.Windows.Forms.GroupBox();
             this.cbTaxas = new System.Windows.Forms.CheckedListBox();
             this.cbCondutorCliente = new System.Windows.Forms.CheckBox();
+            this.btnAtualizarValor = new System.Windows.Forms.Button();
             this.gbTaxas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -284,11 +285,23 @@
             this.cbCondutorCliente.UseVisualStyleBackColor = true;
             this.cbCondutorCliente.CheckedChanged += new System.EventHandler(this.cbCondutorCliente_CheckedChanged);
             // 
+            // btnAtualizarValor
+            // 
+            this.btnAtualizarValor.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAtualizarValor.Location = new System.Drawing.Point(98, 364);
+            this.btnAtualizarValor.Name = "btnAtualizarValor";
+            this.btnAtualizarValor.Size = new System.Drawing.Size(75, 23);
+            this.btnAtualizarValor.TabIndex = 25;
+            this.btnAtualizarValor.Text = "Atualizar";
+            this.btnAtualizarValor.UseVisualStyleBackColor = true;
+            this.btnAtualizarValor.Click += new System.EventHandler(this.btnAtualizarValor_Click);
+            // 
             // TelaCadastroLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 703);
+            this.Controls.Add(this.btnAtualizarValor);
             this.Controls.Add(this.cbCondutorCliente);
             this.Controls.Add(this.gbTaxas);
             this.Controls.Add(this.btnCancelar);
@@ -353,5 +366,6 @@
         private System.Windows.Forms.GroupBox gbTaxas;
         private System.Windows.Forms.CheckedListBox cbTaxas;
         private System.Windows.Forms.CheckBox cbCondutorCliente;
+        private System.Windows.Forms.Button btnAtualizarValor;
     }
 }

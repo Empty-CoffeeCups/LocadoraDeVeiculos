@@ -131,6 +131,44 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             }
         }
 
+        private void CarregarTaxasNaLocacao()
+        {
+            locacao.Taxas.Clear();
+
+
+            var taxasChecked = new List<Taxas>();
+
+            foreach (var item in cbTaxas.CheckedItems)
+            {
+                taxasChecked.Add((Taxas)item);
+                
+            }
+
+
+            locacao.Taxas = taxasChecked;
+
+            foreach (var item in taxasChecked)
+            {
+                locacao.ValorTotalPrevisto = item.Valor;
+            }
+
+            
+            txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
+        }
+
+
+        /*
+        private void CarregarVeiculos(List<Veiculo> veiculos) -- esperando merge de modulo veiculo
+        {
+            cmbVeiculo.Items.Clear();
+
+            foreach (var item in veiculos)
+            {
+                cbVeiculo.Items.Add(item);
+            }
+        }
+        */
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             locacao.Funcionario = (Funcionario)cmbFuncionario.SelectedItem;
@@ -141,12 +179,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.Taxas = taxas;
             locacao.DataLocacao = dtpDataDeLocacao.Value;
             locacao.DataDevolucaoPrevista = dtpDevolucaoPrevista.Value;
-            // locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
-            locacao.ValorTotalPrevisto = 1000;
+           // locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
+            
             CarregarTaxasNaLocacao();
             var resultadoValidacao = GravarRegistro(locacao);
             
-            Console.WriteLine(locacao.Taxas.ToString());
+            Console.WriteLine(locacao.ValorTotalPrevisto);
             if (resultadoValidacao.IsFailed)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
@@ -169,23 +207,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void cbTaxas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+         
         }
 
-        private void CarregarTaxasNaLocacao()
-        {
-            locacao.Taxas.Clear();
-           
-
-            var taxasChecked = new List<Taxas>();
-
-            foreach (var item in cbTaxas.CheckedItems)
-            {
-                taxasChecked.Add((Taxas)item);
-            }
-
-            locacao.Taxas = taxasChecked;
-        }
+        
 
         private void cbCondutorCliente_CheckedChanged(object sender, EventArgs e)
         {
@@ -206,17 +231,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             return condutorSelecionado;
         }
 
-        /*
-        private void CarregarVeiculos(List<Veiculo> veiculos) -- esperando merge de modulo veiculo
+        private void btnAtualizarValor_Click(object sender, EventArgs e)
         {
-            cmbVeiculo.Items.Clear();
-
-            foreach (var item in veiculos)
-            {
-                cbVeiculo.Items.Add(item);
-            }
+            CarregarTaxasNaLocacao();
         }
-        */
-
     }
 }
