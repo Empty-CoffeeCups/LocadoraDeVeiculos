@@ -259,7 +259,7 @@
             this.gbTaxas.Controls.Add(this.cbTaxas);
             this.gbTaxas.Location = new System.Drawing.Point(37, 378);
             this.gbTaxas.Name = "gbTaxas";
-            this.gbTaxas.Size = new System.Drawing.Size(666, 172);
+            this.gbTaxas.Size = new System.Drawing.Size(666, 201);
             this.gbTaxas.TabIndex = 23;
             this.gbTaxas.TabStop = false;
             this.gbTaxas.Text = "Taxas";
@@ -269,7 +269,7 @@
             this.cbTaxas.FormattingEnabled = true;
             this.cbTaxas.Location = new System.Drawing.Point(12, 26);
             this.cbTaxas.Name = "cbTaxas";
-            this.cbTaxas.Size = new System.Drawing.Size(638, 130);
+            this.cbTaxas.Size = new System.Drawing.Size(638, 166);
             this.cbTaxas.TabIndex = 0;
             this.cbTaxas.SelectedIndexChanged += new System.EventHandler(this.cbTaxas_SelectedIndexChanged);
             // 
