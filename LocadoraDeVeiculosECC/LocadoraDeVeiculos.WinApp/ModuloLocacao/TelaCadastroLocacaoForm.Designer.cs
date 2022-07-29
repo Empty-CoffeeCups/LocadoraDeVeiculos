@@ -287,7 +287,7 @@
             // 
             // btnAtualizarValor
             // 
-            this.btnAtualizarValor.Location = new System.Drawing.Point(98, 364);
+            this.btnAtualizarValor.Location = new System.Drawing.Point(49, 585);
             this.btnAtualizarValor.Name = "btnAtualizarValor";
             this.btnAtualizarValor.Size = new System.Drawing.Size(75, 23);
             this.btnAtualizarValor.TabIndex = 25;
