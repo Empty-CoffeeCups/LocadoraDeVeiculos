@@ -12,6 +12,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloDevolucao
     public class Devolucao : EntidadeBase<Devolucao>
     {
         public Locacao Locacao { get; set; }
+        public Guid LocacaoId { get; set; }
         public int KmVeiculo { get; set; }
         public decimal NivelDoTanque { get; set; }
         public DateTime DataDeDevolucao { get; set; }
