@@ -50,7 +50,14 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloLocacao
 
         public List<Locacao> SelecionarTodos()
         {
-            return locacoes.ToList();
+            return locacoes
+                .Include(x => x.Cliente)
+                .Include(x => x.Funcionario)
+                .Include(x => x.Taxas)
+                .Include(x => x.PlanoDeCobranca)
+                .Include(x => x.Condutor)
+                // .Include(x => x.Veiculo) esperando dar merge do modulo de veiculo
+                .ToList();
         }
 
     }
