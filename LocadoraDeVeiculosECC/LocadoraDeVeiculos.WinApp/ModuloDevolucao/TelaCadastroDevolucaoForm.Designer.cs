@@ -166,6 +166,7 @@
             this.btnGravar.TabIndex = 12;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnCancelar
             // 
@@ -285,6 +286,7 @@
             this.cmbLocacao.Name = "cmbLocacao";
             this.cmbLocacao.Size = new System.Drawing.Size(416, 23);
             this.cmbLocacao.TabIndex = 28;
+            this.cmbLocacao.SelectedIndexChanged += new System.EventHandler(this.cmbLocacao_SelectedIndexChanged);
             // 
             // gpTaxas
             // 

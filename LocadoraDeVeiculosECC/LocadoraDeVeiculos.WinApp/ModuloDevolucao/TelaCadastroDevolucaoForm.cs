@@ -32,6 +32,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
         public TelaCadastroDevolucaoForm(ServicoLocacao servicoLocacao, ServicoTaxa servicoTaxa , ServicoPlanoDeCobranca servicoPlanoDeCobranca)
         {
             InitializeComponent();
+            CarregarLocacoes(locacoes);
             this.servicoLocacao = servicoLocacao;
             this.servicoTaxa = servicoTaxa;
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
@@ -70,5 +71,50 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             }
         }
 
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            foreach (var item in locacoes)
+            {
+
+                if (item.Id.Equals(cmbLocacao.SelectedItem))
+                    devolucao.Locacao = item;
+
+            }
+            devolucao.KmVeiculo = Convert.ToInt32(txtKmDoVeiculo.Text);
+            devolucao.DataDeDevolucao = dtpDataDeDevolucao.Value;
+            devolucao.ValorTotal = devolucao.ValorTotal;
+        }
+
+        //Métodos Privados
+
+        private void CarregarLocacoes(List<Locacao> locacoes)
+        {
+            foreach (var locacao in locacoes)
+            {
+
+                cmbLocacao.Items.Add(locacao.Id);
+
+            }
+        }
+
+        private void cmbLocacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (var item in locacoes)
+            {
+
+                if (item.Id.Equals(cmbLocacao.SelectedItem))
+                    devolucao.Locacao = item;
+
+            }
+
+          //  txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GrupoDeVeiculos.Nome;
+          //  txtVeiculo.Text = $"{devolucao.Locacao.Veiculo}  - {devolucao.Locacao.Veiculo}";
+            txtDataDeLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
+            txtDevolucaoPrevista.Text = devolucao.Locacao.DataDevolucaoPrevista.ToShortDateString();
+            txtPlanoDeCobranca.Text = devolucao.Locacao.PlanoDeCobranca.ToString();
+            txtValorTotal.Text = devolucao.Locacao.ValorTotalPrevisto.ToString();
+            // totalComTaxa = devolucao.CalcularTaxas();
+
+        }
     }
 }
