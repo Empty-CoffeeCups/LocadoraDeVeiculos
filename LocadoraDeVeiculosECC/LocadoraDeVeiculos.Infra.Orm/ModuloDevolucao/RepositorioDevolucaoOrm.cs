@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloDevolucao
         private DbSet<Devolucao> devolucoes;
         private readonly LocadoraDeVeiculosDbContext dbContext;
 
-        public RepositorioDevolucaoOrm(DbSet<Devolucao> devolucoes, LocadoraDeVeiculosDbContext dbContext)
+        public RepositorioDevolucaoOrm(LocadoraDeVeiculosDbContext dbContext)
         {
             devolucoes = dbContext.Set<Devolucao>();
             this.dbContext = dbContext;
