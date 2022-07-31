@@ -41,7 +41,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloDevolucao
 
         public List<Devolucao> SelecionarTodos()
         {
-            return devolucoes.ToList();
+            return devolucoes
+                .Include(x => x.Locacao)
+                .Include(x => x.Taxas)
+                .ToList();
         }
     }
 }
