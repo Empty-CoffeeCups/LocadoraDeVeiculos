@@ -25,20 +25,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
         private ServicoPlanoDeCobranca servicoPlanoDeCobranca;
 
 
-        List<Locacao> locacoes;
+        List<Locacao> locacoes ;
         List<PlanoDeCobranca> planoDeCobrancas; 
         
 
         public TelaCadastroDevolucaoForm(ServicoLocacao servicoLocacao, ServicoTaxa servicoTaxa , ServicoPlanoDeCobranca servicoPlanoDeCobranca)
         {
             InitializeComponent();
-            CarregarLocacoes(locacoes);
             this.servicoLocacao = servicoLocacao;
             this.servicoTaxa = servicoTaxa;
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
             planoDeCobrancas = servicoPlanoDeCobranca.SelecionarTodos().Value;
             locacoes = servicoLocacao.SelecionarTodos().Value;
-            locacoes = servicoLocacao.SelecionarTodos().Value;
+            CarregarLocacoes(locacoes);
         }
 
         public Func<Devolucao, Result<Devolucao>> GravarRegistro { get; set; }
