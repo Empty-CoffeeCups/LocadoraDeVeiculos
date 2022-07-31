@@ -106,8 +106,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             }
 
-          //  txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GrupoDeVeiculos.Nome;
-          //  txtVeiculo.Text = $"{devolucao.Locacao.Veiculo}  - {devolucao.Locacao.Veiculo}";
+            //  txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GrupoDeVeiculos.Nome;
+            //  txtVeiculo.Text = $"{devolucao.Locacao.Veiculo}  - {devolucao.Locacao.Veiculo}";
+            txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
+            txtCliente.Text = devolucao.Locacao.Cliente.Nome;
             txtDataDeLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
             txtDevolucaoPrevista.Text = devolucao.Locacao.DataDevolucaoPrevista.ToShortDateString();
             txtPlanoDeCobranca.Text = devolucao.Locacao.PlanoDeCobranca.ToString();
