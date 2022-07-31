@@ -1,5 +1,7 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Dominio.ModuloDevolucao;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using System;
@@ -20,7 +22,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
         private ServicoLocacao servicoLocacao;
         List<Locacao> locacoes;
 
-        public TelaCadastroDevolucaoForm(ServicoLocacao servicoLocacao)
+        public TelaCadastroDevolucaoForm(ServicoLocacao servicoLocacao, ServicoTaxa servicoTaxa , ServicoPlanoDeCobranca servicoPlanoDeCobranca)
         {
             InitializeComponent();
             this.servicoLocacao = servicoLocacao;

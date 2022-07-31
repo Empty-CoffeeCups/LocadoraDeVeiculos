@@ -1,5 +1,7 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ModuloDevolucao;
 using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Dominio.ModuloDevolucao;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
@@ -17,17 +19,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
         private TabelaDevolucaoControl listagemDevolucoes;
         private readonly ServicoDevolucao servicoDevolucao;
         private readonly ServicoLocacao servicoLocacao;
-        public ControladorDevolucoes(ServicoDevolucao servicoDevolucao, ServicoLocacao servicoLocacao)
+        private readonly ServicoTaxa servicoTaxa;
+        private readonly ServicoPlanoDeCobranca servicoPlanoDeCobranca;
+
+        public ControladorDevolucoes(ServicoDevolucao servicoDevolucao, ServicoLocacao servicoLocacao,ServicoTaxa servicoTaxa, ServicoPlanoDeCobranca servicoPlanoDeCobranca)
         {
+            listagemDevolucoes = new TabelaDevolucaoControl();
             this.servicoDevolucao = servicoDevolucao;
             this.servicoLocacao = servicoLocacao;
+            this.servicoTaxa = servicoTaxa;
+            this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
         }
 
         public override void Inserir()
         {
             var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            TelaCadastroDevolucaoForm tela = new TelaCadastroDevolucaoForm(servicoLocacao);
+            TelaCadastroDevolucaoForm tela = new TelaCadastroDevolucaoForm(servicoLocacao, servicoTaxa, servicoPlanoDeCobranca);
             
             tela.Devolucao = new Devolucao();
 
@@ -63,7 +71,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             var devoluçãoSelecionada = resultado.Value;
 
-            var tela = new TelaCadastroDevolucaoForm(servicoLocacao);
+            var tela = new TelaCadastroDevolucaoForm(servicoLocacao, servicoTaxa, servicoPlanoDeCobranca);
 
             tela.Devolucao = devoluçãoSelecionada;
 
@@ -145,7 +153,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             return listagemDevolucoes;
         }
 
-        //Métodos Privados
+        
 
 
 
