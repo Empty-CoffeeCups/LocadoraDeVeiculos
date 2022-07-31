@@ -4,6 +4,7 @@ using locadoraDeVeiculos.Infra.ModuloFuncionario;
 using locadoraDeVeiculos.Infra.ModuloTaxas;
 using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
+using LocadoraDeVeiculos.Aplicacao.ModuloDevolucao;
 using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
@@ -20,6 +21,7 @@ using LocadoraDeVeiculos.Infra.Orm.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
+using LocadoraDeVeiculos.WinApp.ModuloDevolucao;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.WinApp.ModuloLocacao;
@@ -98,6 +100,8 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             controladores.Add("ControladorLocacoes", new ControladorLocacoes(servicoLocacao, servicoFuncionario, servicoCliente, servicoCondutor, servicoPlanoDeCobranca, servicoTaxa));
 
             var repositorioDevolucao = new RepositorioDevolucaoOrm(contextoDadosOrm);
+            var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao , contextoDadosOrm);
+            controladores.Add("ControladorDevolucoes", new ControladorDevolucoes(servicoDevolucao, servicoLocacao, servicoTaxa, servicoPlanoDeCobranca));
         }
     }
 }
