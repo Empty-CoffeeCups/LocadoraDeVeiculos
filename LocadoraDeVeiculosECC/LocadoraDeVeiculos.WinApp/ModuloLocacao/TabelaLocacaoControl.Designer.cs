@@ -38,7 +38,7 @@
             this.Grid.Location = new System.Drawing.Point(3, 3);
             this.Grid.Name = "Grid";
             this.Grid.RowTemplate.Height = 25;
-            this.Grid.Size = new System.Drawing.Size(627, 311);
+            this.Grid.Size = new System.Drawing.Size(815, 311);
             this.Grid.TabIndex = 0;
             // 
             // TabelaLocacaoControl
@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Grid);
             this.Name = "TabelaLocacaoControl";
-            this.Size = new System.Drawing.Size(633, 317);
+            this.Size = new System.Drawing.Size(842, 317);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.ResumeLayout(false);
 
