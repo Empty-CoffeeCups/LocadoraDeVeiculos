@@ -22,10 +22,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
     {
         private Locacao locacao = new Locacao();
         List<Taxas> taxas = new List<Taxas>();
+        private decimal valorPrevisto = 0;
        
         public TelaCadastroLocacaoForm(List<Funcionario> funcionarios,List<Cliente> clientes, List<Condutor> condutores, /*List<Veiculo> veiculos,*/ List<PlanoDeCobranca> planos, List<Taxas> taxas)
         {
             InitializeComponent();
+            this.ConfigurarTela();
+
+            dtpDevolucaoPrevista.MaxDate = DateTime.Today.Date.AddDays(30);
+
             CarregarClientes(clientes);
             CarregarFuncionarios(funcionarios);
             CarregarCondutores(condutores);
@@ -64,6 +69,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 txtValorTotalPrevisto.Enabled = false;
                 txtKmRodado.Enabled = false;
                 txtGrupoDeVeiculos.Enabled = false;
+                txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
 
                 if (locacao.Taxas != null)
                 {
@@ -119,6 +125,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             {
                 cmbPlanoDeCobranca.Items.Add(item);
             }
+
+           
         }
 
         private void CarregarTaxas(List<Taxas> taxas)
@@ -179,7 +187,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.Taxas = taxas;
             locacao.DataLocacao = dtpDataDeLocacao.Value;
             locacao.DataDevolucaoPrevista = dtpDevolucaoPrevista.Value;
-           // locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
+            locacao.ValorTotalPrevisto = valorPrevisto;
+            locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
             
             CarregarTaxasNaLocacao();
             var resultadoValidacao = GravarRegistro(locacao);
@@ -233,8 +242,39 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void btnAtualizarValor_Click(object sender, EventArgs e)
         {
-            txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
+            if (CalculaValorLocacao() == -1)
+            {
+                TelaMenuPrincipalForm.Instancia.AtualizarRodape("'Plano' não deve ser nulo");
+                DialogResult = DialogResult.None;
+                return;
+            }
+            txtValorTotalPrevisto.Text = "R$ " + CalculaValorLocacao();
+
         }
+
+        private decimal CalculaValorLocacao()
+        {
+            TimeSpan aluguel = (dtpDevolucaoPrevista.Value.Date.Subtract(dtpDataDeLocacao.Value.Date));
+            int dias = Convert.ToInt32(aluguel.Days);
+
+            decimal valorTaxas = 0;
+
+            if (cmbPlanoDeCobranca.SelectedItem == null)
+            {
+                return -1;
+            }
+
+            decimal valorDiaria = ((PlanoDeCobranca)cmbPlanoDeCobranca.SelectedItem).ValorDiario;
+
+
+            foreach (var item in taxas)
+            {
+                valorTaxas = +item.Valor;
+            }
+
+            return valorTaxas + (dias * valorDiaria);
+        }
+
 
         private void cmbCondutor_SelectedIndexChanged(object sender, EventArgs e)
         {

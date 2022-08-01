@@ -192,13 +192,13 @@
             // 
             this.txtValorTotalPrevisto.Location = new System.Drawing.Point(190, 311);
             this.txtValorTotalPrevisto.Name = "txtValorTotalPrevisto";
-            this.txtValorTotalPrevisto.Size = new System.Drawing.Size(102, 23);
+            this.txtValorTotalPrevisto.Size = new System.Drawing.Size(93, 23);
             this.txtValorTotalPrevisto.TabIndex = 15;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(164, 319);
+            this.label9.Location = new System.Drawing.Point(164, 318);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(20, 15);
             this.label9.TabIndex = 16;
@@ -289,7 +289,7 @@
             // 
             // btnAtualizarValor
             // 
-            this.btnAtualizarValor.Location = new System.Drawing.Point(49, 585);
+            this.btnAtualizarValor.Location = new System.Drawing.Point(293, 310);
             this.btnAtualizarValor.Name = "btnAtualizarValor";
             this.btnAtualizarValor.Size = new System.Drawing.Size(75, 23);
             this.btnAtualizarValor.TabIndex = 25;

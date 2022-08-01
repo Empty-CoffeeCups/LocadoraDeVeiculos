@@ -42,8 +42,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
         public Func<Devolucao, Result<Devolucao>> GravarRegistro { get; set; }
 
-
-
         public Devolucao Devolucao
         {
             get
