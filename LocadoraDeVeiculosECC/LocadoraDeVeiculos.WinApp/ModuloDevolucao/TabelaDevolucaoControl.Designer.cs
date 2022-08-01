@@ -38,7 +38,7 @@
             this.grid.Location = new System.Drawing.Point(3, 3);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(420, 323);
+            this.grid.Size = new System.Drawing.Size(469, 323);
             this.grid.TabIndex = 0;
             // 
             // TabelaDevolucaoControl
@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
             this.Name = "TabelaDevolucaoControl";
-            this.Size = new System.Drawing.Size(426, 329);
+            this.Size = new System.Drawing.Size(475, 329);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

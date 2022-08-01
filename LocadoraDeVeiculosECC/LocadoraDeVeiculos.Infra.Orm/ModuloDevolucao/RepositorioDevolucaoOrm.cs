@@ -44,6 +44,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloDevolucao
             return devolucoes
                 .Include(x => x.Locacao)
                 .Include(x => x.Taxas)
+                .Include(x => x.Locacao.PlanoDeCobranca)
                 .ToList();
         }
     }
