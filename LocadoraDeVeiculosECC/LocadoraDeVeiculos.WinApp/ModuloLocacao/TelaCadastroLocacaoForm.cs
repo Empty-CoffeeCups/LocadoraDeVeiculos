@@ -109,14 +109,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void CarregarPlanosDeCobranca(List<PlanoDeCobranca> planos)
         {
+            
             cmbPlanoDeCobranca.Items.Clear();
 
             foreach (var item in planos)
             {
                 cmbPlanoDeCobranca.Items.Add(item);
             }
-
-           
+            
         }
 
         private void CarregarTaxas(List<Taxas> taxas)
