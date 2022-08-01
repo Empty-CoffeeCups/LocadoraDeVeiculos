@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
     {
         private Locacao locacao = new Locacao();
         List<Taxas> taxas = new List<Taxas>();
-        private decimal valorPrevisto = 0;
+        
        
         public TelaCadastroLocacaoForm(List<Funcionario> funcionarios,List<Cliente> clientes, List<Condutor> condutores, /*List<Veiculo> veiculos,*/ List<PlanoDeCobranca> planos, List<Taxas> taxas)
         {
@@ -69,7 +69,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 txtValorTotalPrevisto.Enabled = false;
                 txtKmRodado.Enabled = false;
                 txtGrupoDeVeiculos.Enabled = false;
-                txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
+              
 
                 if (locacao.Taxas != null)
                 {
@@ -157,8 +157,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
             foreach (var item in taxasChecked)
             {
-                locacao.ValorTotalPrevisto = item.Valor;
+                locacao.ValorTotalPrevisto = locacao.ValorTotalPrevisto + item.Valor;
             }
+
 
             
             txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
@@ -187,9 +188,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.Taxas = taxas;
             locacao.DataLocacao = dtpDataDeLocacao.Value;
             locacao.DataDevolucaoPrevista = dtpDevolucaoPrevista.Value;
-            locacao.ValorTotalPrevisto = valorPrevisto;
-            locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.Text);
-            
+
+            //locacao.ValorTotalPrevisto = Convert.ToDecimal(txtValorTotalPrevisto.ToString());
+            locacao.ValorTotalPrevisto = CalculaValorLocacao();
             CarregarTaxasNaLocacao();
             var resultadoValidacao = GravarRegistro(locacao);
             
