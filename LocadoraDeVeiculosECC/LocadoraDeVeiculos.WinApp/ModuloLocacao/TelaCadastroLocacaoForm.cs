@@ -235,5 +235,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         {
             txtValorTotalPrevisto.Text = locacao.ValorTotalPrevisto.ToString();
         }
+
+        private void cmbCondutor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbCliente.Items.Clear();
+           
+            Condutor condutor = PegarCondutor();
+            cmbCliente.Items.Add(condutor.Cliente);
+            cmbCliente.SelectedItem = condutor.Cliente;
+            
+        }
     }
 }

@@ -77,6 +77,7 @@
             // 
             // cmbCliente
             // 
+            this.cmbCliente.Enabled = false;
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(164, 81);
             this.cmbCliente.Name = "cmbCliente";
@@ -90,6 +91,7 @@
             this.cmbCondutor.Name = "cmbCondutor";
             this.cmbCondutor.Size = new System.Drawing.Size(204, 23);
             this.cmbCondutor.TabIndex = 3;
+            this.cmbCondutor.SelectedIndexChanged += new System.EventHandler(this.cmbCondutor_SelectedIndexChanged);
             // 
             // label2
             // 
