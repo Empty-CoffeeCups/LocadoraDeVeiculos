@@ -61,6 +61,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                     txtDataDeLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
                     txtDevolucaoPrevista.Text = devolucao.Locacao.DataDevolucaoPrevista.ToShortDateString();
                     txtPlanoDeCobranca.Text = devolucao.Locacao.PlanoDeCobranca.ToString();
+                    dtpDataDeDevolucao.Value = DateTime.Now.Date;
 
                 }
                 cmbLocacao.SelectedItem = devolucao.Locacao;
@@ -80,7 +81,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             }
             devolucao.KmVeiculo = Convert.ToInt32(txtKmDoVeiculo.Text);
             devolucao.DataDeDevolucao = dtpDataDeDevolucao.Value;
-            devolucao.ValorTotal = devolucao.ValorTotal;
+
+            decimal parteDoValor = calcularValorFinal();
+            devolucao.ValorTotal = devolucao.Locacao.ValorTotalPrevisto + parteDoValor;
+            
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
@@ -134,6 +138,20 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             txtValorTotal.Text = devolucao.Locacao.ValorTotalPrevisto.ToString();
             // totalComTaxa = devolucao.CalcularTaxas();
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            devolucao.NivelDoTanque = comboBox1.SelectedIndex;
+        }
+
+        private decimal calcularValorFinal()
+        {
+            decimal valorFinal = 0;
+
+            //Cálculo aqui
+
+            return valorFinal;
         }
     }
 }

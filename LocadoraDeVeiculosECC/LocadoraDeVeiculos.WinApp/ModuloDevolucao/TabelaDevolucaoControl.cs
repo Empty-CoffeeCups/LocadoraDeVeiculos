@@ -32,11 +32,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "KmVeiculo", HeaderText = "Quilometragem"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataDeDevolucao", HeaderText = "Data de Devolução"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "NivelDoTanque", HeaderText = "Nível do Tanque"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "PlanoDeCobranca", HeaderText = "Plano De Cobranca"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataDeDevolucao", HeaderText = "Dada da Devolução"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "ValorTotal", HeaderText = "Valor Total"},
 
@@ -50,7 +50,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             foreach (Devolucao devolucao in devolucoes)
             {
-                grid.Rows.Add(devolucao.Id, devolucao.Locacao.Id, devolucao.KmVeiculo, devolucao.DataDeDevolucao.ToShortDateString(), devolucao.NivelDoTanque, devolucao.ValorTotal);
+                grid.Rows.Add(devolucao.Id, devolucao.Locacao.Id, devolucao.KmVeiculo, devolucao.DataDeDevolucao.ToShortDateString(), devolucao.NivelDoTanque, devolucao.Locacao.PlanoDeCobranca.TipoDePlano, devolucao.ValorTotal);
 
             }
 
