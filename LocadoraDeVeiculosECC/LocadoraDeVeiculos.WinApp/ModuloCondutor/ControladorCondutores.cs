@@ -17,8 +17,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
     public class ControladorCondutores : ControladorBase
     {
        
-        
-
         private TabelaCondutorControl listagemCondutores;
         private readonly ServicoCondutor servicoCondutor;
         private readonly ServicoCliente servicoCliente;
@@ -65,7 +63,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
-                    "Edição de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

@@ -28,9 +28,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         public TelaCadastroCondutorForm(List<Cliente> clientes, ServicoCliente servicoCliente)
         {
             InitializeComponent();
+            this.ConfigurarTela();
+
             CarregarClientes(clientes);
             this.servicoCliente = servicoCliente;
-
+           
         }
 
         public Func<Condutor, Result<Condutor>> GravarRegistro { get; set; }

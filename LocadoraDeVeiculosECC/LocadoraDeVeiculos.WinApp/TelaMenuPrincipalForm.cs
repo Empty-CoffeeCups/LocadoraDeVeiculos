@@ -15,8 +15,10 @@ using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
+using LocadoraDeVeiculos.WinApp.ModuloDevolucao;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.WinApp.ModuloLocacao;
 using LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.WinApp.ModuloTaxas;
 using LocadoraDeVeiculos.WinApp.ModuloVeiculo;
@@ -89,9 +91,17 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             // ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCondutores>());
         }
-        private void veiculoToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void locaçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
+            // ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacoes>());
+        }
+
+        private void devoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorDevolucoes>());
         }
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -157,9 +167,6 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             panelRegistros.Controls.Add(listagemControl);
         }
 
-       
-
-        
     }
 
 }

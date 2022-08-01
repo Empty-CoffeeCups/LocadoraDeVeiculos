@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos
+namespace LocadoraDeVeiculos.Dominio.ModuloDevolucao
 {
-    public interface IRepositorioGrupoDeVeiculos : IRepositorio<GrupoDeVeiculos>
+    public interface IRepositorioDevolucao : IRepositorio<Devolucao>
     {
 
     }

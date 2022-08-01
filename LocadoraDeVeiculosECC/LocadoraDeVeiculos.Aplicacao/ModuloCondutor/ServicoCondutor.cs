@@ -142,9 +142,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o Cliente";
+                string msgErro = "Falha no sistema ao tentar selecionar o Condutor";
 
-                Log.Logger.Error(ex, msgErro + "{ClienteId}", id);
+                Log.Logger.Error(ex, msgErro + "{CondutorId}", id);
 
                 return Result.Fail(msgErro);
             }
@@ -170,7 +170,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             {
                 if (condutor.Cpf != "              ")
                     if (CpfDuplicado(condutor) && ClienteDuplicado(condutor))
-                        errors.Add(new Error("CPF do Condutor já cadastrado para o Cliente"));
+                        errors.Add(new Error("CPF do Condutor já cadastrado para o Condutor"));
             }
 
             if (errors.Any())

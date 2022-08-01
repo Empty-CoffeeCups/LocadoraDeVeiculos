@@ -88,5 +88,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
                    Endereco == condutor.Endereco;
         }
 
+        
+
     }
 }
