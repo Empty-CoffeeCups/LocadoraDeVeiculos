@@ -30,6 +30,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             this.ConfigurarTela();
 
             dtpDevolucaoPrevista.MaxDate = DateTime.Today.Date.AddDays(30);
+            dtpDevolucaoPrevista.MinDate = DateTime.Today;
+            dtpDataDeLocacao.MinDate = DateTime.Today;
 
             CarregarClientes(clientes);
             CarregarFuncionarios(funcionarios);
