@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Dominio.ModuloDevolucao;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,6 +81,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             devolucao.KmVeiculo = Convert.ToInt32(txtKmDoVeiculo.Text);
             devolucao.DataDeDevolucao = dtpDataDeDevolucao.Value;
             devolucao.ValorTotal = devolucao.ValorTotal;
+
+            var resultadoValidacao = GravarRegistro(devolucao);
+
+            if (resultadoValidacao.IsFailed)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
+
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                    "Inserção de Locações", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+            }
         }
 
         //Métodos Privados

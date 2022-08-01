@@ -194,7 +194,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             CarregarTaxasNaLocacao();
             var resultadoValidacao = GravarRegistro(locacao);
             
-            Console.WriteLine(locacao.ValorTotalPrevisto);
+           
             if (resultadoValidacao.IsFailed)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
