@@ -35,10 +35,10 @@
             // grid
             // 
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(3, 3);
+            this.grid.Location = new System.Drawing.Point(3, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(469, 323);
+            this.grid.Size = new System.Drawing.Size(552, 326);
             this.grid.TabIndex = 0;
             // 
             // TabelaDevolucaoControl
@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
             this.Name = "TabelaDevolucaoControl";
-            this.Size = new System.Drawing.Size(475, 329);
+            this.Size = new System.Drawing.Size(558, 329);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

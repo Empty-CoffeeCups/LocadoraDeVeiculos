@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             dtpDevolucaoPrevista.MinDate = DateTime.Today;
             dtpDataDeLocacao.MinDate = DateTime.Today;
 
-            CarregarClientes(clientes);
+            
             CarregarFuncionarios(funcionarios);
             CarregarCondutores(condutores);
            // CarregarVeiculos(veiculos); -- esperando merge de modulo veiculo
@@ -85,19 +85,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             }
         }
 
-        private void CarregarClientes(List<Cliente> clientes)
-        {
-            /*
-            cmbCliente.Items.Clear();
-
-            foreach (var item in clientes)
-            {
-                cmbCliente.Items.Add(item);
-            }
-            */
-        }
-
-
+        
         private void CarregarFuncionarios(List<Funcionario> funcionarios)
         {
             cmbFuncionario.Items.Clear();
