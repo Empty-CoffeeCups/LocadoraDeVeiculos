@@ -45,6 +45,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
 
             RuleFor(x => x.ValorTotalPrevisto)
                 .NotNull()
+                .GreaterThanOrEqualTo(0).WithMessage("O valor deve ser maior ou igual a 0")
                 .NotEmpty();
         }
     }
