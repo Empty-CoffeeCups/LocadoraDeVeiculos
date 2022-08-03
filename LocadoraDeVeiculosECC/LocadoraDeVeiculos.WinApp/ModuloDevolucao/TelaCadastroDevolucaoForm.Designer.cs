@@ -55,7 +55,14 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cmbLocacao = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.gpTaxas = new System.Windows.Forms.GroupBox();
+            this.gpTaxasDevolucao = new System.Windows.Forms.GroupBox();
+            this.cbManutencao = new System.Windows.Forms.CheckBox();
+            this.cbLavagem = new System.Windows.Forms.CheckBox();
+            this.gpTaxasLocacao = new System.Windows.Forms.GroupBox();
+            this.cbTaxasLocacao = new System.Windows.Forms.CheckedListBox();
+            this.cbTranslado = new System.Windows.Forms.CheckBox();
+            this.gpTaxasDevolucao.SuspendLayout();
+            this.gpTaxasLocacao.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -289,21 +296,74 @@
             this.cmbLocacao.TabIndex = 28;
             this.cmbLocacao.SelectedIndexChanged += new System.EventHandler(this.cmbLocacao_SelectedIndexChanged);
             // 
-            // gpTaxas
+            // gpTaxasDevolucao
             // 
-            this.gpTaxas.Location = new System.Drawing.Point(38, 562);
-            this.gpTaxas.Name = "gpTaxas";
-            this.gpTaxas.Size = new System.Drawing.Size(736, 144);
-            this.gpTaxas.TabIndex = 29;
-            this.gpTaxas.TabStop = false;
-            this.gpTaxas.Text = "Taxas";
+            this.gpTaxasDevolucao.Controls.Add(this.cbTranslado);
+            this.gpTaxasDevolucao.Controls.Add(this.cbManutencao);
+            this.gpTaxasDevolucao.Controls.Add(this.cbLavagem);
+            this.gpTaxasDevolucao.Location = new System.Drawing.Point(38, 562);
+            this.gpTaxasDevolucao.Name = "gpTaxasDevolucao";
+            this.gpTaxasDevolucao.Size = new System.Drawing.Size(286, 137);
+            this.gpTaxasDevolucao.TabIndex = 29;
+            this.gpTaxasDevolucao.TabStop = false;
+            this.gpTaxasDevolucao.Text = "Taxas Devolução";
+            // 
+            // cbManutencao
+            // 
+            this.cbManutencao.AutoSize = true;
+            this.cbManutencao.Location = new System.Drawing.Point(9, 56);
+            this.cbManutencao.Name = "cbManutencao";
+            this.cbManutencao.Size = new System.Drawing.Size(127, 19);
+            this.cbManutencao.TabIndex = 2;
+            this.cbManutencao.Text = "Manutenção 150R$";
+            this.cbManutencao.UseVisualStyleBackColor = true;
+            // 
+            // cbLavagem
+            // 
+            this.cbLavagem.AutoSize = true;
+            this.cbLavagem.Location = new System.Drawing.Point(9, 31);
+            this.cbLavagem.Name = "cbLavagem";
+            this.cbLavagem.Size = new System.Drawing.Size(114, 19);
+            this.cbLavagem.TabIndex = 0;
+            this.cbLavagem.Text = "Lavar Carro 50R$";
+            this.cbLavagem.UseVisualStyleBackColor = true;
+            this.cbLavagem.CheckedChanged += new System.EventHandler(this.cbLavagem_CheckedChanged);
+            // 
+            // gpTaxasLocacao
+            // 
+            this.gpTaxasLocacao.Controls.Add(this.cbTaxasLocacao);
+            this.gpTaxasLocacao.Location = new System.Drawing.Point(382, 562);
+            this.gpTaxasLocacao.Name = "gpTaxasLocacao";
+            this.gpTaxasLocacao.Size = new System.Drawing.Size(392, 165);
+            this.gpTaxasLocacao.TabIndex = 30;
+            this.gpTaxasLocacao.TabStop = false;
+            this.gpTaxasLocacao.Text = "Taxas Locação";
+            // 
+            // cbTaxasLocacao
+            // 
+            this.cbTaxasLocacao.FormattingEnabled = true;
+            this.cbTaxasLocacao.Location = new System.Drawing.Point(18, 22);
+            this.cbTaxasLocacao.Name = "cbTaxasLocacao";
+            this.cbTaxasLocacao.Size = new System.Drawing.Size(355, 130);
+            this.cbTaxasLocacao.TabIndex = 0;
+            // 
+            // cbTranslado
+            // 
+            this.cbTranslado.AutoSize = true;
+            this.cbTranslado.Location = new System.Drawing.Point(9, 81);
+            this.cbTranslado.Name = "cbTranslado";
+            this.cbTranslado.Size = new System.Drawing.Size(110, 19);
+            this.cbTranslado.TabIndex = 3;
+            this.cbTranslado.Text = "Translado 100R$";
+            this.cbTranslado.UseVisualStyleBackColor = true;
             // 
             // TelaCadastroDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 831);
-            this.Controls.Add(this.gpTaxas);
+            this.Controls.Add(this.gpTaxasLocacao);
+            this.Controls.Add(this.gpTaxasDevolucao);
             this.Controls.Add(this.cmbLocacao);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.dtpDataDeDevolucao);
@@ -334,6 +394,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro De Devolução";
+            this.gpTaxasDevolucao.ResumeLayout(false);
+            this.gpTaxasDevolucao.PerformLayout();
+            this.gpTaxasLocacao.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,6 +431,11 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbLocacao;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.GroupBox gpTaxas;
+        private System.Windows.Forms.GroupBox gpTaxasDevolucao;
+        private System.Windows.Forms.GroupBox gpTaxasLocacao;
+        private System.Windows.Forms.CheckBox cbManutencao;
+        private System.Windows.Forms.CheckBox cbLavagem;
+        private System.Windows.Forms.CheckedListBox cbTaxasLocacao;
+        private System.Windows.Forms.CheckBox cbTranslado;
     }
 }

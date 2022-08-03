@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             dtpDevolucaoPrevista.MaxDate = DateTime.Today.Date.AddDays(30);
             dtpDevolucaoPrevista.MinDate = DateTime.Today;
             dtpDataDeLocacao.MinDate = DateTime.Today;
-
+            cbCondutorCliente.Enabled = false;
             
             CarregarFuncionarios(funcionarios);
             CarregarCondutores(condutores);

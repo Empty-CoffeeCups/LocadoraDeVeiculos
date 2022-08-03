@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Dominio.ModuloDevolucao;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloTaxas;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 {
     public partial class TelaCadastroDevolucaoForm : Form
     {
+        private decimal valorFinal = 0;
         public Devolucao devolucao;
         private ServicoLocacao servicoLocacao;
         private ServicoTaxa servicoTaxa;
         private ServicoPlanoDeCobranca servicoPlanoDeCobranca;
 
-
+       
+        List<Taxas> taxas;
         List<Locacao> locacoes ;
         List<PlanoDeCobranca> planoDeCobrancas; 
         
@@ -38,7 +41,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
             planoDeCobrancas = servicoPlanoDeCobranca.SelecionarTodos().Value;
             locacoes = servicoLocacao.SelecionarTodos().Value;
+           
             CarregarLocacoes(locacoes);
+            
         }
 
         public Func<Devolucao, Result<Devolucao>> GravarRegistro { get; set; }
@@ -113,20 +118,43 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             foreach (var locacao in locacoes)
             {
 
-                cmbLocacao.Items.Add(locacao.Id);
+                cmbLocacao.Items.Add(locacao.Cliente.Nome);
 
             }
         }
 
         private void cmbLocacao_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbTaxasLocacao.Items.Clear();
+            List<Taxas> taxasReseta = new List<Taxas>();
+
+            taxas = taxasReseta;
+
             foreach (var item in locacoes)
             {
 
-                if (item.Id.Equals(cmbLocacao.SelectedItem))
+               if (item.Cliente.Nome.Equals(cmbLocacao.SelectedItem))
+                {
                     devolucao.Locacao = item;
+                    taxas = item.Taxas;
+                }
+
+              
 
             }
+
+
+            foreach (var item in taxas)
+            {
+            
+               
+
+                cbTaxasLocacao.Items.Add(item);
+                cbTaxasLocacao.Enabled = false;
+                
+            }
+
+           
 
             //  txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GrupoDeVeiculos.Nome;
             //  txtVeiculo.Text = $"{devolucao.Locacao.Veiculo}  - {devolucao.Locacao.Veiculo}";
@@ -136,6 +164,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             txtDevolucaoPrevista.Text = devolucao.Locacao.DataDevolucaoPrevista.ToShortDateString();
             txtPlanoDeCobranca.Text = devolucao.Locacao.PlanoDeCobranca.ToString();
             txtValorTotal.Text = devolucao.Locacao.ValorTotalPrevisto.ToString();
+         
             // totalComTaxa = devolucao.CalcularTaxas();
 
         }
@@ -147,11 +176,31 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
         private decimal calcularValorFinal()
         {
-            decimal valorFinal = 0;
+            if (cbLavagem.Checked == true)
+            {
+                valorFinal = valorFinal + 50;
+            }
+
+           
+
+            if (cbManutencao.Checked == true)
+            {
+                valorFinal = valorFinal + 150;
+            }
 
             //Cálculo aqui
 
             return valorFinal;
         }
+
+       
+
+        private void cbLavagem_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        
     }
 }
