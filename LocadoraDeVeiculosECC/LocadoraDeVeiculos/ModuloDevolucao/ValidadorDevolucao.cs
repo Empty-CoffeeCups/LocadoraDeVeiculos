@@ -30,7 +30,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloDevolucao
                 .NotEmpty()
                 .GreaterThanOrEqualTo(0);
 
-            
+            RuleFor(x => x.ValorTotal)
+                .NotNull()
+                .NotEmpty()
+                .GreaterThanOrEqualTo(0);
 
         }
     }
