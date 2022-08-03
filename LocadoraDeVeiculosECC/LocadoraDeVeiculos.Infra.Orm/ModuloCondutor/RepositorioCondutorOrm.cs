@@ -51,7 +51,9 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCondutor
 
         public List<Condutor> SelecionarTodos()
         {
-            return condutores.ToList();
+            return condutores
+                .Include(x => x.Cliente)
+                .ToList();
         }
     }
 }
