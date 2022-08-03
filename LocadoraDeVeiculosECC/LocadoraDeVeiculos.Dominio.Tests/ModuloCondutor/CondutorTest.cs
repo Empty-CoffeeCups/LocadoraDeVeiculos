@@ -45,13 +45,13 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCondutor
             DateTime data = new DateTime();
             data = DateTime.Now;
 
-            Condutor condutor = new Condutor(cliente, "l", "207.087.820-19", "51166865764", data, "lucasaguiaresteves@gmail.com", "111111111", "Lages Centro");
+            Condutor condutor = new Condutor(cliente, "Lucas", "207.087.820-19", "51166865764", data, "lucasaguiaresteves@gmail.com", "111111111", "La");
 
             ValidadorCondutor validadorFuncionario = new ValidadorCondutor();
 
             var resultado1 = validadorFuncionario.Validate(condutor);
 
-            Assert.AreEqual("O nome deve possuir no mínimo 3 caracteres", resultado1.Errors[0].ErrorMessage);
+            Assert.AreEqual("O endereço deve possuir no mínimo 3 caracteres", resultado1.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCondutor
             DateTime data = new DateTime();
             data = DateTime.Now;
 
-            Condutor condutor = new Condutor(cliente, "luc", "207.087.820-19", null, data, "lucasaguiaresteves@gmail.com", "111111111", "Lages Centro");
+            Condutor condutor = new Condutor(cliente, "lucas", "207.087.820-19", null, data, "lucasaguiaresteves@gmail.com", "111111111", "Lages Centro");
 
             ValidadorCondutor validadorFuncionario = new ValidadorCondutor();
 
@@ -79,13 +79,30 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloCondutor
             DateTime data = new DateTime();
             data = DateTime.Now;
 
-            Condutor condutor = new Condutor(cliente, "luc", "207.087.820-19", "51166865764", data, "lucasaguiaresteves", "111111111", "Lages Centro");
+            Condutor condutor = new Condutor(cliente, "lucas", "207.087.820-19", "51166865764", data, "lucasaguiaresteves", "111111111", "Lages Centro");
 
             ValidadorCondutor validadorFuncionario = new ValidadorCondutor();
 
             var resultado1 = validadorFuncionario.Validate(condutor);
 
             Assert.AreEqual("Deve ser inserido um email válido", resultado1.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void telefoneValido()
+        {
+
+            Cliente cliente = new Cliente("Lucas", "592.636.550-30", "44.792.231/0001-50", "51166865764", "Lag", "lucasomior@gmail.com", "(61) 3784-8355");
+            DateTime data = new DateTime();
+            data = DateTime.Now;
+
+            Condutor condutor = new Condutor(cliente, "luc", "207.087.820-19", "51166865764", data, "lucasaguiaresteves@gmail.com", "111111", "Lages Centro");
+
+            ValidadorCondutor validadorFuncionario = new ValidadorCondutor();
+
+            var resultado1 = validadorFuncionario.Validate(condutor);
+
+            Assert.AreEqual("Deve ser inserido um número válido", resultado1.Errors[0].ErrorMessage);
         }
     }
 }

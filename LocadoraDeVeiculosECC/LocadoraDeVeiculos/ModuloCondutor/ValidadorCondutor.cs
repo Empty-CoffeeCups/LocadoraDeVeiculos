@@ -25,7 +25,16 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
                 .EmailAddress(EmailValidationMode.AspNetCoreCompatible).WithMessage("Deve ser inserido um email válido")
                 .NotNull().NotEmpty().WithMessage("Deve ser inserido um email");
 
+            RuleFor(X => X.Telefone)
+                .NotEmpty().NotEmpty().WithMessage("Deve ser inserido um telefone")
+                .MinimumLength(9).WithMessage("Deve ser inserido um número válido")
+                .MaximumLength(9).WithMessage("Deve ser inserido um número válido");
 
+            RuleFor(x => x.Cpf)
+                .Matches(@"(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)").WithMessage("Deve possuir um cpf válido");
+
+            RuleFor(x => x.ValidadeCnh)
+                   .NotNull().NotEmpty().WithMessage("Deve ser inserido uma validade");
         }
     }
 }
