@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
@@ -39,103 +40,134 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
        [TestMethod]
         public void FuncionarioValido()
         {
+            //arrange
+            var locacao = new Locacao(null, RetornaCliente(), RetornaCondutor(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date,DateTime.Now, 100);
+            var validador = new ValidadorLocacao();
 
-            Locacao locacao = new Locacao();
-            locacao = ConfiguraLocacao();
-            locacao.Funcionario = null;
+            //action
+            var resultado = validador.Validate(locacao);
 
-
-            ValidadorLocacao validadorLocacao = new ValidadorLocacao();
-
-            var resultado1 = validadorLocacao.Validate(locacao);
-
-            Assert.AreEqual("'Funcionario' não pode ser nulo.", resultado1.Errors[0].ErrorMessage);
+            //assert
+            Assert.AreEqual("'Funcionario' não pode ser nulo.", resultado.Errors[0].ErrorMessage);
+            
         }
 
         [TestMethod]
         public void ClienteValido()
         {
+            //arrange
+            var locacao = new Locacao(RetornaFuncionario(), null, RetornaCondutor(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var validador = new ValidadorLocacao();
 
-            Locacao locacao = new Locacao();
-            locacao = ConfiguraLocacao();
-            locacao.Cliente = null;
+            //action
+            var resultado = validador.Validate(locacao);
 
+            //assert
+            Assert.AreEqual("'Cliente' não pode ser nulo.", resultado.Errors[0].ErrorMessage);
 
-            ValidadorLocacao validadorLocacao = new ValidadorLocacao();
-
-            var resultado1 = validadorLocacao.Validate(locacao);
-
-            Assert.AreEqual("'Cliente' não pode ser nulo.", resultado1.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
         public void CondutorValido()
         {
+            //arrange
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), null, RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var validador = new ValidadorLocacao();
 
-            Locacao locacao = new Locacao();
-            locacao = ConfiguraLocacao();
-            locacao.Condutor = null;
+            //action
+            var resultado = validador.Validate(locacao);
 
-
-            ValidadorLocacao validadorLocacao = new ValidadorLocacao();
-
-            var resultado1 = validadorLocacao.Validate(locacao);
-
-            Assert.AreEqual("'Condutor' não pode ser nulo.", resultado1.Errors[0].ErrorMessage);
+            //assert
+            Assert.AreEqual("'Condutor' não pode ser nulo.", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
         public void PlanoValido()
         {
+            //arrange
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(), null, RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var validador = new ValidadorLocacao();
 
-            Locacao locacao = new Locacao();
-            locacao = ConfiguraLocacao();
-            locacao.PlanoDeCobranca = null;
+            //action
+            var resultado = validador.Validate(locacao);
 
+            //assert
+            Assert.AreEqual("'Plano De Cobranca' não pode ser nulo.", resultado.Errors[0].ErrorMessage);
 
-            ValidadorLocacao validadorLocacao = new ValidadorLocacao();
-
-            var resultado1 = validadorLocacao.Validate(locacao);
-
-            Assert.AreEqual("'PlanoDeCobranca' não pode ser nulo.", resultado1.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
         public void ValorValido()
         {
+            //arrange
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, default);
+            var validador = new ValidadorLocacao();
 
-            Locacao locacao = new Locacao();
-            locacao = ConfiguraLocacao();
-            locacao.ValorTotalPrevisto = -2;
+            //action
+            var resultado = validador.Validate(locacao);
 
+            //assert
+            Assert.AreEqual("'Valor Total Previsto' deve ser informado.", resultado.Errors[0].ErrorMessage);
 
-            ValidadorLocacao validadorLocacao = new ValidadorLocacao();
-
-            var resultado1 = validadorLocacao.Validate(locacao);
-
-            Assert.AreEqual("O valor deve ser maior ou igual a 0", resultado1.Errors[0].ErrorMessage);
         }
 
-        private Locacao ConfiguraLocacao()
+
+        //Métodos Privados
+
+        private Cliente RetornaCliente()
         {
-            Locacao locacaoExemplo = new Locacao();
-            locacaoExemplo.Funcionario = funcionario;
-            locacaoExemplo.Cliente = cliente;
-         //  locacaoExemplo.Condutor = condutor;
-            locacaoExemplo.PlanoDeCobranca = plano;
-            locacaoExemplo.DataLocacao = dataLocacao;
-            locacaoExemplo.DataDevolucaoPrevista = dataDevolucaoPrevista;
-            locacaoExemplo.Taxas = taxas;
-            locacaoExemplo.ValorTotalPrevisto = valorPrevisto;
+            Cliente cliente = new Cliente("Lucas", "592.636.550-30", "44.792.231/0001-50", "83534234300", "Lages Centro", "lucasomior@gmail.com", "(61) 3784-8355");
 
-            return locacaoExemplo;
+            return cliente;
         }
-    
-    
-    
-    
-    
-    
+
+        private Funcionario RetornaFuncionario()
+        {
+            DateTime data = new DateTime();
+            data = DateTime.Now;
+            Funcionario funcionario = new Funcionario("L", "Lucas", "12345", data, 1500, true);
+
+            return funcionario;
+        }
+        private GrupoDeVeiculos RetornaGrupoDeVeiculos()
+        {
+            GrupoDeVeiculos grupoDeVeiculos = new GrupoDeVeiculos("SUV");
+            return grupoDeVeiculos;
+        }
+
+        private Condutor RetornaCondutor()
+        {
+            Cliente cliente = new Cliente("Lu", "592.636.550-30", "44.792.231/0001-50", "83534234300", "Lages Centro", "lucasomior@gmail.com", "(61) 3784-8355");
+            DateTime data = new DateTime();
+            data = DateTime.Now;
+
+            Condutor condutor = new Condutor(cliente, "l", "207.087.820-19", "51166865764", data, "lucasaguiaresteves@gmail.com", "111111111", "Lages Centro");
+
+
+            return condutor;
+        }
+
+        private List<Taxas> RetornaTaxa()
+        {
+            Taxas taxa1 = new Taxas("", 100, TipoCalculo.Fixo);
+            Taxas taxa2 = new Taxas("", 100, TipoCalculo.Fixo);
+
+            List<Taxas> taxas = new List<Taxas>();
+            taxas.Add(taxa1);
+            taxas.Add(taxa2);
+
+            return taxas;
+        }
+
+        private PlanoDeCobranca RetornaPlanoDeCobranca()
+        {
+            GrupoDeVeiculos grupo = new GrupoDeVeiculos("SUV");
+
+            PlanoDeCobranca plano = new PlanoDeCobranca("Plano diário", -3, 100, 100, grupo);
+
+            return plano;
+        }
+
     }
 
 

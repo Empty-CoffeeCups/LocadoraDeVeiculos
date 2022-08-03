@@ -72,18 +72,6 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloPlanoDeCobranca
             Assert.AreEqual("O preço Km rodado deve ser maior ou igual a 0", resultado1.Errors[0].ErrorMessage);
         }
 
-        [TestMethod]
-        public void GrupoDeVeiculoValido()
-        {
-            GrupoDeVeiculos grupo = new GrupoDeVeiculos();
-
-            PlanoDeCobranca plano = new PlanoDeCobranca("Plano diário", 100, 100, 100,null);
-
-            ValidadorPlanoDeCobranca validadorPaciente = new ValidadorPlanoDeCobranca();
-
-            var resultado1 = validadorPaciente.Validate(plano);
-
-            Assert.AreEqual("'Grupo De Veiculo' não pode ser nulo.", resultado1.Errors[0].ErrorMessage);
-        }
+       
     }
 }

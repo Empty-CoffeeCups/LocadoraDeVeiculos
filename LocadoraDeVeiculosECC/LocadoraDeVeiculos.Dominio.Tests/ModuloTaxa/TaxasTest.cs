@@ -41,6 +41,34 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloTaxa
             Assert.AreEqual("Valor deve ser maior do que 0", resultado1.Errors[0].ErrorMessage);
         }
 
+        [TestMethod]
+        public void ValorNuloValido()
+        {
+            Taxas taxas = new Taxas("Taxa Comum", default, TipoCalculo.Fixo);
+
+            ValidadorTaxas validadorPaciente = new ValidadorTaxas();
+
+            var resultado1 = validadorPaciente.Validate(taxas);
+
+            Assert.AreEqual("Deve ser inserido um valor", resultado1.Errors[0].ErrorMessage);
+        }
+
+
+        [TestMethod]
+        public void TipoValido()
+        {
+             TipoCalculo tipo = new TipoCalculo();
+
+            Taxas taxas = new Taxas("Taxa Comum", 100, tipo);
+
+            ValidadorTaxas validadorPaciente = new ValidadorTaxas();
+
+            var resultado1 = validadorPaciente.Validate(taxas);
+
+            Assert.AreEqual("Deve ser inserido um tipoCalculo", resultado1.Errors[0].ErrorMessage);
+        }
+
+
 
     }
 }
