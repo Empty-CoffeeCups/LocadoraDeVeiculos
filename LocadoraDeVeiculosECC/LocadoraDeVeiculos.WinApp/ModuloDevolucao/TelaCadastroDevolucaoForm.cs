@@ -91,6 +91,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             devolucao.ValorTotal =  valorTotal;
             devolucao.NivelDoTanque = ObterValorNivelTanque();
 
+            if (devolucao.DataDeDevolucao > devolucao.Locacao.DataDevolucaoPrevista)
+            {
+                devolucao.ValorTotal += AdicionarCobrancaAtraso();
+            }
+
+
             var resultadoValidacao = GravarRegistro(devolucao);
 
             if (resultadoValidacao.IsFailed)
@@ -196,7 +202,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             }
             */
             
-            return valorFinal;
+            return valorConvertido;
         }
 
        
@@ -341,6 +347,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
         private void cmbNivelDoTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
             devolucao.NivelDoTanque = cmbNivelDoTanque.SelectedIndex;
+        }
+
+        private Decimal AdicionarCobrancaAtraso()
+        {
+           decimal valorTaxaAdicional =  devolucao.ValorTotal / 10;
+
+            return valorTaxaAdicional;
+
         }
     }
 }
