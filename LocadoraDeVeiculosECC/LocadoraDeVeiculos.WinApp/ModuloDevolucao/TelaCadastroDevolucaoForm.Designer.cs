@@ -50,7 +50,7 @@
             this.txtDataDeLocacao = new System.Windows.Forms.TextBox();
             this.txtDevolucaoPrevista = new System.Windows.Forms.TextBox();
             this.txtKmDoVeiculo = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.combobox1 = new System.Windows.Forms.ComboBox();
             this.dtpDataDeDevolucao = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbLocacao = new System.Windows.Forms.ComboBox();
@@ -61,6 +61,7 @@
             this.cbLavagem = new System.Windows.Forms.CheckBox();
             this.gpTaxasLocacao = new System.Windows.Forms.GroupBox();
             this.cbTaxasLocacao = new System.Windows.Forms.CheckedListBox();
+            this.cmbNivelDoTanque = new System.Windows.Forms.ComboBox();
             this.gpTaxasDevolucao.SuspendLayout();
             this.gpTaxasLocacao.SuspendLayout();
             this.SuspendLayout();
@@ -255,20 +256,20 @@
             this.txtKmDoVeiculo.Size = new System.Drawing.Size(416, 23);
             this.txtKmDoVeiculo.TabIndex = 23;
             // 
-            // comboBox1
+            // combobox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.combobox1.FormattingEnabled = true;
+            this.combobox1.Items.AddRange(new object[] {
             "Vazio",
             "1/4",
             "1/2",
             "3/4",
             "Cheio"});
-            this.comboBox1.Location = new System.Drawing.Point(153, 511);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 25;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.combobox1.Location = new System.Drawing.Point(549, 498);
+            this.combobox1.Name = "combobox1";
+            this.combobox1.Size = new System.Drawing.Size(121, 23);
+            this.combobox1.TabIndex = 25;
+            this.combobox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dtpDataDeDevolucao
             // 
@@ -359,17 +360,32 @@
             this.cbTaxasLocacao.Size = new System.Drawing.Size(355, 130);
             this.cbTaxasLocacao.TabIndex = 0;
             // 
+            // cmbNivelDoTanque
+            // 
+            this.cmbNivelDoTanque.FormattingEnabled = true;
+            this.cmbNivelDoTanque.Items.AddRange(new object[] {
+            "Vazio",
+            "1/4",
+            "1/2",
+            "3/4",
+            "Cheio"});
+            this.cmbNivelDoTanque.Location = new System.Drawing.Point(153, 516);
+            this.cmbNivelDoTanque.Name = "cmbNivelDoTanque";
+            this.cmbNivelDoTanque.Size = new System.Drawing.Size(121, 23);
+            this.cmbNivelDoTanque.TabIndex = 31;
+            // 
             // TelaCadastroDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 831);
+            this.Controls.Add(this.cmbNivelDoTanque);
             this.Controls.Add(this.gpTaxasLocacao);
             this.Controls.Add(this.gpTaxasDevolucao);
             this.Controls.Add(this.cmbLocacao);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.dtpDataDeDevolucao);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.combobox1);
             this.Controls.Add(this.txtKmDoVeiculo);
             this.Controls.Add(this.txtDevolucaoPrevista);
             this.Controls.Add(this.txtDataDeLocacao);
@@ -428,7 +444,7 @@
         private System.Windows.Forms.TextBox txtDataDeLocacao;
         private System.Windows.Forms.TextBox txtDevolucaoPrevista;
         private System.Windows.Forms.TextBox txtKmDoVeiculo;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox combobox1;
         private System.Windows.Forms.DateTimePicker dtpDataDeDevolucao;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbLocacao;
@@ -439,5 +455,6 @@
         private System.Windows.Forms.CheckBox cbLavagem;
         private System.Windows.Forms.CheckedListBox cbTaxasLocacao;
         private System.Windows.Forms.CheckBox cbTranslado;
+        private System.Windows.Forms.ComboBox cmbNivelDoTanque;
     }
 }

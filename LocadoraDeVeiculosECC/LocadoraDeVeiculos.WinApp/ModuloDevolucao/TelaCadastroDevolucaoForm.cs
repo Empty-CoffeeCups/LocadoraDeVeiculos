@@ -89,7 +89,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             decimal valorTotal = calcularValorFinal();
             devolucao.ValorTotal =  valorTotal;
-            
+            devolucao.NivelDoTanque = ObterValorNivelTanque();
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
@@ -146,12 +146,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             foreach (var item in taxas)
             {
-            
-               
-
                 cbTaxasLocacao.Items.Add(item);
                 cbTaxasLocacao.Enabled = false;
-                
             }
 
            
@@ -171,7 +167,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            devolucao.NivelDoTanque = comboBox1.SelectedIndex;
+            devolucao.NivelDoTanque = combobox1.SelectedIndex;
         }
 
         private decimal calcularValorFinal()
@@ -302,6 +298,47 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
 
             txtValorTotal.Text = valorFinal.ToString();
+        }
+
+
+        private Decimal ObterValorNivelTanque()
+        {
+            Decimal valorNivel = 0;
+
+            if (cmbNivelDoTanque.SelectedItem == "Vazio")
+            {
+                valorNivel = 0;
+                devolucao.ValorTotal += 200;
+                
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "1/4")
+            {
+                valorNivel = 25;
+                devolucao.ValorTotal += 150;
+               
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "2/4")
+            {
+                valorNivel = 50;
+                devolucao.ValorTotal += 100;
+
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "3/4")
+            {
+                valorNivel = 75;
+                devolucao.ValorTotal += 50;
+
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "Cheio")
+            {
+                valorNivel = 100;
+            }
+
+            return valorNivel;
         }
     }
 }
