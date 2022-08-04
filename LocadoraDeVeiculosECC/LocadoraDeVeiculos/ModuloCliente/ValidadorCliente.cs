@@ -28,8 +28,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 .NotNull().NotEmpty().WithMessage("Deve ser inserido um email");
             RuleFor(x => x.Telefone)
                 .NotNull().NotEmpty()
-                 .MinimumLength(8).WithMessage("Deve ser inserido um número válido")
-                 .MaximumLength(9).WithMessage("Deve ser inserido um número válido");
+                 .MinimumLength(8).WithMessage("Deve ser inserido um número válido");
+              
             
 
         }

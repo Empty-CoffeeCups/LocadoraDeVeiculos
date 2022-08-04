@@ -56,11 +56,11 @@
             this.cmbLocacao = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gpTaxasDevolucao = new System.Windows.Forms.GroupBox();
+            this.cbTranslado = new System.Windows.Forms.CheckBox();
             this.cbManutencao = new System.Windows.Forms.CheckBox();
             this.cbLavagem = new System.Windows.Forms.CheckBox();
             this.gpTaxasLocacao = new System.Windows.Forms.GroupBox();
             this.cbTaxasLocacao = new System.Windows.Forms.CheckedListBox();
-            this.cbTranslado = new System.Windows.Forms.CheckBox();
             this.gpTaxasDevolucao.SuspendLayout();
             this.gpTaxasLocacao.SuspendLayout();
             this.SuspendLayout();
@@ -308,6 +308,17 @@
             this.gpTaxasDevolucao.TabStop = false;
             this.gpTaxasDevolucao.Text = "Taxas Devolução";
             // 
+            // cbTranslado
+            // 
+            this.cbTranslado.AutoSize = true;
+            this.cbTranslado.Location = new System.Drawing.Point(9, 81);
+            this.cbTranslado.Name = "cbTranslado";
+            this.cbTranslado.Size = new System.Drawing.Size(110, 19);
+            this.cbTranslado.TabIndex = 3;
+            this.cbTranslado.Text = "Translado 100R$";
+            this.cbTranslado.UseVisualStyleBackColor = true;
+            this.cbTranslado.CheckedChanged += new System.EventHandler(this.cbTranslado_CheckedChanged);
+            // 
             // cbManutencao
             // 
             this.cbManutencao.AutoSize = true;
@@ -317,6 +328,7 @@
             this.cbManutencao.TabIndex = 2;
             this.cbManutencao.Text = "Manutenção 150R$";
             this.cbManutencao.UseVisualStyleBackColor = true;
+            this.cbManutencao.CheckedChanged += new System.EventHandler(this.cbManutencao_CheckedChanged);
             // 
             // cbLavagem
             // 
@@ -346,16 +358,6 @@
             this.cbTaxasLocacao.Name = "cbTaxasLocacao";
             this.cbTaxasLocacao.Size = new System.Drawing.Size(355, 130);
             this.cbTaxasLocacao.TabIndex = 0;
-            // 
-            // cbTranslado
-            // 
-            this.cbTranslado.AutoSize = true;
-            this.cbTranslado.Location = new System.Drawing.Point(9, 81);
-            this.cbTranslado.Name = "cbTranslado";
-            this.cbTranslado.Size = new System.Drawing.Size(110, 19);
-            this.cbTranslado.TabIndex = 3;
-            this.cbTranslado.Text = "Translado 100R$";
-            this.cbTranslado.UseVisualStyleBackColor = true;
             // 
             // TelaCadastroDevolucaoForm
             // 
