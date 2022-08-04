@@ -165,10 +165,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            devolucao.NivelDoTanque = combobox1.SelectedIndex;
-        }
+        
 
         private decimal calcularValorFinal()
         {
@@ -319,7 +316,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                
             }
 
-            if (cmbNivelDoTanque.SelectedItem == "2/4")
+            if (cmbNivelDoTanque.SelectedItem == "1/2")
             {
                 valorNivel = 50;
                 devolucao.ValorTotal += 100;
@@ -339,6 +336,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             }
 
             return valorNivel;
+        }
+
+        private void cmbNivelDoTanque_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            devolucao.NivelDoTanque = cmbNivelDoTanque.SelectedIndex;
         }
     }
 }
