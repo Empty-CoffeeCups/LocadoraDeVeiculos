@@ -8,6 +8,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
 {
     public interface IGeradorRelatorioLocacao
     {
-        byte[] GerarRelatorioPdf(Locacao locacao);
+        void GerarRelatorioPdf(Locacao locacao);
     }
 }
