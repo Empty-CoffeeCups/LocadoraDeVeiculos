@@ -21,8 +21,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
                 .GreaterThan(0)
                 .WithMessage("Valor deve ser maior do que 0");
 
-            RuleFor(x => x.TipoCalculo)
-                .NotNull().NotEmpty().WithMessage("Deve ser inserido um tipoCalculo");
+         
         }
     }
 }
