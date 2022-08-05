@@ -19,6 +19,7 @@ using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Infra.Orm.ModuloLocacao;
 using LocadoraDeVeiculos.Infra.Orm.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxas;
+using LocadoraDeVeiculos.Infra.PDF.ModuloDevolucao;
 using LocadoraDeVeiculos.Infra.PDF.ModuloLocacao;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
@@ -102,8 +103,9 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm, geradorRelatorioLocacao);
             controladores.Add("ControladorLocacoes", new ControladorLocacoes(servicoLocacao, servicoFuncionario, servicoCliente, servicoCondutor, servicoPlanoDeCobranca, servicoTaxa));
 
+            GeradorRelatorioDevolucao geradorRelatorioDevolucao = new GeradorRelatorioDevolucao();
             var repositorioDevolucao = new RepositorioDevolucaoOrm(contextoDadosOrm);
-            var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao , contextoDadosOrm);
+            var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao , contextoDadosOrm,geradorRelatorioDevolucao);
             controladores.Add("ControladorDevolucoes", new ControladorDevolucoes(servicoDevolucao, servicoLocacao, servicoTaxa, servicoPlanoDeCobranca));
         }
     }

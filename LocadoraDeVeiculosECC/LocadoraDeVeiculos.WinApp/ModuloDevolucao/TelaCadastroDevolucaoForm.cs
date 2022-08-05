@@ -96,6 +96,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                 devolucao.ValorTotal += AdicionarCobrancaAtraso();
             }
 
+           
+
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
