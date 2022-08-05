@@ -310,7 +310,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             if (cmbNivelDoTanque.SelectedItem == "Vazio")
             {
-                valorNivel = 0;
+                valorNivel = 1;
                 devolucao.ValorTotal += 200;
                 
             }
