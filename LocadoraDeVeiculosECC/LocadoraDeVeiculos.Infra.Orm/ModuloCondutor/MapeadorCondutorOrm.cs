@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCondutor
             builder.Property(x => x.Endereco).HasColumnType("varchar(500)").IsRequired();
             builder.Property(x => x.Cpf).HasColumnType("varchar(35)").IsRequired();
             builder.Property(x => x.Cnh).HasColumnType("varchar(35)").IsRequired();
-            builder.HasOne(x => x.Cliente);
+            builder.HasOne(x => x.Cliente).WithMany().OnDelete(DeleteBehavior.NoAction);
             builder.Property(x => x.ValidadeCnh).IsRequired();
             
         }
