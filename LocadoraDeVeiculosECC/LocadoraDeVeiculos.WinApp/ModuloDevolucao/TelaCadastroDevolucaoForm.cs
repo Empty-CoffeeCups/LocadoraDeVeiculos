@@ -117,7 +117,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                     DialogResult = DialogResult.None;
                 }
             }
-
+            /*
             if (cbLavagem.Checked == true)
             {
                 Taxas taxa = new Taxas("Lavagem", 50,TipoCalculo.Fixo);
@@ -138,6 +138,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
                 devolucao.Taxas.Add(taxa);
             }
+            */
         }
 
         //Métodos Privados
