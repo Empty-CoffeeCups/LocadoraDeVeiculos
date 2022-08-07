@@ -24,6 +24,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         public ControladorCondutores(ServicoCondutor servicoCondutor, ServicoCliente servicoCliente)
         {
+            listagemCondutores = new TabelaCondutorControl();
             this.servicoCondutor = servicoCondutor;
             this.servicoCliente = servicoCliente;
            

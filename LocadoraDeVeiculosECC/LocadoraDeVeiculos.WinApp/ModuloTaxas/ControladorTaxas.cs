@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxas
 
         public ControladorTaxas(ServicoTaxa servicoTaxas)
         {
+            listagemTaxa = new TabelaTaxasControl();
             this.servicoTaxa = servicoTaxas;
         }
 

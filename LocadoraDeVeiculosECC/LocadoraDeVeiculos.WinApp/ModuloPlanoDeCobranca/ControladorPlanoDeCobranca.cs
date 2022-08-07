@@ -24,6 +24,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
         public ControladorPlanoDeCobranca(ServicoPlanoDeCobranca servicoPlanoDeCobranca, ServicoGrupoDeVeiculos servicoGrupoDeVeiculos)
         {
+            listagemPlanos = new TabelaPlanoDeCobrancaControl();
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
             this.servicoGrupoDeVeiculos = servicoGrupoDeVeiculos;
         }

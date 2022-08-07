@@ -117,6 +117,27 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                     DialogResult = DialogResult.None;
                 }
             }
+
+            if (cbLavagem.Checked == true)
+            {
+                Taxas taxa = new Taxas("Lavagem", 50,TipoCalculo.Fixo);
+
+                devolucao.Taxas.Add(taxa);
+            }
+
+            if(cbManutencao.Checked == true)
+            {
+                Taxas taxa = new Taxas("Manutenção", 150, TipoCalculo.Fixo);
+
+                devolucao.Taxas.Add(taxa);
+            }
+
+            if (cbTranslado.Checked == true)
+            {
+                Taxas taxa = new Taxas("Translado", 100, TipoCalculo.Fixo);
+
+                devolucao.Taxas.Add(taxa);
+            }
         }
 
         //Métodos Privados

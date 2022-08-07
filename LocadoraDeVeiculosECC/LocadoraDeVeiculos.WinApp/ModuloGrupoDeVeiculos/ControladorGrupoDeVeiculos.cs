@@ -15,10 +15,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculos
     {
         
         private TabelaGrupoDeVeiculosControl listagemGrupoDeVeiculos;
-        private readonly ServicoGrupoDeVeiculos servicoGrupoDeVeiculos;
+        private ServicoGrupoDeVeiculos servicoGrupoDeVeiculos;
 
         public ControladorGrupoDeVeiculos(ServicoGrupoDeVeiculos servicoGrupoDeVeiculos)
         {
+            listagemGrupoDeVeiculos = new TabelaGrupoDeVeiculosControl();
             this.servicoGrupoDeVeiculos = servicoGrupoDeVeiculos;
         }
 

@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public ControladorFuncionarios(ServicoFuncionario servicoFuncionario)
         {
+            listagemFuncionarios = new TabelaFuncionarioControl();
             this.servicoFuncionario = servicoFuncionario;
         }
 

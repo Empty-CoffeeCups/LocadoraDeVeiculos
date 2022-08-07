@@ -38,8 +38,11 @@ namespace LocadoraDeVeiculos.Infra.PDF.ModuloDevolucao
             paragrafo.Add("Data de devolução: " + devolucao.DataDeDevolucao.ToShortDateString() + "\n");
             //paragrafo.Add("Quilometragem percorrida: " + (devolucao.KmVeiculo - devolucao.Locacao.Veiculo.QuilometragemPercorrida) + " Km" + "\n");
             paragrafo.Add("Nivel do tanque: " + devolucao.NivelDoTanque + "%" + "\n");
-           
-           
+
+          
+
+
+
             paragrafo.Add("Valor total: " + "R$" + devolucao.ValorTotal + "\n");
 
             document.Open();
