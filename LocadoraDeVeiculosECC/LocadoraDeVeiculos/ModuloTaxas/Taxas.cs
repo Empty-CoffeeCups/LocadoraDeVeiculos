@@ -41,6 +41,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
             return MemberwiseClone() as Taxas;
         }
 
+       
+
         public override bool Equals(object obj)
         {
             Taxas t = obj as Taxas;

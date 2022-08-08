@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
 using LocadoraDeVeiculos.Dominio.ModuloDevolucao;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloTaxas;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 {
     public partial class TelaCadastroDevolucaoForm : Form
     {
+        private decimal valorFinal = 0;
         public Devolucao devolucao;
         private ServicoLocacao servicoLocacao;
         private ServicoTaxa servicoTaxa;
         private ServicoPlanoDeCobranca servicoPlanoDeCobranca;
 
-
+       
+        List<Taxas> taxas;
         List<Locacao> locacoes ;
         List<PlanoDeCobranca> planoDeCobrancas; 
         
@@ -38,7 +41,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
             planoDeCobrancas = servicoPlanoDeCobranca.SelecionarTodos().Value;
             locacoes = servicoLocacao.SelecionarTodos().Value;
+           
             CarregarLocacoes(locacoes);
+            
         }
 
         public Func<Devolucao, Result<Devolucao>> GravarRegistro { get; set; }
@@ -82,9 +87,17 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             devolucao.KmVeiculo = Convert.ToInt32(txtKmDoVeiculo.Text);
             devolucao.DataDeDevolucao = dtpDataDeDevolucao.Value;
 
-            decimal parteDoValor = calcularValorFinal();
-            devolucao.ValorTotal = devolucao.Locacao.ValorTotalPrevisto + parteDoValor;
-            
+            decimal valorTotal = calcularValorFinal();
+            devolucao.ValorTotal =  valorTotal;
+            devolucao.NivelDoTanque = ObterValorNivelTanque();
+
+            if (devolucao.DataDeDevolucao > devolucao.Locacao.DataDevolucaoPrevista)
+            {
+                devolucao.ValorTotal += AdicionarCobrancaAtraso();
+            }
+
+           
+
 
             var resultadoValidacao = GravarRegistro(devolucao);
 
@@ -104,6 +117,28 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                     DialogResult = DialogResult.None;
                 }
             }
+            /*
+            if (cbLavagem.Checked == true)
+            {
+                Taxas taxa = new Taxas("Lavagem", 50,TipoCalculo.Fixo);
+
+                devolucao.Taxas.Add(taxa);
+            }
+
+            if(cbManutencao.Checked == true)
+            {
+                Taxas taxa = new Taxas("Manutenção", 150, TipoCalculo.Fixo);
+
+                devolucao.Taxas.Add(taxa);
+            }
+
+            if (cbTranslado.Checked == true)
+            {
+                Taxas taxa = new Taxas("Translado", 100, TipoCalculo.Fixo);
+
+                devolucao.Taxas.Add(taxa);
+            }
+            */
         }
 
         //Métodos Privados
@@ -113,20 +148,39 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             foreach (var locacao in locacoes)
             {
 
-                cmbLocacao.Items.Add(locacao.Id);
+                cmbLocacao.Items.Add(locacao.Cliente.Nome);
 
             }
         }
 
         private void cmbLocacao_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbTaxasLocacao.Items.Clear();
+            List<Taxas> taxasReseta = new List<Taxas>();
+
+            taxas = taxasReseta;
+
             foreach (var item in locacoes)
             {
 
-                if (item.Id.Equals(cmbLocacao.SelectedItem))
+               if (item.Cliente.Nome.Equals(cmbLocacao.SelectedItem))
+                {
                     devolucao.Locacao = item;
+                    taxas = item.Taxas;
+                }
+
+              
 
             }
+
+
+            foreach (var item in taxas)
+            {
+                cbTaxasLocacao.Items.Add(item);
+                cbTaxasLocacao.Enabled = false;
+            }
+
+           
 
             //  txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GrupoDeVeiculos.Nome;
             //  txtVeiculo.Text = $"{devolucao.Locacao.Veiculo}  - {devolucao.Locacao.Veiculo}";
@@ -136,22 +190,195 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
             txtDevolucaoPrevista.Text = devolucao.Locacao.DataDevolucaoPrevista.ToShortDateString();
             txtPlanoDeCobranca.Text = devolucao.Locacao.PlanoDeCobranca.ToString();
             txtValorTotal.Text = devolucao.Locacao.ValorTotalPrevisto.ToString();
+         
             // totalComTaxa = devolucao.CalcularTaxas();
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            devolucao.NivelDoTanque = comboBox1.SelectedIndex;
-        }
+        
 
         private decimal calcularValorFinal()
         {
-            decimal valorFinal = 0;
 
-            //Cálculo aqui
+            decimal valorConvertido = Convert.ToDecimal(txtValorTotal.Text);
 
-            return valorFinal;
+
+            /*
+            if (cbLavagem.Checked == true)
+            {
+                valorFinal = valorFinal + 50;
+                valorFinal = valorFinal + devolucao.Locacao.ValorTotalPrevisto;
+                txtValorTotal.Text = valorFinal.ToString();
+            }
+
+           if(cbTranslado.Checked == true)
+            {
+                valorFinal = valorFinal + 100;
+                valorFinal = valorFinal + devolucao.Locacao.ValorTotalPrevisto;
+                txtValorTotal.Text = valorFinal.ToString();
+            }
+
+            if (cbManutencao.Checked == true)
+            {
+                valorFinal = valorFinal + 150;
+                valorFinal = valorFinal + devolucao.Locacao.ValorTotalPrevisto;
+                txtValorTotal.Text = valorFinal.ToString();
+            }
+            */
+            
+            return valorConvertido;
+        }
+
+       
+        //Events
+
+        private void cbLavagem_CheckedChanged(object sender, EventArgs e)
+        {
+            
+
+            if (cbLavagem.Checked == true)
+            {
+                valorFinal = 0;
+                valorFinal = valorFinal + 50;
+                valorFinal += devolucao.Locacao.ValorTotalPrevisto;
+
+                if(cbManutencao.Checked == true)
+                {
+                    valorFinal += 150;
+                }
+
+                if (cbTranslado.Checked == true)
+                {
+                    valorFinal += 100;
+                }
+
+
+            }
+            else if(cbLavagem.Checked != true)
+            {
+
+                valorFinal = valorFinal - 50;
+
+            }
+
+            
+            txtValorTotal.Text = valorFinal.ToString();
+
+        }
+
+        private void cbManutencao_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbManutencao.Checked == true)
+            {
+                valorFinal = 0;
+                valorFinal = valorFinal + 150;
+                valorFinal += devolucao.Locacao.ValorTotalPrevisto;
+
+            }
+
+            if(cbLavagem.Checked == true)
+            {
+                valorFinal += 50;
+            }
+            if (cbTranslado.Checked == true)
+            {
+                valorFinal += 100;
+            }
+
+            else if (cbManutencao.Checked != true)
+            {
+
+                valorFinal = valorFinal - 150;
+
+            }
+
+
+            txtValorTotal.Text = valorFinal.ToString();
+        }
+
+        private void cbTranslado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTranslado.Checked == true)
+            {
+                valorFinal = 0;
+                valorFinal = valorFinal + 100;
+                valorFinal += devolucao.Locacao.ValorTotalPrevisto;
+
+            }
+
+            if(cbLavagem.Checked == true)
+            {
+                valorFinal += 50;
+            }
+
+            if(cbManutencao.Checked == true)
+            {
+                valorFinal += 150;
+            }
+
+            else if (cbTranslado.Checked != true)
+            {
+
+                valorFinal = valorFinal - 100;
+
+            }
+
+
+            txtValorTotal.Text = valorFinal.ToString();
+        }
+
+
+        private Decimal ObterValorNivelTanque()
+        {
+            Decimal valorNivel = 0;
+
+            if (cmbNivelDoTanque.SelectedItem == "Vazio")
+            {
+                valorNivel = 1;
+                devolucao.ValorTotal += 200;
+                
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "1/4")
+            {
+                valorNivel = 25;
+                devolucao.ValorTotal += 150;
+               
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "1/2")
+            {
+                valorNivel = 50;
+                devolucao.ValorTotal += 100;
+
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "3/4")
+            {
+                valorNivel = 75;
+                devolucao.ValorTotal += 50;
+
+            }
+
+            if (cmbNivelDoTanque.SelectedItem == "Cheio")
+            {
+                valorNivel = 100;
+            }
+
+            return valorNivel;
+        }
+
+        private void cmbNivelDoTanque_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            devolucao.NivelDoTanque = cmbNivelDoTanque.SelectedIndex;
+        }
+
+        private Decimal AdicionarCobrancaAtraso()
+        {
+           decimal valorTaxaAdicional =  devolucao.ValorTotal / 10;
+
+            return valorTaxaAdicional;
+
         }
     }
 }

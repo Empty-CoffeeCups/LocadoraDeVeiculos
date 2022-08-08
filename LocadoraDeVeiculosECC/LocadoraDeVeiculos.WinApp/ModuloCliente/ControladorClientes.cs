@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         public ControladorClientes(ServicoCliente servicoCliente)
         {
+            listagemClientes = new TabelaClienteControl();
             this.servicoCliente = servicoCliente;
         }
 

@@ -79,7 +79,7 @@
             // 
             this.cmbCliente.Enabled = false;
             this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(164, 81);
+            this.cmbCliente.Location = new System.Drawing.Point(473, 81);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(204, 23);
             this.cmbCliente.TabIndex = 2;
@@ -87,7 +87,7 @@
             // cmbCondutor
             // 
             this.cmbCondutor.FormattingEnabled = true;
-            this.cmbCondutor.Location = new System.Drawing.Point(473, 81);
+            this.cmbCondutor.Location = new System.Drawing.Point(164, 81);
             this.cmbCondutor.Name = "cmbCondutor";
             this.cmbCondutor.Size = new System.Drawing.Size(204, 23);
             this.cmbCondutor.TabIndex = 3;
@@ -96,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 89);
+            this.label2.Location = new System.Drawing.Point(409, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 15);
             this.label2.TabIndex = 4;
@@ -105,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(406, 89);
+            this.label3.Location = new System.Drawing.Point(85, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 15);
             this.label3.TabIndex = 5;

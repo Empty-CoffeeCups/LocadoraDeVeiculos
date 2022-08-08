@@ -20,6 +20,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxas
             RuleFor(x => x.Valor)
                 .GreaterThan(0)
                 .WithMessage("Valor deve ser maior do que 0");
+
+         
         }
     }
 }

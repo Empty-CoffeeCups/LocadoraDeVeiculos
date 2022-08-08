@@ -30,8 +30,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             this.ConfigurarTela();
 
             dtpDevolucaoPrevista.MaxDate = DateTime.Today.Date.AddDays(30);
-
-            CarregarClientes(clientes);
+            dtpDevolucaoPrevista.MinDate = DateTime.Today;
+            dtpDataDeLocacao.MinDate = DateTime.Today;
+            cbCondutorCliente.Enabled = false;
+            
             CarregarFuncionarios(funcionarios);
             CarregarCondutores(condutores);
            // CarregarVeiculos(veiculos); -- esperando merge de modulo veiculo
@@ -83,19 +85,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             }
         }
 
-        private void CarregarClientes(List<Cliente> clientes)
-        {
-            /*
-            cmbCliente.Items.Clear();
-
-            foreach (var item in clientes)
-            {
-                cmbCliente.Items.Add(item);
-            }
-            */
-        }
-
-
+        
         private void CarregarFuncionarios(List<Funcionario> funcionarios)
         {
             cmbFuncionario.Items.Clear();
@@ -119,14 +109,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void CarregarPlanosDeCobranca(List<PlanoDeCobranca> planos)
         {
+            
             cmbPlanoDeCobranca.Items.Clear();
 
             foreach (var item in planos)
             {
                 cmbPlanoDeCobranca.Items.Add(item);
             }
-
-           
+            
         }
 
         private void CarregarTaxas(List<Taxas> taxas)

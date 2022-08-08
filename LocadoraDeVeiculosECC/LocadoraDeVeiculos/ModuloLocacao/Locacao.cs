@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
 
         }
 
-        public Locacao(Funcionario funcionario, Cliente cliente, Condutor condutor, PlanoDeCobranca planoDeCobranca, List<Taxas> taxas, DateTime dataLocacao, DateTime dataDevolucaoPrevista)
+        public Locacao(Funcionario funcionario, Cliente cliente, Condutor condutor, PlanoDeCobranca planoDeCobranca, List<Taxas> taxas, DateTime dataLocacao, DateTime dataDevolucaoPrevista, decimal valorTotalPrevisto)
         {
             Funcionario = funcionario;
             Cliente = cliente;
@@ -39,6 +39,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
             Taxas = taxas;
             DataLocacao = dataLocacao;
             DataDevolucaoPrevista = dataDevolucaoPrevista;
+            ValorTotalPrevisto = valorTotalPrevisto;
         }
 
 

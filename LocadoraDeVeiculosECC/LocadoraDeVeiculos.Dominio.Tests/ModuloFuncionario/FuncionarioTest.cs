@@ -94,15 +94,15 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloFuncionario
         {
             DateTime data = new DateTime();
             data = DateTime.Now;
-            bool admin = true;
+            bool admin = new bool();
 
-            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, 1500, admin);
+            Funcionario paciente = new Funcionario("Lucas de Aguiar", "Lucas", "12345", data, 1500,admin);
 
             ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
 
             var resultado1 = validadorFuncionario.Validate(paciente);
 
-            Assert.AreEqual("Deve ser inserido um valor", resultado1.Errors[0].ErrorMessage);
+            Assert.AreEqual("Deve ser inserido um admin", resultado1.Errors[0].ErrorMessage);
         }
     }
 }

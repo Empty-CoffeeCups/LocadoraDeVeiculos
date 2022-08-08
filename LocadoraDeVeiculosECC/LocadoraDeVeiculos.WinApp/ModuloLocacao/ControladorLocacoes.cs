@@ -29,6 +29,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         public ControladorLocacoes(ServicoLocacao servicoLocacao, ServicoFuncionario servicoFuncionario, ServicoCliente servicoCliente, ServicoCondutor servicoCondutor,/*ServicoVeiculo servicoVeiculo,*/ ServicoPlanoDeCobranca servicoPlanoDeCobranca, ServicoTaxa servicoTaxa)
         {
+            listagemLocacoes = new TabelaLocacaoControl();
             this.servicoLocacao = servicoLocacao;
             this.servicoFuncionario = servicoFuncionario;
             this.servicoCliente = servicoCliente;

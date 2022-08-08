@@ -50,7 +50,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
             foreach (Devolucao devolucao in devolucoes)
             {
-                grid.Rows.Add(devolucao.Id, devolucao.Locacao.Id, devolucao.KmVeiculo, devolucao.DataDeDevolucao.ToShortDateString(), devolucao.NivelDoTanque, devolucao.Locacao.PlanoDeCobranca.TipoDePlano, devolucao.ValorTotal);
+                grid.Rows.Add(devolucao.Id, devolucao.Locacao.Id, devolucao.KmVeiculo, devolucao.DataDeDevolucao.ToShortDateString(), devolucao.NivelDoTanque + "% ", devolucao.Locacao.PlanoDeCobranca.TipoDePlano, devolucao.ValorTotal);
 
             }
 

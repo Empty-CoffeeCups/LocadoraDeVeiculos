@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Taikandi;
 
 namespace LocadoraDeVeiculos.Compartilhado
 {
@@ -12,7 +9,7 @@ namespace LocadoraDeVeiculos.Compartilhado
 
         protected EntidadeBase()
         {
-            Id = Guid.NewGuid();
+            Id = SequentialGuid.NewGuid();
         }
 
         public abstract void Atualizar(T registro);

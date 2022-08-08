@@ -50,12 +50,19 @@
             this.txtDataDeLocacao = new System.Windows.Forms.TextBox();
             this.txtDevolucaoPrevista = new System.Windows.Forms.TextBox();
             this.txtKmDoVeiculo = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dtpDataDeDevolucao = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbLocacao = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.gpTaxas = new System.Windows.Forms.GroupBox();
+            this.gpTaxasDevolucao = new System.Windows.Forms.GroupBox();
+            this.cbTranslado = new System.Windows.Forms.CheckBox();
+            this.cbManutencao = new System.Windows.Forms.CheckBox();
+            this.cbLavagem = new System.Windows.Forms.CheckBox();
+            this.gpTaxasLocacao = new System.Windows.Forms.GroupBox();
+            this.cbTaxasLocacao = new System.Windows.Forms.CheckedListBox();
+            this.cmbNivelDoTanque = new System.Windows.Forms.ComboBox();
+            this.gpTaxasDevolucao.SuspendLayout();
+            this.gpTaxasLocacao.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -248,21 +255,6 @@
             this.txtKmDoVeiculo.Size = new System.Drawing.Size(416, 23);
             this.txtKmDoVeiculo.TabIndex = 23;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Vazio",
-            "1/4",
-            "1/2",
-            "3/4",
-            "Cheio"});
-            this.comboBox1.Location = new System.Drawing.Point(153, 511);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 25;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // dtpDataDeDevolucao
             // 
             this.dtpDataDeDevolucao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -289,25 +281,95 @@
             this.cmbLocacao.TabIndex = 28;
             this.cmbLocacao.SelectedIndexChanged += new System.EventHandler(this.cmbLocacao_SelectedIndexChanged);
             // 
-            // gpTaxas
+            // gpTaxasDevolucao
             // 
-            this.gpTaxas.Location = new System.Drawing.Point(38, 562);
-            this.gpTaxas.Name = "gpTaxas";
-            this.gpTaxas.Size = new System.Drawing.Size(736, 144);
-            this.gpTaxas.TabIndex = 29;
-            this.gpTaxas.TabStop = false;
-            this.gpTaxas.Text = "Taxas";
+            this.gpTaxasDevolucao.Controls.Add(this.cbTranslado);
+            this.gpTaxasDevolucao.Controls.Add(this.cbManutencao);
+            this.gpTaxasDevolucao.Controls.Add(this.cbLavagem);
+            this.gpTaxasDevolucao.Location = new System.Drawing.Point(38, 562);
+            this.gpTaxasDevolucao.Name = "gpTaxasDevolucao";
+            this.gpTaxasDevolucao.Size = new System.Drawing.Size(286, 137);
+            this.gpTaxasDevolucao.TabIndex = 29;
+            this.gpTaxasDevolucao.TabStop = false;
+            this.gpTaxasDevolucao.Text = "Taxas Devolução";
+            // 
+            // cbTranslado
+            // 
+            this.cbTranslado.AutoSize = true;
+            this.cbTranslado.Location = new System.Drawing.Point(9, 81);
+            this.cbTranslado.Name = "cbTranslado";
+            this.cbTranslado.Size = new System.Drawing.Size(110, 19);
+            this.cbTranslado.TabIndex = 3;
+            this.cbTranslado.Text = "Translado 100R$";
+            this.cbTranslado.UseVisualStyleBackColor = true;
+            this.cbTranslado.CheckedChanged += new System.EventHandler(this.cbTranslado_CheckedChanged);
+            // 
+            // cbManutencao
+            // 
+            this.cbManutencao.AutoSize = true;
+            this.cbManutencao.Location = new System.Drawing.Point(9, 56);
+            this.cbManutencao.Name = "cbManutencao";
+            this.cbManutencao.Size = new System.Drawing.Size(127, 19);
+            this.cbManutencao.TabIndex = 2;
+            this.cbManutencao.Text = "Manutenção 150R$";
+            this.cbManutencao.UseVisualStyleBackColor = true;
+            this.cbManutencao.CheckedChanged += new System.EventHandler(this.cbManutencao_CheckedChanged);
+            // 
+            // cbLavagem
+            // 
+            this.cbLavagem.AutoSize = true;
+            this.cbLavagem.Location = new System.Drawing.Point(9, 31);
+            this.cbLavagem.Name = "cbLavagem";
+            this.cbLavagem.Size = new System.Drawing.Size(114, 19);
+            this.cbLavagem.TabIndex = 0;
+            this.cbLavagem.Text = "Lavar Carro 50R$";
+            this.cbLavagem.UseVisualStyleBackColor = true;
+            this.cbLavagem.CheckedChanged += new System.EventHandler(this.cbLavagem_CheckedChanged);
+            // 
+            // gpTaxasLocacao
+            // 
+            this.gpTaxasLocacao.Controls.Add(this.cbTaxasLocacao);
+            this.gpTaxasLocacao.Location = new System.Drawing.Point(382, 562);
+            this.gpTaxasLocacao.Name = "gpTaxasLocacao";
+            this.gpTaxasLocacao.Size = new System.Drawing.Size(392, 165);
+            this.gpTaxasLocacao.TabIndex = 30;
+            this.gpTaxasLocacao.TabStop = false;
+            this.gpTaxasLocacao.Text = "Taxas Locação";
+            // 
+            // cbTaxasLocacao
+            // 
+            this.cbTaxasLocacao.FormattingEnabled = true;
+            this.cbTaxasLocacao.Location = new System.Drawing.Point(18, 22);
+            this.cbTaxasLocacao.Name = "cbTaxasLocacao";
+            this.cbTaxasLocacao.Size = new System.Drawing.Size(355, 130);
+            this.cbTaxasLocacao.TabIndex = 0;
+            // 
+            // cmbNivelDoTanque
+            // 
+            this.cmbNivelDoTanque.FormattingEnabled = true;
+            this.cmbNivelDoTanque.Items.AddRange(new object[] {
+            "Vazio",
+            "1/4",
+            "1/2",
+            "3/4",
+            "Cheio"});
+            this.cmbNivelDoTanque.Location = new System.Drawing.Point(153, 516);
+            this.cmbNivelDoTanque.Name = "cmbNivelDoTanque";
+            this.cmbNivelDoTanque.Size = new System.Drawing.Size(121, 23);
+            this.cmbNivelDoTanque.TabIndex = 31;
+            this.cmbNivelDoTanque.SelectedIndexChanged += new System.EventHandler(this.cmbNivelDoTanque_SelectedIndexChanged);
             // 
             // TelaCadastroDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 831);
-            this.Controls.Add(this.gpTaxas);
+            this.Controls.Add(this.cmbNivelDoTanque);
+            this.Controls.Add(this.gpTaxasLocacao);
+            this.Controls.Add(this.gpTaxasDevolucao);
             this.Controls.Add(this.cmbLocacao);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.dtpDataDeDevolucao);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.txtKmDoVeiculo);
             this.Controls.Add(this.txtDevolucaoPrevista);
             this.Controls.Add(this.txtDataDeLocacao);
@@ -334,6 +396,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro De Devolução";
+            this.gpTaxasDevolucao.ResumeLayout(false);
+            this.gpTaxasDevolucao.PerformLayout();
+            this.gpTaxasLocacao.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,11 +428,16 @@
         private System.Windows.Forms.TextBox txtDataDeLocacao;
         private System.Windows.Forms.TextBox txtDevolucaoPrevista;
         private System.Windows.Forms.TextBox txtKmDoVeiculo;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DateTimePicker dtpDataDeDevolucao;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbLocacao;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.GroupBox gpTaxas;
+        private System.Windows.Forms.GroupBox gpTaxasDevolucao;
+        private System.Windows.Forms.GroupBox gpTaxasLocacao;
+        private System.Windows.Forms.CheckBox cbManutencao;
+        private System.Windows.Forms.CheckBox cbLavagem;
+        private System.Windows.Forms.CheckedListBox cbTaxasLocacao;
+        private System.Windows.Forms.CheckBox cbTranslado;
+        private System.Windows.Forms.ComboBox cmbNivelDoTanque;
     }
 }

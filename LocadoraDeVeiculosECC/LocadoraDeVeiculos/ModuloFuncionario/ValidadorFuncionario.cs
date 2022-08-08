@@ -28,11 +28,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
                 .GreaterThan(0)
                 .WithMessage("Valor de salário deve ser maior do que 0");
 
-
-            
-
-
-
         }
     }
 }

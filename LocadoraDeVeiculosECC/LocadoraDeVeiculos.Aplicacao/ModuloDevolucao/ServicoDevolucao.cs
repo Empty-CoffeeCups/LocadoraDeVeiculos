@@ -15,11 +15,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloDevolucao
     {
         private IRepositorioDevolucao repositorioDevolucao;
         private IContextoPersistencia contextoPersistencia;
+        private IGeradorRelatorioDevolucao geradorRelatorioDevolucao;
 
-        public ServicoDevolucao(IRepositorioDevolucao repositorioDevolucao, IContextoPersistencia contextoPersistencia)
+        public ServicoDevolucao(IRepositorioDevolucao repositorioDevolucao, IContextoPersistencia contextoPersistencia, IGeradorRelatorioDevolucao geradorRelatorioDevolucao)
         {
             this.repositorioDevolucao = repositorioDevolucao;
             this.contextoPersistencia = contextoPersistencia;
+            this.geradorRelatorioDevolucao = geradorRelatorioDevolucao;
         }
 
         public Result<Devolucao> Inserir(Devolucao devolucao)
@@ -43,6 +45,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloDevolucao
             {
                 repositorioDevolucao.Inserir(devolucao);
                 contextoPersistencia.GravarDados();
+                geradorRelatorioDevolucao.GerarRelatorioPdf(devolucao);
 
                 Log.Logger.Information("Devolucao {DevolucaoId} inserido com sucesso", devolucao.Id);
 
@@ -79,6 +82,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloDevolucao
             {
                 repositorioDevolucao.Editar(devolucao);
                 contextoPersistencia.GravarDados();
+                geradorRelatorioDevolucao.GerarRelatorioPdf(devolucao);
 
                 Log.Logger.Information("Devolucao {DevolucaoId} editado com sucesso", devolucao.Id);
 

@@ -28,9 +28,12 @@ namespace LocadoraDeVeiculos.Dominio.ModuloDevolucao
             RuleFor(x => x.NivelDoTanque)
                 .NotNull()
                 .NotEmpty()
-                .GreaterThanOrEqualTo(0);
+                .GreaterThan(-1);
 
-            
+            RuleFor(x => x.ValorTotal)
+                .NotNull()
+                .NotEmpty()
+                .GreaterThanOrEqualTo(0);
 
         }
     }
