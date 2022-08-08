@@ -98,6 +98,10 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacoes>());
         }
 
+        private void veiculoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
+        }
         private void devoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
@@ -166,6 +170,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
 
             panelRegistros.Controls.Add(listagemControl);
         }
+
 
     }
 

@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using locadoraDeVeiculos.Infra.ModuloVeiculo;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using Serilog;
 using System;
@@ -14,12 +15,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
     public class ServicoVeiculo
     {
         private IRepositorioVeiculo repositorioVeiculo;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo)
+        public ServicoVeiculo(IRepositorioVeiculo repositorioVeiculo, IContextoPersistencia contextoPersistencia)
         {
             this.repositorioVeiculo = repositorioVeiculo;
+            this.contextoPersistencia = contextoPersistencia;
         }
-
         public Result<Veiculo> Inserir(Veiculo veiculo)
         {
             Log.Logger.Debug("Tentando inserir Veiculo... {@f}", veiculo);
@@ -40,6 +42,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Inserir(veiculo);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Veiculo {VeiculoId} inserido com sucesso", veiculo.Id);
 
@@ -74,6 +77,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Editar(veiculo);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Veiculo {VeiculoId} editado com sucesso", veiculo.Id);
 
@@ -95,6 +99,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             try
             {
                 repositorioVeiculo.Excluir(veiculo);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Veiculo {VeiculoId} excluído com sucesso", veiculo.Id);
 
@@ -139,7 +144,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
                 return Result.Fail(msgErro);
             }
         }
-
         private Result ValidarVeiculo(Veiculo veiculo)
         {
             ValidadorVeiculo validador = new ValidadorVeiculo();

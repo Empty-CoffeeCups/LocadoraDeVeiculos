@@ -28,12 +28,7 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
             comando.Parameters.AddWithValue("ANO", registro.Ano);
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
             byte[] data;
-            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
-            {
-                registro.Foto.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
-                data = stream.ToArray();
-            }
-            comando.Parameters.AddWithValue("FOTO", data);
+            comando.Parameters.AddWithValue("FOTO", registro.Foto);
 
         }
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)
@@ -49,7 +44,7 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
             var ano = Convert.ToDateTime(leitorRegistro["ANO"]);
             var kmPercorrido = Convert.ToInt32(leitorRegistro["KMPERCORRIDO"]);
             byte[] data = (byte[])leitorRegistro["FOTO"];
-            var foto = Image.FromStream(new System.IO.MemoryStream(data));
+            var foto = data;
 
             var veiculo = new Veiculo()
             {
@@ -63,7 +58,7 @@ namespace locadoraDeVeiculos.Infra.ModuloVeiculo
                 CapacidadeDoTanque = capacidadeDoTanque,
                 Ano = ano,
                 KmPercorrido = kmPercorrido,
-                Foto = (Bitmap)foto
+                Foto = foto
             };
                
              

@@ -20,11 +20,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
         public int CapacidadeDoTanque { get; set; }
         public DateTime Ano { get; set; }
         public int KmPercorrido { get; set; }
-        public Bitmap Foto { get; set; }
+        public byte[] Foto { get; set; }
 
         public Veiculo() { }
 
-        public Veiculo(GrupoDeVeiculos gruposDeVeiculos, string modelo, string marca, string placa, string cor, TipoCombustivel tipoDeCombustivel, int capacidadeDoTanque, DateTime ano, int kmPercorrido, Bitmap foto)
+        public Veiculo(GrupoDeVeiculos gruposDeVeiculos, string modelo, string marca, string placa, string cor, TipoCombustivel tipoDeCombustivel, int capacidadeDoTanque, DateTime ano, int kmPercorrido, byte[] foto)
         {
             GruposDeVeiculos = gruposDeVeiculos;
             Modelo = modelo;
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
                    CapacidadeDoTanque == veiculo.CapacidadeDoTanque &&
                    Ano == veiculo.Ano &&
                    KmPercorrido == veiculo.KmPercorrido &&
-                   EqualityComparer<Bitmap>.Default.Equals(Foto, veiculo.Foto);
+                   Foto == veiculo.Foto;
         }
 
         public override int GetHashCode()

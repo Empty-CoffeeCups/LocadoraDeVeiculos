@@ -45,10 +45,11 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.condurtoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.devoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolbox.SuspendLayout();
             this.menu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -132,6 +133,7 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.clientesToolStripMenuItem,
             this.funcionáriosToolStripMenuItem,
             this.grupoDeVeículosToolStripMenuItem,
+            this.veiculoToolStripMenuItem,
             this.taxasToolStripMenuItem,
             this.condurtoresToolStripMenuItem,
             this.planosDeCobrançaToolStripMenuItem,
@@ -190,6 +192,13 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.locaçãoToolStripMenuItem.Text = "Locação";
             this.locaçãoToolStripMenuItem.Click += new System.EventHandler(this.locaçãoToolStripMenuItem_Click);
             // 
+            // devoluçãoToolStripMenuItem
+            // 
+            this.devoluçãoToolStripMenuItem.Name = "devoluçãoToolStripMenuItem";
+            this.devoluçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.devoluçãoToolStripMenuItem.Text = "Devolução";
+            this.devoluçãoToolStripMenuItem.Click += new System.EventHandler(this.devoluçãoToolStripMenuItem_Click);
+            // 
             // panelRegistros
             // 
             this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -215,12 +224,12 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
             this.labelRodape.Size = new System.Drawing.Size(52, 17);
             this.labelRodape.Text = "[rodapé]";
             // 
-            // devoluçãoToolStripMenuItem
+            // veiculoToolStripMenuItem
             // 
-            this.devoluçãoToolStripMenuItem.Name = "devoluçãoToolStripMenuItem";
-            this.devoluçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.devoluçãoToolStripMenuItem.Text = "Devolução";
-            this.devoluçãoToolStripMenuItem.Click += new System.EventHandler(this.devoluçãoToolStripMenuItem_Click);
+            this.veiculoToolStripMenuItem.Name = "veiculoToolStripMenuItem";
+            this.veiculoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.veiculoToolStripMenuItem.Text = "Veiculo";
+            this.veiculoToolStripMenuItem.Click += new System.EventHandler(this.veiculoToolStripMenuItem_Click);
             // 
             // TelaMenuPrincipalForm
             // 
@@ -267,5 +276,6 @@ namespace LocadoraDeVeiculos.WinFormsApp.Compartilhado
         private ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
         private ToolStripMenuItem locaçãoToolStripMenuItem;
         private ToolStripMenuItem devoluçãoToolStripMenuItem;
+        private ToolStripMenuItem veiculoToolStripMenuItem;
     }
 }

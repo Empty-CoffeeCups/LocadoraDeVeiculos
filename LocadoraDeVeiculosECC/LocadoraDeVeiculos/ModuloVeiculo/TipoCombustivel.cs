@@ -3,7 +3,7 @@
 
 namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
 {
-    public enum TipoCombustivel
+    public enum TipoCombustivel 
     {
         [Description("Gasolina comum")]
         GasolinaComum,
@@ -11,25 +11,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
         [Description("Gasolina aditivada")]
         GasolinaAditivada,
 
-        [Description("Gasolina premium")]
-        GasolinaPremium,
-
-        [Description("Gasolina formulada")]
-        GasolinaFormulada,
-
         [Description("Etanol")]
         Etanol,
-
-        [Description("Etanol aditivado")]
-        EtanolAditivado,
-
-        [Description("GNV")]
-        Gnv,
 
         [Description("Diesel")]
         Diesel,
 
-        [Description("Diesel premium")]
-        DieselPremium,
     }
 }

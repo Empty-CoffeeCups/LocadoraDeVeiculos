@@ -67,6 +67,7 @@
             this.buttonGravar.TabIndex = 0;
             this.buttonGravar.Text = "GRAVAR";
             this.buttonGravar.UseVisualStyleBackColor = true;
+            this.buttonGravar.Click += new System.EventHandler(this.buttonGravar_Click);
             // 
             // buttonCancelar
             // 
@@ -187,15 +188,10 @@
             // 
             this.comboBoxTipoCombustivel.FormattingEnabled = true;
             this.comboBoxTipoCombustivel.Items.AddRange(new object[] {
-            "Gasolina Comum",
-            "Gasolina Aditiva",
-            "Gasolina Premium",
-            "Gasolina Formulada",
+            "Gasolina comum",
+            "Gasolina aditivada",
             "Etanol",
-            "Etanol Aditivado",
-            "GNV",
-            "Diesel",
-            "Diesel Premium"});
+            "Diesel"});
             this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(98, 187);
             this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
             this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(121, 23);
@@ -307,7 +303,7 @@
             this.label15.TabIndex = 27;
             this.label15.Text = "do Tanque :";
             // 
-            // TelaCadastroVeiculo
+            // TelaCadastroVeiculoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -343,7 +339,7 @@
             this.Controls.Add(this.buttonGravar);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TelaCadastroVeiculo";
+            this.Name = "TelaCadastroVeiculoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Veiculo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroVeiculo_FormClosing);
