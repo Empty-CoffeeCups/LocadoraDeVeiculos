@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
@@ -18,11 +19,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
     public partial class TelaCadastroVeiculoForm : Form
     {
-        private Veiculo veiculo;
-        public TelaCadastroVeiculoForm(List<GrupoDeVeiculos> grupos)
+        private Veiculo veiculo = new Veiculo();
+
+        ServicoGrupoDeVeiculos servicoGrupoDeVeiculos;
+        public TelaCadastroVeiculoForm(List<GrupoDeVeiculos> grupos, ServicoGrupoDeVeiculos servicoGrupoDeVeiculos)
         {
+            this.ConfigurarTela();
             InitializeComponent();
             CarregarGrupos(grupos);
+            this.servicoGrupoDeVeiculos = servicoGrupoDeVeiculos;
         }
         public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; set; }
         public Veiculo Veiculo
@@ -107,6 +112,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
         private void buttonGravar_Click(object sender, EventArgs e)
         {
+            veiculo.GruposDeVeiculos = (GrupoDeVeiculos)comboBoxGrupoDeVeiculos.SelectedItem;
             veiculo.Modelo = textBoxModelo.Text;
             veiculo.Marca = textBoxMarca.Text;
             veiculo.Placa = textBoxPlaca.Text;
@@ -127,6 +133,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             {
                 veiculo.TipoDeCombustivel = TipoCombustivel.Diesel;
             }
+
             //veiculo.TipoDeCombustivel = (String)comboBoxTipoCombustivel.SelectedItem;
             veiculo.CapacidadeDoTanque = int.Parse(textBoxCapacidadeTanque.Text);
             veiculo.Ano = DateTime.Parse(textBoxAno.Text);

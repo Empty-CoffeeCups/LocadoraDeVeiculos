@@ -1,7 +1,11 @@
 ﻿using locadoraDeVeiculos.Infra.ModuloFuncionario;
 using locadoraDeVeiculos.Infra.ModuloVeiculo;
+using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Aplicacao.ModuloVeiculo;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
+using LocadoraDeVeiculos.Infra.Orm;
+using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
@@ -15,21 +19,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
-
-        private readonly RepositorioGrupoDeVeiculosEmBancoDados repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDados();
+       
         private TabelaVeiculoControl listagemVeiculos;
         private readonly ServicoVeiculo servicoVeiculo;
+        private readonly ServicoGrupoDeVeiculos servicoGrupoDeVeiculos;
 
-        public ControladorVeiculo(ServicoVeiculo servicoVeiculo)
+        public ControladorVeiculo(ServicoVeiculo servicoVeiculo, ServicoGrupoDeVeiculos servicoGrupoDeVeiculos)
         {
+            listagemVeiculos = new TabelaVeiculoControl();
             this.servicoVeiculo = servicoVeiculo;
+            this.servicoGrupoDeVeiculos = servicoGrupoDeVeiculos;
         }
 
         public override void Inserir()
         {
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupoDeVeiculos.SelecionarTodos().Value;
 
-            TelaCadastroVeiculoForm tela = new TelaCadastroVeiculoForm(grupos);
+            TelaCadastroVeiculoForm tela = new TelaCadastroVeiculoForm(grupos, servicoGrupoDeVeiculos);
 
             tela.Veiculo = new Veiculo();
 
@@ -65,9 +71,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
             var planoSelecionado = resultado.Value;
 
-            var grupoDeVeiculos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupoDeVeiculos = servicoGrupoDeVeiculos.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroVeiculoForm(grupoDeVeiculos);
+            var tela = new TelaCadastroVeiculoForm(grupoDeVeiculos, servicoGrupoDeVeiculos);
 
             tela.Veiculo = planoSelecionado.Clonar();
 

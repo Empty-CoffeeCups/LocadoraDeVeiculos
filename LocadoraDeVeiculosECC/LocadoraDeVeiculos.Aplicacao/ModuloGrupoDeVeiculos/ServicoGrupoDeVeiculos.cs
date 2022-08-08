@@ -14,8 +14,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculos
 {
     public class ServicoGrupoDeVeiculos
     {
-        
-
+       
         private IRepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos;
         private IContextoPersistencia contextoPersistencia;
 
