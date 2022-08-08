@@ -36,10 +36,10 @@
             // 
             this.grid.AccessibleName = "";
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(0, 0);
+            this.grid.Location = new System.Drawing.Point(0, 3);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(240, 150);
+            this.grid.Size = new System.Drawing.Size(467, 237);
             this.grid.TabIndex = 0;
             // 
             // TabelaVeiculoControl
@@ -48,7 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
             this.Name = "TabelaVeiculoControl";
-            this.Size = new System.Drawing.Size(241, 149);
+            this.Size = new System.Drawing.Size(470, 243);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

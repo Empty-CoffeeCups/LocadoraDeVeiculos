@@ -20,6 +20,7 @@ using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Infra.Orm.ModuloLocacao;
 using LocadoraDeVeiculos.Infra.Orm.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxas;
+using LocadoraDeVeiculos.Infra.Orm.ModuloVeiculo;
 using LocadoraDeVeiculos.Infra.PDF.ModuloDevolucao;
 using LocadoraDeVeiculos.Infra.PDF.ModuloLocacao;
 using LocadoraDeVeiculos.WinApp.ModuloCliente;
