@@ -56,7 +56,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloLocacao
                 .Include(x => x.Taxas)
                 .Include(x => x.PlanoDeCobranca)
                 .Include(x => x.Condutor)
-                // .Include(x => x.Veiculo) esperando dar merge do modulo de veiculo
+                .Include(x => x.Veiculo) 
                 .ToList();
         }
 

@@ -27,8 +27,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloLocacao
             builder.HasOne(x => x.Condutor)
                 .WithMany().OnDelete(DeleteBehavior.NoAction);
 
-            //     builder.HasOne(x => x.Veiculo)                     -- esperando o merge do modulo veiculo
-            //        .WithMany().OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Veiculo)              
+                    .WithMany().OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.PlanoDeCobranca)
               .WithMany().OnDelete(DeleteBehavior.NoAction);
@@ -36,6 +36,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloLocacao
             builder.Property(x => x.DataLocacao).IsRequired();
             builder.Property(x => x.DataDevolucaoPrevista).IsRequired();
             builder.Property(x => x.ValorTotalPrevisto).IsRequired();
+            
         }
 
     }
