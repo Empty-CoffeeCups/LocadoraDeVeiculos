@@ -61,8 +61,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
                 {
                     txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
                     txtCliente.Text = devolucao.Locacao.Cliente.Nome;
-                    // txtVeiculo.Text = devolucao.Locacao.Veiculo; -- esperando o merge do módulo veículo 
-                    // txtGrupoDeVeiculo.Text = devolucao.veiculo.GrupoDeVeiculo.NomeDoGrupo; --  -- esperando o merge do módulo veículo
+                     txtVeiculo.Text = devolucao.Locacao.Veiculo.Placa;
+                     txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GruposDeVeiculos.NomeDoGrupo;
                     txtDataDeLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();
                     txtDevolucaoPrevista.Text = devolucao.Locacao.DataDevolucaoPrevista.ToShortDateString();
                     txtPlanoDeCobranca.Text = devolucao.Locacao.PlanoDeCobranca.ToString();
@@ -182,8 +182,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloDevolucao
 
            
 
-            //  txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GrupoDeVeiculos.Nome;
-            //  txtVeiculo.Text = $"{devolucao.Locacao.Veiculo}  - {devolucao.Locacao.Veiculo}";
+            txtGrupoDeVeiculo.Text = devolucao.Locacao.Veiculo.GruposDeVeiculos.NomeDoGrupo;
+            txtVeiculo.Text = devolucao.Locacao.Veiculo.Modelo;
             txtFuncionario.Text = devolucao.Locacao.Funcionario.Nome;
             txtCliente.Text = devolucao.Locacao.Cliente.Nome;
             txtDataDeLocacao.Text = devolucao.Locacao.DataLocacao.ToShortDateString();

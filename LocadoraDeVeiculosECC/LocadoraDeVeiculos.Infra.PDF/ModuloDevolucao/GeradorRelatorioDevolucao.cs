@@ -33,17 +33,17 @@ namespace LocadoraDeVeiculos.Infra.PDF.ModuloDevolucao
             paragrafo.Add("Nome do Cliente: " + devolucao.Locacao.Cliente.Nome + "\n");
             paragrafo.Add("Nome do Condutor: " + devolucao.Locacao.Condutor.Nome  + "\n");
             paragrafo.Add("Funcionário: " + devolucao.Locacao.Funcionario.Nome + "\n");
-            //paragrafo.Add("Placa do veículo: " + devolucao.Locacao.Veiculo.Placa + "\n");
-            //paragrafo.Add("Grupo de veículos: " + devolucao.Locacao.Veiculo.GrupoVeiculos.Nome + "\n");
+            paragrafo.Add("Placa do veículo: " + devolucao.Locacao.Veiculo.Placa + "\n");
+            paragrafo.Add("Grupo de veículos: " + devolucao.Locacao.Veiculo.GruposDeVeiculos.NomeDoGrupo + "\n");
             paragrafo.Add("Plano de cobrança: " + devolucao.Locacao.PlanoDeCobranca.ToString() + "\n");
             paragrafo.Add("Data de locação: " + devolucao.Locacao.DataLocacao.ToShortDateString() + "\n");
             paragrafo.Add("Data de devolução: " + devolucao.DataDeDevolucao.ToShortDateString() + "\n");
-            //paragrafo.Add("Quilometragem percorrida: " + (devolucao.KmVeiculo - devolucao.Locacao.Veiculo.QuilometragemPercorrida) + " Km" + "\n");
+            paragrafo.Add("Quilometragem percorrida: " + (devolucao.KmVeiculo - devolucao.Locacao.Veiculo.KmPercorrido) + " Km" + "\n");
             paragrafo.Add("Nivel do tanque: " + devolucao.NivelDoTanque + "%" + "\n");
 
 
 
-
+            
 
             paragrafo.Add("Valor total: " + "R$" + devolucao.ValorTotal + "\n");
 
