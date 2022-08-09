@@ -4,6 +4,7 @@ using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxas;
+using LocadoraDeVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
@@ -23,18 +24,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         private readonly ServicoFuncionario servicoFuncionario;
         private readonly ServicoCliente servicoCliente;
         private readonly ServicoCondutor servicoCondutor;
-       // private readonly ServicoVeiculo servicoVeiculo; -- esperando merge de veiculo
+        private readonly ServicoVeiculo servicoVeiculo;
         private readonly ServicoPlanoDeCobranca servicoPlanoDeCobranca;
         private readonly ServicoTaxa servicoTaxa;
 
-        public ControladorLocacoes(ServicoLocacao servicoLocacao, ServicoFuncionario servicoFuncionario, ServicoCliente servicoCliente, ServicoCondutor servicoCondutor,/*ServicoVeiculo servicoVeiculo,*/ ServicoPlanoDeCobranca servicoPlanoDeCobranca, ServicoTaxa servicoTaxa)
+        public ControladorLocacoes(ServicoLocacao servicoLocacao, ServicoFuncionario servicoFuncionario, ServicoCliente servicoCliente, ServicoCondutor servicoCondutor,ServicoVeiculo servicoVeiculo, ServicoPlanoDeCobranca servicoPlanoDeCobranca, ServicoTaxa servicoTaxa)
         {
             listagemLocacoes = new TabelaLocacaoControl();
             this.servicoLocacao = servicoLocacao;
             this.servicoFuncionario = servicoFuncionario;
             this.servicoCliente = servicoCliente;
             this.servicoCondutor = servicoCondutor;
-           // this.servicoVeiculo = servicoVeiculo; -- esperando merge de veiculo
+            this.servicoVeiculo = servicoVeiculo;
             this.servicoPlanoDeCobranca = servicoPlanoDeCobranca;
             this.servicoTaxa = servicoTaxa;
         }
@@ -78,7 +79,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 return;
             }
 
-            /* -- esperando merge de veiculo
+            
             var resultadoSelecaoVeiculos = servicoVeiculo.SelecionarTodos();
 
             if (resultadoSelecaoVeiculos.IsFailed)
@@ -90,7 +91,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
                 return;
             }
-            */
+           
 
             var resultadoSelecaoPlanosDeCobranca = servicoPlanoDeCobranca.SelecionarTodos();
 
@@ -116,7 +117,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 return;
             }
 
-            TelaCadastroLocacaoForm tela = new TelaCadastroLocacaoForm(resultadoSelecaoFuncionarios.Value, resultadoSelecaoClientes.Value, resultadoSelecaoCondutores.Value,/*  resultadoSelecaoVeiculos.Value,*/ resultadoSelecaoPlanosDeCobranca.Value, resultadoSelecaoTaxas.Value);
+            TelaCadastroLocacaoForm tela = new TelaCadastroLocacaoForm(resultadoSelecaoFuncionarios.Value, resultadoSelecaoClientes.Value, resultadoSelecaoCondutores.Value,  resultadoSelecaoVeiculos.Value, resultadoSelecaoPlanosDeCobranca.Value, resultadoSelecaoTaxas.Value);
 
             tela.Locacao = new Locacao();
 
@@ -158,10 +159,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             var clientes = servicoCliente.SelecionarTodos().Value;
             var funcionarios = servicoFuncionario.SelecionarTodos().Value;
             var condutores = servicoCondutor.SelecionarTodos().Value;
+            var veiculos = servicoVeiculo.SelecionarTodos().Value;
             var planosDeCobranca = servicoPlanoDeCobranca.SelecionarTodos().Value;
             var taxas = servicoTaxa.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroLocacaoForm(funcionarios, clientes , condutores , planosDeCobranca, taxas);
+            var tela = new TelaCadastroLocacaoForm(funcionarios, clientes , condutores ,veiculos, planosDeCobranca, taxas);
 
             tela.Locacao = planoSelecionado.Clonar();
 

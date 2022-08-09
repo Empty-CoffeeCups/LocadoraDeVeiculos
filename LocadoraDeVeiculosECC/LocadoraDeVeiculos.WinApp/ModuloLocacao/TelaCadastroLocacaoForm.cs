@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
+using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using LocadoraDeVeiculos.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
     {
         private Locacao locacao = new Locacao();
         List<Taxas> taxas = new List<Taxas>();
-        
+
        
-        public TelaCadastroLocacaoForm(List<Funcionario> funcionarios,List<Cliente> clientes, List<Condutor> condutores, /*List<Veiculo> veiculos,*/ List<PlanoDeCobranca> planos, List<Taxas> taxas)
+
+        public TelaCadastroLocacaoForm(List<Funcionario> funcionarios,List<Cliente> clientes, List<Condutor> condutores, List<Veiculo> veiculos, List<PlanoDeCobranca> planos, List<Taxas> taxas)
         {
             InitializeComponent();
             this.ConfigurarTela();
@@ -33,10 +35,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             dtpDevolucaoPrevista.MinDate = DateTime.Today;
             dtpDataDeLocacao.MinDate = DateTime.Today;
             cbCondutorCliente.Enabled = false;
-            
+          
             CarregarFuncionarios(funcionarios);
             CarregarCondutores(condutores);
-           // CarregarVeiculos(veiculos); -- esperando merge de modulo veiculo
+            CarregarVeiculos(veiculos); 
             CarregarPlanosDeCobranca(planos);
             CarregarTaxas(taxas);
             
@@ -59,13 +61,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 cmbFuncionario.SelectedItem = locacao.Funcionario;
                 cmbCondutor.SelectedItem = locacao.Condutor;
                 cmbPlanoDeCobranca.SelectedItem = locacao.PlanoDeCobranca;
-              //  cmbVeiculo.SelectedItem = locacao.Veiculo; -- esperando merge de modulo veiculo
+                cmbVeiculo.SelectedItem = locacao.Veiculo;
 
                 dtpDataDeLocacao.Value = DateTime.Now.Date;
                 dtpDevolucaoPrevista.Value = DateTime.Now.Date;
 
-                //  txtKmRodado.Text = locacao.veiculo.kmRodado; -- esperando merge de modulo veiculo
-                //   txtGrupoDeVeiculos.Text = locacao.veiculo.GrupoDeVeiculo.NomeDoGrupo; -- esperando merge de modulo veiculo
+                //txtKmRodado.Text = locacao.Veiculo.KmPercorrido.ToString();
+               // txtGrupoDeVeiculos.Text = locacao.Veiculo.GruposDeVeiculos.NomeDoGrupo;
 
 
                 txtValorTotalPrevisto.Enabled = false;
@@ -156,24 +158,24 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         }
 
 
-        /*
-        private void CarregarVeiculos(List<Veiculo> veiculos) -- esperando merge de modulo veiculo
+        
+        private void CarregarVeiculos(List<Veiculo> veiculos) 
         {
             cmbVeiculo.Items.Clear();
 
             foreach (var item in veiculos)
             {
-                cbVeiculo.Items.Add(item);
+                cmbVeiculo.Items.Add(item);
             }
         }
-        */
+        
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
             locacao.Funcionario = (Funcionario)cmbFuncionario.SelectedItem;
             locacao.Cliente = (Cliente)cmbCliente.SelectedItem;
             locacao.Condutor = (Condutor)cmbCondutor.SelectedItem;
-            //locacao.Veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+            locacao.Veiculo = (Veiculo)cmbVeiculo.SelectedItem;
             locacao.PlanoDeCobranca = (PlanoDeCobranca)cmbPlanoDeCobranca.SelectedItem;
             locacao.Taxas = taxas;
             locacao.DataLocacao = dtpDataDeLocacao.Value;

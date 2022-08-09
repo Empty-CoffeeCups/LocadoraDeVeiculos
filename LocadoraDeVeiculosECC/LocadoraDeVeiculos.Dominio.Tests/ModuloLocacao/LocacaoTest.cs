@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
+using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
         public void FuncionarioValido()
         {
             //arrange
-            var locacao = new Locacao(null, RetornaCliente(), RetornaCondutor(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date,DateTime.Now, 100);
+            var locacao = new Locacao(null, RetornaCliente(), RetornaCondutor(), RetornaVeiculo(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date,DateTime.Now, 100);
             var validador = new ValidadorLocacao();
 
             //action
@@ -56,7 +57,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
         public void ClienteValido()
         {
             //arrange
-            var locacao = new Locacao(RetornaFuncionario(), null, RetornaCondutor(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var locacao = new Locacao(RetornaFuncionario(), null, RetornaCondutor(), RetornaVeiculo(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
             var validador = new ValidadorLocacao();
 
             //action
@@ -71,7 +72,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
         public void CondutorValido()
         {
             //arrange
-            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), null, RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(),null, RetornaVeiculo(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
             var validador = new ValidadorLocacao();
 
             //action
@@ -81,11 +82,24 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
             Assert.AreEqual("'Condutor' não pode ser nulo.", resultado.Errors[0].ErrorMessage);
         }
 
+        public void VeiculoValido()
+        {
+            //arrange
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(), null, RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var validador = new ValidadorLocacao();
+
+            //action
+            var resultado = validador.Validate(locacao);
+
+            //assert
+            Assert.AreEqual("'Veiculo' não pode ser nulo.", resultado.Errors[0].ErrorMessage);
+        }
+
         [TestMethod]
         public void PlanoValido()
         {
             //arrange
-            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(), null, RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(), RetornaVeiculo(), null, RetornaTaxa(), DateTime.Today.Date, DateTime.Now, 100);
             var validador = new ValidadorLocacao();
 
             //action
@@ -100,7 +114,7 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
         public void ValorValido()
         {
             //arrange
-            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, default);
+            var locacao = new Locacao(RetornaFuncionario(), RetornaCliente(), RetornaCondutor(),RetornaVeiculo(), RetornaPlanoDeCobranca(), RetornaTaxa(), DateTime.Today.Date, DateTime.Now, default);
             var validador = new ValidadorLocacao();
 
             //action
@@ -145,6 +159,16 @@ namespace LocadoraDeVeiculos.Dominio.Tests.ModuloLocacao
 
 
             return condutor;
+        }
+
+        private Veiculo RetornaVeiculo()
+        {
+            GrupoDeVeiculos grupoDeVeiculos = new GrupoDeVeiculos("SUV");
+            byte[] foto = new byte[3];
+            Veiculo veiculo = new Veiculo(grupoDeVeiculos, "chevette", "chevrolet", "ABNT433", "Azul", TipoCombustivel.Etanol, 200, DateTime.Now, 150,foto);
+
+
+            return veiculo;
         }
 
         private List<Taxas> RetornaTaxa()

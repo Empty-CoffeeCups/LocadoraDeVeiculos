@@ -100,20 +100,21 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator
             var servicoCondutor = new ServicoCondutor(repositorioCondutor, contextoDadosOrm);
             controladores.Add("ControladorCondutores", new ControladorCondutores(servicoCondutor, servicoCliente));
 
+            var repositorioVeiculo = new RepositorioVeiculoOrm(contextoDadosOrm);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, contextoDadosOrm);
+            controladores.Add("ControladorVeiculo", new ControladorVeiculo(servicoVeiculo, servicoGrupoDeVeiculos));
 
             GeradorRelatorioLocacao geradorRelatorioLocacao = new GeradorRelatorioLocacao();
             var repositorioLocacao = new RepositorioLocacaoOrm(contextoDadosOrm);
             var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm, geradorRelatorioLocacao);
-            controladores.Add("ControladorLocacoes", new ControladorLocacoes(servicoLocacao, servicoFuncionario, servicoCliente, servicoCondutor, servicoPlanoDeCobranca, servicoTaxa));
+            controladores.Add("ControladorLocacoes", new ControladorLocacoes(servicoLocacao, servicoFuncionario, servicoCliente, servicoCondutor,servicoVeiculo, servicoPlanoDeCobranca, servicoTaxa));
 
             GeradorRelatorioDevolucao geradorRelatorioDevolucao = new GeradorRelatorioDevolucao();
             var repositorioDevolucao = new RepositorioDevolucaoOrm(contextoDadosOrm);
             var servicoDevolucao = new ServicoDevolucao(repositorioDevolucao , contextoDadosOrm,geradorRelatorioDevolucao);
             controladores.Add("ControladorDevolucoes", new ControladorDevolucoes(servicoDevolucao, servicoLocacao, servicoTaxa, servicoPlanoDeCobranca));
             
-            var repositorioVeiculo = new RepositorioVeiculoOrm(contextoDadosOrm);
-            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, contextoDadosOrm);
-            controladores.Add("ControladorVeiculo", new ControladorVeiculo(servicoVeiculo, servicoGrupoDeVeiculos));
+            
         }
     }
 }
