@@ -23,9 +23,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
                 .NotNull()
                 .NotEmpty();
 
-            // RuleFor(x => x.Veiculo) // Ainda dar merge em veiculo
-            //    .NotNull()
-            //    .NotEmpty();
+             RuleFor(x => x.Veiculo) 
+                .NotNull()
+                .NotEmpty();
 
             RuleFor(x => x.Taxas)
                 .NotNull()

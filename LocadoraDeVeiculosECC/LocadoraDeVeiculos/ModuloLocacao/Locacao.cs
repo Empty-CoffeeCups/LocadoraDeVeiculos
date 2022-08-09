@@ -4,6 +4,7 @@ using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxas;
+using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
         public Funcionario Funcionario { get; set; }
         public Cliente Cliente { get; set; }
         public Condutor Condutor { get; set; }
-
-      //  public Veiculo Veiculo { get; set; } Ainda dar merge em veiculo
+        public Veiculo Veiculo { get; set; } 
         public PlanoDeCobranca PlanoDeCobranca { get; set; }
         public List<Taxas> Taxas { get; set; }
         public DateTime DataLocacao { get; set; }
@@ -30,11 +30,12 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
 
         }
 
-        public Locacao(Funcionario funcionario, Cliente cliente, Condutor condutor, PlanoDeCobranca planoDeCobranca, List<Taxas> taxas, DateTime dataLocacao, DateTime dataDevolucaoPrevista, decimal valorTotalPrevisto)
+        public Locacao(Funcionario funcionario, Cliente cliente, Condutor condutor,Veiculo veiculo, PlanoDeCobranca planoDeCobranca, List<Taxas> taxas, DateTime dataLocacao, DateTime dataDevolucaoPrevista, decimal valorTotalPrevisto)
         {
             Funcionario = funcionario;
             Cliente = cliente;
             Condutor = condutor;
+            Veiculo = veiculo;
             PlanoDeCobranca = planoDeCobranca;
             Taxas = taxas;
             DataLocacao = dataLocacao;
@@ -50,6 +51,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
             hash.Add(Funcionario);
             hash.Add(Cliente);
             hash.Add(Condutor);
+            hash.Add(Veiculo);
             hash.Add(PlanoDeCobranca);
             hash.Add(Taxas);
             hash.Add(DataLocacao);
@@ -64,6 +66,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
             Funcionario = registro.Funcionario;
             Cliente = registro.Cliente;
             Condutor = registro.Condutor;
+            Veiculo = registro.Veiculo;
             PlanoDeCobranca = registro.PlanoDeCobranca;
             Taxas = registro.Taxas;
             DataLocacao = registro.DataLocacao;
@@ -78,7 +81,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
                    EqualityComparer<Funcionario>.Default.Equals(Funcionario, locacao.Funcionario) &&
                    EqualityComparer<Cliente>.Default.Equals(Cliente, locacao.Cliente) &&
                    EqualityComparer<Condutor>.Default.Equals(Condutor, locacao.Condutor) &&
-                   //  EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) && Ainda dar merge em veiculo
+                   EqualityComparer<Veiculo>.Default.Equals(Veiculo, locacao.Veiculo) && 
                    EqualityComparer<PlanoDeCobranca>.Default.Equals(PlanoDeCobranca, locacao.PlanoDeCobranca) &&
                    EqualityComparer<List<Taxas>>.Default.Equals(Taxas, locacao.Taxas) &&
                    DataLocacao == locacao.DataLocacao &&
@@ -87,7 +90,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
 
         public override string ToString()
         {
-            return Funcionario.Nome + " - " + Cliente.Nome + " - " + Condutor.Nome + "-" + PlanoDeCobranca.TipoDePlano + "-" + ValorTotalPrevisto;
+            return Funcionario.Nome + " - " + Cliente.Nome + " - " + Condutor.Nome + "-" +Veiculo.Modelo + "-" + PlanoDeCobranca.TipoDePlano + "-" + ValorTotalPrevisto;
         }
 
         public Locacao Clonar()
