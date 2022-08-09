@@ -22,6 +22,11 @@ namespace LocadoraDeVeiculos.Infra.PDF.ModuloLocacao
             Paragraph paragrafo2 = new Paragraph(dados, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14));
 
 
+            iTextSharp.text.Image PatientSign = iTextSharp.text.Image.GetInstance(locacao.Veiculo.Foto); // image from database
+            PatientSign.SetAbsolutePosition(10, 10);
+            PatientSign.ScaleAbsolute(2, 2);
+            
+
             paragrafo.Alignment = Element.ALIGN_LEFT;
             paragrafo2.Alignment = Element.ALIGN_CENTER;
 
@@ -33,7 +38,10 @@ namespace LocadoraDeVeiculos.Infra.PDF.ModuloLocacao
             //paragrafo.Add("Grupo de veículos: " + locacao.Veiculo.GrupoDeVeiculos.NomeDoGrupo + "\n");
             paragrafo.Add("Plano de cobrança: " + locacao.PlanoDeCobranca.ToString() + "\n");
             paragrafo.Add("Data de locação: " + locacao.DataLocacao.ToShortDateString() + "\n");
+            
             paragrafo.Add("Data de devolução prevista: " + locacao.DataDevolucaoPrevista.ToShortDateString() + "\n");
+            
+
             //paragrafo.Add("Quilometragem atual percorrida pelo veículo: " + locacao.Veiculo.QuilometragemPercorrida + " Km" + "\n");
             paragrafo.Add("Taxas adicionadas: " + "\n");
             int j = 1;
@@ -44,6 +52,10 @@ namespace LocadoraDeVeiculos.Infra.PDF.ModuloLocacao
                 j++;
 
             }
+
+            paragrafo2.Add("Foto do veículo:");
+            paragrafo2.Add(PatientSign);
+
 
             paragrafo.Add("Valor total previsto: " + "R$" + locacao.ValorTotalPrevisto + "\n");
 
